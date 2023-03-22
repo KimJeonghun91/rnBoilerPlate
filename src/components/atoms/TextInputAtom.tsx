@@ -14,7 +14,7 @@ const TextInputAtom = ({ ...props }: TextInputAtomProps) => {
 TextInputAtom.defaultProps = {
   style: {
     color:'#000000'
-  }, // style props가 전달되지 않았을 경우 빈 객체를 기본값으로 설정.
+  }, // style props가 전달되지 않았을 경우 디폴트 값
 };
 
 export default TextInputAtom;

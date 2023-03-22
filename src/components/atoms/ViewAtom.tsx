@@ -12,7 +12,7 @@ const ViewAtom = ({ ...props }: ViewAtomProps) => {
 };
 
 ViewAtom.defaultProps = {
-  style: {}, // 디폴트
+  style: {}, // style props가 전달되지 않았을 경우 디폴트 값
 };
 
 export default ViewAtom;

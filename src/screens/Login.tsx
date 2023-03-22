@@ -6,12 +6,11 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import * as ServerApi from "../utils/ServerApi";
 import * as IF from "../utils/InterFace";
 import RootViewMlc from "../components/molecules/RootViewMlc";
-import TextAtom from "../components/atoms/TextAtom";
-import TouchAbleOpAtom from "../components/atoms/TouchAbleOpAtom";
 import Colors from "../assets/constants/Colors";
 import ViewAtom from "../components/atoms/ViewAtom";
 import LoginTextInputMlc from "../components/molecules/LoginTextInputMlc";
 import { loginSuccess, loginFailed } from '../utils/redux/authSlice';
+import ButtonMlc from "../components/molecules/ButtonMlc";
 
 
 
@@ -69,22 +68,20 @@ const Login = () => {
                     onChangeText={(text) => setPw(text)} />
             </ViewAtom>
 
-            <TouchAbleOpAtom style={styles.btnLogin}
-                onPress={() => {
-                    if (id === '') return Alert.alert('', '아이디를 입력해주세요.');
-                    setLoading(true);
-                    setTimeout(() => {
-                        handleLogin(id, pw);
-                    }, 1500);
-                }}>
-                <TextAtom style={{ color: '#ffffff', fontWeight: 'bold' }}>로그인 하기</TextAtom>
-            </TouchAbleOpAtom>
+
+            <ButtonMlc containerStyle={styles.btnLogin} title="로그인 하기" onPress={() => {
+                if (id === '') return Alert.alert('', '아이디를 입력해주세요.');
+                setLoading(true);
+                setTimeout(() => {
+                    handleLogin(id, pw);
+                }, 1500);
+            }} />
         </RootViewMlc>
     )
 }
 
 const styles = StyleSheet.create({
-    btnLogin: { marginTop: 30, width: 340, backgroundColor: Colors.mainColor, justifyContent: 'center', alignItems: 'center', paddingVertical: 16, borderRadius: 5 },
+    btnLogin: { marginTop: 30, width: 340},
 });
 
 export default Login;

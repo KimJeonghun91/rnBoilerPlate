@@ -16,7 +16,7 @@ TouchAbleOpAtom.defaultProps = {
   style: {
     backgroundColor:Colors.mainColor,
     paddingVertical:10,paddingHorizontal:30,borderRadius:6
-  }, // 디폴트
+  }, // style props가 전달되지 않았을 경우 디폴트 값
 };
 
 export default TouchAbleOpAtom;
