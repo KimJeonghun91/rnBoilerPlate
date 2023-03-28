@@ -61,6 +61,12 @@ const DrawerComponent = ({ }: any) => {
                         <Image style={styles.menuImg} source={require('../../assets/img/ic_my.png')} resizeMode='contain' />
                         <TextAtom allowFontScaling={false} style={styles.menuText}>마이 페이지</TextAtom>
                     </TouchableOpacity>
+                    <TouchableOpacity style={styles.menuWrap} onPress={() => {
+                        navigation.navigate('EventLoop', {});
+                    }}>
+                        <Image style={styles.menuImg} source={require('../../assets/img/ic_my.png')} resizeMode='contain' />
+                        <TextAtom allowFontScaling={false} style={styles.menuText}>이벤트 루프</TextAtom>
+                    </TouchableOpacity>
                     <TouchableOpacity style={styles.menuWrap} onPress={() => { logOut(); }}>
                         <TextAtom allowFontScaling={false} style={styles.menuText}>로그아웃</TextAtom>
                     </TouchableOpacity>

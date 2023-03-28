@@ -6,6 +6,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Main from './screens/Main';
 import MyPage from './screens/MyPage';
 import Login from './screens/Login';
+import EventLoop from './screens/EventLoop';
 import DrawerComponent from "./components/templates/DrawerComponent";
 import Colors from "./assets/constants/Colors";
 import Layout from "./assets/constants/Layout";
@@ -74,6 +75,14 @@ function Root({ navigation }: any) {
             <Stack.Screen
                 name="MainScreen"
                 component={MainScreen}
+                options={{
+                    cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, headerShown: true, gestureEnabled: false,
+                    header: props => <CustomHeader {...props} />
+                }}
+            />
+            <Stack.Screen
+                name="EventLoop"
+                component={EventLoop}
                 options={{
                     cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, headerShown: true, gestureEnabled: false,
                     header: props => <CustomHeader {...props} />
