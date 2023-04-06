@@ -1,13 +1,15 @@
 import React from 'react';
 import { Text, TextProps } from "react-native";
+import { ThemeProvider } from "../../assets/theme";
 
 type TextAtomProps = TextProps & {
   // 추가로 선언하고 싶은 props가 있다면 작성.
 };
 
 const TextAtom = ({ ...props }: TextAtomProps) => {
+  const theme = ThemeProvider();
     return (
-        <Text {...props} style={[props.style]}>{props.children}</Text>
+        <Text {...props} style={[{color:theme.palette.text.primary},props.style]}>{props.children}</Text>
     )
 };
 

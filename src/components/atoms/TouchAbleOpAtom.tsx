@@ -1,6 +1,5 @@
 import React from 'react';
 import { TouchableOpacityProps, TouchableOpacity } from "react-native";
-import Colors from '../../assets/constants/Colors';
 
 type TouchAbleOpAtomProps = TouchableOpacityProps & {
   // 추가로 선언하고 싶은 props가 있다면 작성.
@@ -14,7 +13,6 @@ const TouchAbleOpAtom = ({ ...props }: TouchAbleOpAtomProps) => {
 
 TouchAbleOpAtom.defaultProps = {
   style: {
-    backgroundColor:Colors.mainColor,
     paddingVertical:10,paddingHorizontal:30,borderRadius:6
   }, // style props가 전달되지 않았을 경우 디폴트 값
 };

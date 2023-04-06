@@ -2,11 +2,14 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, ScrollView } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import { RootViewMlc } from "../components/molecules";
-import { TextAtom } from "../components/atoms";
+import { CardView } from "../components/organisms";
+import { ViewAtom } from "../components/atoms";
+import { ThemeProvider } from "../assets/theme";
 
 
 
-const Intro = () => {
+const Main = () => {
+    const theme = ThemeProvider();
     const navigation = useNavigation();
 
     useEffect(() => {
@@ -20,10 +23,11 @@ const Intro = () => {
 
     return (
         <RootViewMlc>
-            <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flexGrow: 1, alignItems: 'center' }} keyboardShouldPersistTaps='handled'>
-                <TextAtom>로딩 중...</TextAtom>
-            </ScrollView>
+            <ViewAtom style={{ flexDirection: 'row', width: theme.layout.window.width }}>
+                <CardView style={{ padding: 20 }} />
+
+            </ViewAtom>
         </RootViewMlc>
     )
 }
-export default Intro;
+export default Main;

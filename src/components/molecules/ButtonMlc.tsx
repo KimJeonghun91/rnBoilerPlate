@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import { TouchableOpacity, StyleSheet, StyleProp, ViewStyle } from 'react-native';
-import Colors from '../../assets/constants/Colors';
 import TextAtom from '../atoms/TextAtom';
 
 interface Props {
@@ -19,7 +18,6 @@ const ButtonMlc: FC<Props> = ({ title, onPress, containerStyle }) => {
 
 const styles = StyleSheet.create({
     button: {
-        backgroundColor: Colors.mainColor,
         paddingVertical: 15,
         paddingHorizontal: 15,
         borderRadius: 5,

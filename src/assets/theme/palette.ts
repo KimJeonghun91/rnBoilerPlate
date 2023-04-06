@@ -5,6 +5,7 @@ export type IPalette = {
   text: {
     primary: string;
     secondary: string;
+    placeholder: string;
     disabled: string;
   };
   background: {
@@ -187,6 +188,7 @@ export function palette(themeMode: 'light' | 'dark'): IPalette {
       primary: GREY[800],
       secondary: GREY[600],
       disabled: GREY[500],
+      placeholder: GREY[500]
     },
     background: { paper: '#fff', default: '#fff', neutral: GREY[200] },
     action: {
@@ -202,6 +204,7 @@ export function palette(themeMode: 'light' | 'dark'): IPalette {
       primary: '#fff',
       secondary: GREY[500],
       disabled: GREY[600],
+      placeholder: GREY[500]
     },
     background: {
       paper: GREY[800],

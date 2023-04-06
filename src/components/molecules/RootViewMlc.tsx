@@ -1,6 +1,6 @@
-import { ViewProps, KeyboardAvoidingView, Platform, ScrollView } from "react-native";
+import { ViewProps, KeyboardAvoidingView, Platform, ScrollView, StatusBar } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
-import Layout from '../../assets/constants/Layout';
+import { ThemeProvider } from "../../assets/theme";
 import LoaderMlc from './LoaderMlc';
 
 type RootViewMlcProps = ViewProps & {
@@ -8,9 +8,12 @@ type RootViewMlcProps = ViewProps & {
 };
 
 const RootViewMlc = ({ isLoader = false, ...props }: RootViewMlcProps) => {
+  const theme = ThemeProvider();
 
   return (
-    <SafeAreaView style={{ flex: 1, width: Layout.window.width }} edges={['top', 'bottom']}>
+    <SafeAreaView style={{ flex: 1, width: theme.layout.window.width, backgroundColor: theme.palette.background.default }} edges={['top', 'bottom']}>
+      <StatusBar barStyle={theme.palette.mode === 'dark' ? 'light-content' : 'dark-content'} backgroundColor={theme.palette.background.default} />
+      
       <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? "padding" : undefined} enabled>
         {
           isLoader ? (<LoaderMlc />) : (

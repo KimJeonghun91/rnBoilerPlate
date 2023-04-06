@@ -1,14 +1,15 @@
 import { StyleSheet, TextInputProps } from "react-native";
-import Colors from "../../assets/constants/Colors";
 import TextInputAtom from "../atoms/TextInputAtom";
 import ViewAtom from "../atoms/ViewAtom";
+import { ThemeProvider } from "../../assets/theme";
 
-type RootViewMlcProps = TextInputProps & {
-};
+type RootViewMlcProps = TextInputProps & {};
 
 const RootViewMlc = ({ ...props }: RootViewMlcProps) => {
+    const theme = ThemeProvider();
+
     return (
-        <ViewAtom style={[styles.inputWraper, { marginTop: 10, }]}>
+        <ViewAtom style={[styles.inputWraper, { marginTop: 10, borderColor: theme.palette.grey[500] }]}>
             <TextInputAtom
                 {...props}
                 style={styles.tiLogin} />
@@ -22,6 +23,6 @@ RootViewMlc.defaultProps = {
 
 const styles = StyleSheet.create({
     tiLogin: { flex: 1, paddingLeft: 10, color: 'black' },
-    inputWraper: { width: 340, paddingVertical: 3, paddingHorizontal: 10, flexDirection: 'row', alignItems: 'center', borderWidth: 1, borderColor: Colors.gray01 },
+    inputWraper: { width: 340, paddingVertical: 3, paddingHorizontal: 10, flexDirection: 'row', alignItems: 'center', borderWidth: 1 },
 });
 export default RootViewMlc;

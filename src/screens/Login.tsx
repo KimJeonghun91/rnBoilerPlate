@@ -3,9 +3,9 @@ import { useNavigation } from '@react-navigation/native';
 import { Alert, StyleSheet } from "react-native";
 import { useDispatch } from 'react-redux';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { ThemeProvider } from "../assets/theme";
 import * as ServerApi from "../utils/ServerApi";
 import * as IF from "../utils/InterFace";
-import Colors from "../assets/constants/Colors";
 import { ViewAtom } from "../components/atoms";
 import { loginSuccess, loginFailed } from '../utils/redux/authSlice';
 import { ButtonMlc, LoginTextInputMlc, RootViewMlc } from "../components/molecules";
@@ -14,6 +14,7 @@ import { ButtonMlc, LoginTextInputMlc, RootViewMlc } from "../components/molecul
 
 const Login = () => {
     const navigation = useNavigation<StackNavigationProp<IF.RootStackParams>>();
+    const theme = ThemeProvider();
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
     const [id, setId] = useState("");
@@ -53,7 +54,7 @@ const Login = () => {
                     allowFontScaling={false}
                     autoCapitalize='none'
                     placeholder={`아이디`}
-                    placeholderTextColor={Colors.gray01}
+                    placeholderTextColor={theme.palette.text.placeholder}
                     value={id}
                     onChangeText={(text) => setId(text)} />
 
@@ -61,13 +62,13 @@ const Login = () => {
                     allowFontScaling={false}
                     autoCapitalize='none'
                     placeholder={`비밀번호`}
-                    placeholderTextColor={Colors.gray01}
+                    placeholderTextColor={theme.palette.text.placeholder}
                     value={pw}
                     onChangeText={(text) => setPw(text)} />
             </ViewAtom>
 
 
-            <ButtonMlc containerStyle={styles.btnLogin} title="로그인 하기" onPress={() => {
+            <ButtonMlc containerStyle={[styles.btnLogin,{backgroundColor:theme.palette.primary.main}]} title="로그인 하기" onPress={() => {
                 if (id === '') return Alert.alert('', '아이디를 입력해주세요.');
                 setLoading(true);
                 setTimeout(() => {

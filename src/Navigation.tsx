@@ -9,10 +9,9 @@ import Login from './screens/Login';
 import EventLoop from './screens/EventLoop';
 import ColorPage from './screens/ColorPage';
 import { DrawerComponent } from "./components/templates";
-import Colors from "./assets/constants/Colors";
-import Layout from "./assets/constants/Layout";
 import { CustomHeader } from "./components/organisms";
 import * as IF from "./utils/InterFace";
+import { ThemeProvider } from "./assets/theme";
 const Stack = createStackNavigator<IF.RootStackParams>();
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
@@ -22,6 +21,8 @@ const bottomImg = 32;
 
 
 function MainScreen() {
+    const theme = ThemeProvider();
+
     return (
         <Tab.Navigator initialRouteName="HealthWrite" backBehavior='none'
             screenOptions={{
@@ -34,13 +35,13 @@ function MainScreen() {
                     ios: { shadowColor: "rgb(50, 50, 50)", shadowOpacity: 0.1, shadowRadius: 3, shadowOffset: { height: 1, width: 1 } },
                     android: { elevation: 3 }
                 })
-            }, { width: Layout.window.width }]}>
+            }, { width: theme.layout.window.width }]}>
 
             <Tab.Screen name="Main" component={Main} initialParams={{ initialPage: 0 }}
                 options={{
                     tabBarIcon: ({ focused, size }) => {
                         return (
-                            <Image style={{ width: bottomImg, height: bottomImg, tintColor: focused ? Colors.mainColor : Colors.gray01 }}
+                            <Image style={{ width: bottomImg, height: bottomImg, tintColor: focused ? theme.palette.primary.main : theme.palette.grey[500] }}
                                 resizeMode={'contain'} source={require('./assets/img/ic_home.png')} />
                         );
                     },
@@ -51,7 +52,7 @@ function MainScreen() {
                 options={{
                     tabBarIcon: ({ focused, size }) => {
                         return (
-                            <Image style={{ width: bottomImg, height: bottomImg, tintColor: focused ? Colors.mainColor : Colors.gray01 }}
+                            <Image style={{ width: bottomImg, height: bottomImg, tintColor: focused ? theme.palette.primary.main : theme.palette.grey[500] }}
                                 resizeMode={'contain'} source={require('./assets/img/ic_my.png')} />
                         );
                     },
