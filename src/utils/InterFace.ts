@@ -2,6 +2,7 @@ export type RootStackParams = {
     MainScreen: {}
     Login: {}
     EventLoop:{}
+    ColorPage:{}
 };
 
 

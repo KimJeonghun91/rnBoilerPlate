@@ -62,6 +62,12 @@ const DrawerComponent = ({ }: any) => {
                         <TextAtom allowFontScaling={false} style={styles.menuText}>마이 페이지</TextAtom>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.menuWrap} onPress={() => {
+                        navigation.navigate('ColorPage', {});
+                    }}>
+                        <Image style={styles.menuImg} source={require('../../assets/img/ic_my.png')} resizeMode='contain' />
+                        <TextAtom allowFontScaling={false} style={styles.menuText}>컬러 팔레트</TextAtom>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.menuWrap} onPress={() => {
                         navigation.navigate('EventLoop', {});
                     }}>
                         <Image style={styles.menuImg} source={require('../../assets/img/ic_my.png')} resizeMode='contain' />

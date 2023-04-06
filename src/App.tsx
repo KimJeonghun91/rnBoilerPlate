@@ -10,7 +10,7 @@ import { store } from './utils/redux/store';
 const App = () => {
   return (
     <Provider store={store}>
-      <StatusBar barStyle="dark-content" backgroundColor={'#ffffff'} />
+      <StatusBar barStyle="dark-content" />
       <NavigationContainer>
         <Navigation />
       </NavigationContainer>

@@ -7,10 +7,11 @@ import Main from './screens/Main';
 import MyPage from './screens/MyPage';
 import Login from './screens/Login';
 import EventLoop from './screens/EventLoop';
-import DrawerComponent from "./components/templates/DrawerComponent";
+import ColorPage from './screens/ColorPage';
+import { DrawerComponent } from "./components/templates";
 import Colors from "./assets/constants/Colors";
 import Layout from "./assets/constants/Layout";
-import CustomHeader from "./components/organisms/CustomHeader";
+import { CustomHeader } from "./components/organisms";
 import * as IF from "./utils/InterFace";
 const Stack = createStackNavigator<IF.RootStackParams>();
 const Drawer = createDrawerNavigator();
@@ -83,6 +84,14 @@ function Root({ navigation }: any) {
             <Stack.Screen
                 name="EventLoop"
                 component={EventLoop}
+                options={{
+                    cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, headerShown: true, gestureEnabled: false,
+                    header: props => <CustomHeader {...props} />
+                }}
+            />
+            <Stack.Screen
+                name="ColorPage"
+                component={ColorPage}
                 options={{
                     cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, headerShown: true, gestureEnabled: false,
                     header: props => <CustomHeader {...props} />
