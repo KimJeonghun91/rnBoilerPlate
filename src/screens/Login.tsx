@@ -5,12 +5,10 @@ import { useDispatch } from 'react-redux';
 import { StackNavigationProp } from '@react-navigation/stack';
 import * as ServerApi from "../utils/ServerApi";
 import * as IF from "../utils/InterFace";
-import RootViewMlc from "../components/molecules/RootViewMlc";
 import Colors from "../assets/constants/Colors";
-import ViewAtom from "../components/atoms/ViewAtom";
-import LoginTextInputMlc from "../components/molecules/LoginTextInputMlc";
+import { ViewAtom } from "../components/atoms";
 import { loginSuccess, loginFailed } from '../utils/redux/authSlice';
-import ButtonMlc from "../components/molecules/ButtonMlc";
+import { ButtonMlc, LoginTextInputMlc, RootViewMlc } from "../components/molecules";
 
 
 
@@ -81,7 +79,7 @@ const Login = () => {
 }
 
 const styles = StyleSheet.create({
-    btnLogin: { marginTop: 30, width: 340},
+    btnLogin: { marginTop: 30, width: 340 },
 });
 
 export default Login;

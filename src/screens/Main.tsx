@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, ScrollView } from "react-native";
 import { useNavigation } from '@react-navigation/native';
-import RootViewMlc from "../components/molecules/RootViewMlc";
-import TextAtom from "../components/atoms/TextAtom";
+import { RootViewMlc } from "../components/molecules";
+import { TextAtom } from "../components/atoms";
 
 
 

@@ -1,9 +1,8 @@
 import React from "react";
 import { StyleSheet } from "react-native";
-import RootViewMlc from "../components/molecules/RootViewMlc";
-import TextAtom from "../components/atoms/TextAtom";
+import { RootViewMlc } from "../components/molecules";
 import { ThemeProvider } from "../assets/theme";
-import ViewAtom from "../components/atoms/ViewAtom";
+import { ViewAtom, TextAtom } from "../components/atoms";
 
 
 
