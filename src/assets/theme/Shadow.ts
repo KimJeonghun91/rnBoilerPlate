@@ -15,7 +15,7 @@ const lightShadow = {
   ...defaultShadow,
   ...Platform.OS === 'ios' && {
     shadowColor: '#ddd',
-    shadowOpacity: 0.5,
+    shadowOpacity: 0.3,
   }
 };
 

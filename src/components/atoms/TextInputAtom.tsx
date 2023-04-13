@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextInput, TextInputProps } from "react-native";
+import { Platform, TextInput, TextInputProps } from "react-native";
 
 type TextInputAtomProps = TextInputProps & {
   // 추가로 선언하고 싶은 props가 있다면 작성.
@@ -7,7 +7,7 @@ type TextInputAtomProps = TextInputProps & {
 
 const TextInputAtom = ({ ...props }: TextInputAtomProps) => {
     return (
-        <TextInput {...props} style={[props.style]}>{props.children}</TextInput>
+        <TextInput {...props} style={[{paddingVertical:Platform.OS === 'ios' ? 8 : 0},props.style]}>{props.children}</TextInput>
     )
 };
 

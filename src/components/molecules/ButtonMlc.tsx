@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import { TouchableOpacity, StyleSheet, StyleProp, ViewStyle } from 'react-native';
-import TextAtom from '../atoms/TextAtom';
+import { StyleSheet, StyleProp, ViewStyle } from 'react-native';
+import { TouchAbleOpAtom, TextAtom } from '../atoms';
 
 interface Props {
     title: string;
@@ -10,9 +10,9 @@ interface Props {
 
 const ButtonMlc: FC<Props> = ({ title, onPress, containerStyle }) => {
     return (
-        <TouchableOpacity style={[styles.button, containerStyle]} onPress={onPress}>
+        <TouchAbleOpAtom style={[styles.button, containerStyle]} onPress={onPress}>
             <TextAtom style={styles.title}>{title}</TextAtom>
-        </TouchableOpacity>
+        </TouchAbleOpAtom>
     );
 };
 
@@ -21,8 +21,8 @@ const styles = StyleSheet.create({
         paddingVertical: 15,
         paddingHorizontal: 15,
         borderRadius: 5,
-        justifyContent:'center',
-        alignItems:'center'
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     title: {
         color: '#FFFFFF',

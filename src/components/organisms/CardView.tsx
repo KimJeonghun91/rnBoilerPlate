@@ -24,10 +24,9 @@ const RootViewMlc = ({
   }, []);
 
 
-
   return (
     <ViewAtom {...props} style={[{ flex: 1, backgroundColor: theme.palette.background.paper, ...theme.shadow }, props.style]}>
-
+      {props.children}
     </ViewAtom>
   )
 };

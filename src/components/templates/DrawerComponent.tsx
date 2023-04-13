@@ -1,12 +1,15 @@
-import React, { useCallback } from 'react';
-import { StyleSheet, Image, ScrollView, TouchableOpacity, Alert } from 'react-native';
+import React, { useCallback, useMemo } from 'react';
+import { StyleSheet, Image, ScrollView, TouchableOpacity, Alert, Platform } from 'react-native';
 import { useNavigation, DrawerActions } from '@react-navigation/native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import TextAtom from '../atoms/TextAtom';
 import ViewAtom from '../atoms/ViewAtom';
 import { useAppDispatch, useTypedSelector } from '../../utils/redux/store';
 import { logout } from '../../utils/redux/authSlice';
+import { ThemeProvider } from "../../assets/theme";
 
 const DrawerComponent = ({ }: any) => {
+    const theme = ThemeProvider();
     const authInfo = useTypedSelector((state) => state.auth);
     const navigation = useNavigation<any>();
     const dispatch = useAppDispatch();
@@ -27,27 +30,35 @@ const DrawerComponent = ({ }: any) => {
     }, [])
 
 
-    return (
+
+    const useRenderView = useMemo(() => (
         <ViewAtom style={styles.container}>
             <ScrollView style={{ flex: 1 }}>
 
-                {
-                    !authInfo ? <>
-                        <ViewAtom style={{ width: '100%', backgroundColor: '#f8f8f8', paddingVertical: 50 }}>
+                <ViewAtom style={{ width: '100%', backgroundColor: '#f8f8f8',paddingTop:20,position:'relative' }}>
+                    {
+                        !authInfo ? <>
                             <TextAtom>로그인이 필요해요</TextAtom>
-                        </ViewAtom>
-                    </> : <>
-                        <ViewAtom style={{ width: '100%', backgroundColor: '#f8f8f8' }}>
-                            <TextAtom>내 정보</TextAtom>
-                        </ViewAtom>
-
-                        <ViewAtom style={{ width: '100%', flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingTop: 15, paddingBottom: 15, backgroundColor: '#f8f8f8' }}>
-                            <ViewAtom style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start', height: 70, paddingLeft: 10 }}>
-                                <TextAtom>{authInfo.id}</TextAtom>
+                        </> : <>
+                            <ViewAtom style={{ width: '100%', backgroundColor: '#f8f8f8' }}>
+                                <TextAtom>내 정보</TextAtom>
                             </ViewAtom>
-                        </ViewAtom>
-                    </>
-                }
+
+                            <ViewAtom style={{ width: '100%', flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingTop: 15, paddingBottom: 15, backgroundColor: '#f8f8f8' }}>
+                                <ViewAtom style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start', height: 70, paddingLeft: 10 }}>
+                                    <TextAtom>{authInfo.id}</TextAtom>
+                                </ViewAtom>
+                            </ViewAtom>
+                        </>
+                    }
+
+                    <TouchableOpacity style={{ position: 'absolute', top: 50, right: 5, padding: 10 }} onPress={() => {
+                        navigation.dispatch(DrawerActions.closeDrawer());
+                    }}>
+                        <TextAtom>닫기</TextAtom>
+                    </TouchableOpacity>
+
+                </ViewAtom>
 
 
                 <ViewAtom style={{ width: '100%', backgroundColor: '#f8f8f8', height: 15 }}></ViewAtom>
@@ -59,7 +70,7 @@ const DrawerComponent = ({ }: any) => {
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.menuWrap}>
                         <Image style={styles.menuImg} source={require('../../assets/img/ic_my.png')} resizeMode='contain' />
-                        <TextAtom allowFontScaling={false} style={styles.menuText}>마이 페이지</TextAtom>
+                        <TextAtom allowFontScaling={false} style={styles.menuText}>그리드 레이아웃</TextAtom>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.menuWrap} onPress={() => {
                         navigation.navigate('ColorPage', {});
@@ -81,15 +92,21 @@ const DrawerComponent = ({ }: any) => {
 
 
 
-
-                <TouchableOpacity style={{ position: 'absolute', top: 0, right: 5, padding: 10 }} onPress={() => {
-                    navigation.dispatch(DrawerActions.closeDrawer());
-                    // navigation.closeDrawer();
-                }}>
-                    <TextAtom>닫기</TextAtom>
-                </TouchableOpacity>
             </ScrollView>
         </ViewAtom>
+    ), [theme]);
+
+
+
+    return (
+        // useRenderView
+        Platform.OS === 'ios' ? (
+            <SafeAreaView style={{ flex: 1, width: theme.layout.window.width, backgroundColor: theme.palette.background.default }} edges={['top']}>
+                {useRenderView}
+            </SafeAreaView>
+        ) : (
+            useRenderView
+        )
     )
 }
 

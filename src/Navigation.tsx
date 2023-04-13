@@ -4,7 +4,7 @@ import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Main from './screens/Main';
-import MyPage from './screens/MyPage';
+import GridSystem from './screens/GridSystem';
 import Login from './screens/Login';
 import EventLoop from './screens/EventLoop';
 import ColorPage from './screens/ColorPage';
@@ -48,7 +48,7 @@ function MainScreen() {
                 }}
             />
 
-            <Tab.Screen name="MyPage" component={MyPage}
+            <Tab.Screen name="GridSystem" component={GridSystem}
                 options={{
                     tabBarIcon: ({ focused, size }) => {
                         return (

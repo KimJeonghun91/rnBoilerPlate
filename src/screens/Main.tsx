@@ -3,7 +3,7 @@ import { StyleSheet, ScrollView } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import { RootViewMlc } from "../components/molecules";
 import { CardView } from "../components/organisms";
-import { ViewAtom } from "../components/atoms";
+import { TextAtom, ViewAtom } from "../components/atoms";
 import { ThemeProvider } from "../assets/theme";
 
 
@@ -23,10 +23,7 @@ const Main = () => {
 
     return (
         <RootViewMlc>
-            <ViewAtom style={{ flexDirection: 'row', width: theme.layout.window.width }}>
-                <CardView style={{ padding: 20 }} />
-
-            </ViewAtom>
+ 
         </RootViewMlc>
     )
 }
