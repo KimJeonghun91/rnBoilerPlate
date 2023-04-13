@@ -41,8 +41,7 @@ const EventLoop = () => {
     return (
         <RootViewMlc>
             <TextAtom style={{ textAlign: 'center', paddingHorizontal: 20, marginTop: 20 }}>{`MacroQueue와 MicroQueue 때문에 나중에 선언된 Promise가 빨리 처리됨`}</TextAtom>
-            <TextAtom style={{ textAlign: 'center', paddingHorizontal: 20, marginTop: 20 }}>{`setImmediate는 React Native에서 제공하는 함수 중 하나로, 비동기적으로 실행될 함수를 등록하여 다음 Event Loop에서 실행될 수 있도록 하는 함수입니다.`}</TextAtom>
-            <TextAtom style={{ textAlign: 'center', paddingHorizontal: 20, marginTop: 20 }}>{`현재 Event Loop에서 실행되지 않고, 대신 다음 Event Loop에서 실행됩니다. 이렇게 하면 현재 실행 중인 코드의 다른 부분이 먼저 실행될 수 있으므로, 애플리케이션의 성능이 향상될 수 있습니다.`}</TextAtom>
+            <TextAtom style={{ textAlign: 'center', paddingHorizontal: 20, marginTop: 20 }}>{`RreactNative는 네이티브에서 동작하는 자체 이벤트루프(EventLoopController 모듈)를 사용함. 따라서 JS 이벤트루프와 다르게 동작할 수 있음`}</TextAtom>
 
 
             <TouchAbleOpAtom style={{ marginTop: 10, marginBottom: 40 }} onPress={() => { Linking.openURL(`https://kimjeonghun91.github.io/blog/devlog/2023-03-27-js-event-loop/`); }}>

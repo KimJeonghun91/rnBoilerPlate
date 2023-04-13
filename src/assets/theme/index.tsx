@@ -9,13 +9,15 @@ import { shadow, IShadow } from './Shadow';
 interface ThemeOptions {
   palette: IPalette,
   shadow: IShadow,
-  layout: ILayout
+  layout: ILayout,
+  currentMode: 'light' | 'dark'
 }
 
 export function ThemeProvider(): ThemeOptions {
   const { mode } = useTypedSelector((state) => state.theme);
 
   const useTheme: ThemeOptions = useMemo(() => ({
+    currentMode: mode,
     palette: palette(mode),
     shadow: shadow(mode),
     layout: layout,

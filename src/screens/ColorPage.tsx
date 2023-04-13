@@ -22,7 +22,7 @@ const EventLoop = () => {
             </ViewAtom>
 
 
-            <ViewAtom style={[styles.cBg, { backgroundColor: '#ffffff', flexDirection: 'row' }]}>
+            <ViewAtom style={[styles.cBg, { backgroundColor:theme.palette.background.neutral, flexDirection: 'row' }]}>
                 <ViewAtom style={styles.sBg}>
                     <TextAtom style={[styles.cTxt, { color: theme.palette.grey[100] }]}>Grey100</TextAtom>
                     <TextAtom style={[styles.cTxt, { color: theme.palette.grey[200] }]}>Grey200</TextAtom>
