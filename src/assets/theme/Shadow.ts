@@ -2,29 +2,34 @@ import { Platform } from "react-native";
 
 const defaultShadow = {
   ...Platform.OS === 'ios' ? {
-    shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
+    shadowColor: '#000000',
     shadowOpacity: 0.1,
     shadowRadius: 4.65
   } : {
+    shadowColor: '#00000080',
     elevation: 6,
   }
 };
 
 const lightShadow = {
   ...defaultShadow,
-  ...Platform.OS === 'ios' && {
+  ...Platform.OS === 'ios' ? {
     shadowColor: '#ddd',
-    shadowOpacity: 0.3,
+  } : {
+    shadowColor: '#ddddddcc',
+    elevation: 6,
   }
 };
 
 const darkShadow = {
   ...defaultShadow,
-  // ...Platform.OS === 'ios' && {
-  //   shadowColor: '#000',
-  //   shadowOpacity: 0.8,
-  // }
+  ...Platform.OS === 'ios' ? {
+    shadowColor: '#000',
+  } : {
+    shadowColor: '#00000080',
+    elevation: 6,
+  }
 };
 
 
