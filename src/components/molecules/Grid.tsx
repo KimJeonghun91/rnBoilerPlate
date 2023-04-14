@@ -17,11 +17,18 @@ const Grid: React.FC<GridProps> = ({ children, rowGap = 0, columnGap = 0 }) => (
   <ViewAtom style={[styles.grid, { rowGap: rowGap, columnGap: columnGap }]}>{children}</ViewAtom>
 );
 
-const GridItem: React.FC<GridItemProps> = ({ size, children }) => (
+const GridFixedItem: React.FC<GridItemProps> = ({ size, children }) => (
   <ViewAtom style={[styles.gridItem, { flexBasis: `${size / 12 * 100}%` }]}>
     {children}
   </ViewAtom>
 );
+
+const GridFlexItem: React.FC<GridItemProps> = ({ size, children }) => (
+  <ViewAtom style={[{ flex: size }]}>
+    {children}
+  </ViewAtom>
+);
+
 
 const styles = StyleSheet.create({
   grid: {
@@ -36,4 +43,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export { Grid, GridItem };
+export { Grid, GridFixedItem, GridFlexItem };
