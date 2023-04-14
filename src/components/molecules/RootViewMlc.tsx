@@ -11,9 +11,9 @@ const RootViewMlc = ({ isLoader = false, ...props }: RootViewMlcProps) => {
   const theme = ThemeProvider();
 
   return (
-    <SafeAreaView style={{ flex: 1, width: theme.layout.window.width, backgroundColor: theme.palette.background.default }} edges={['top', 'bottom']}>
+    <SafeAreaView style={[{ flex: 1, width: theme.layout.window.width, backgroundColor: theme.palette.background.default }, props.style]} edges={['top', 'bottom']}>
       <StatusBar barStyle={theme.palette.mode === 'dark' ? 'light-content' : 'dark-content'} backgroundColor={theme.palette.background.default} />
-      
+
       <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? "padding" : undefined} enabled>
         {
           isLoader ? (<LoaderMlc />) : (
