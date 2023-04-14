@@ -1,31 +1,43 @@
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { ViewProps, Platform } from "react-native";
 import { ThemeProvider } from "../../assets/theme";
-import { ViewAtom } from '../atoms';
+import { TextAtom, ViewAtom } from '../atoms';
 
 
 type RootViewMlcProps = ViewProps & {
-  pSize?: string
+  title?: string
+  subTitle?: string
+  borderRadius?: number
+  padding?: number
 };
 
 const RootViewMlc = ({
-  pSize = '',
+  title = '',
+  subTitle = '',
+  borderRadius = 5,
+  padding = 10,
   ...props
 }: RootViewMlcProps) => {
   const theme = ThemeProvider();
+  const [borderR, setBorderR] = useState(0);
 
-  // * radius 는 컴포넌트의 크기와 모양에 따라 각도가 달라지기 때문에 동일한 각도를 위해 함수 사용
-  const calculateBorderRadius = useCallback((width: number, height: number, radius: number) => {
+  const handleLayout = useCallback((event: any) => {
+    const { width, height } = event.nativeEvent.layout;
+
+    // calculateBorderRadius
     const aspectRatio = width / height;
-    const adjustedRadius = radius * Math.min(1, aspectRatio);
+    const adjustedRadius = borderRadius * Math.min(1, aspectRatio);
 
     // 2보다 작은 값은 안드로이드에서 동작하지 않기 때문에 최소 2를 리턴합니다.
-    return Platform.OS === 'android' ? Math.max(adjustedRadius, 2) : adjustedRadius;
-  }, []);
+    setBorderR(Platform.OS === 'android' ? Math.max(adjustedRadius, 2) : adjustedRadius);
+  }, [borderRadius]);
 
 
   return (
-    <ViewAtom {...props} style={[{ flex: 1, backgroundColor: theme.palette.background.paper, ...theme.shadow }, props.style]}>
+    <ViewAtom {...props} style={[{ flex: 1, backgroundColor: theme.palette.background.paper, ...theme.shadow, borderRadius: borderR, padding: padding }, props.style]}
+      onLayout={handleLayout}>
+      {title && <TextAtom style={{ fontSize: theme.layout.h4, fontWeight: 'bold', marginBottom: subTitle ? 3 : 10 }}>{title}</TextAtom>}
+      {subTitle && <TextAtom style={{ fontSize: theme.layout.subtitle2, fontWeight: 'bold', marginBottom: 10 }}>{subTitle}</TextAtom>}
       {props.children}
     </ViewAtom>
   )

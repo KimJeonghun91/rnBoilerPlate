@@ -6,13 +6,13 @@ type ViewAtomProps = ViewProps & {
 };
 
 const ViewAtom = ({ ...props }: ViewAtomProps) => {
-    return (
-        <View {...props} style={[props.style, {}]}>{props.children}</View>
-    )
+  return (
+    <View {...props} style={[props.style, {}]}>{props.children}</View>
+  )
 };
 
 ViewAtom.defaultProps = {
-  style: {}, // style props가 전달되지 않았을 경우 디폴트 값
+  style: { flex: 1, justifyContent: 'center', alignItems: 'center' }, // style props가 전달되지 않았을 경우 디폴트 값
 };
 
 export default ViewAtom;

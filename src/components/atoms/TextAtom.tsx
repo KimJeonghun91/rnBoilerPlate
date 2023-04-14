@@ -10,14 +10,14 @@ type TextAtomProps = TextProps & {
 
 const TextAtom = ({ variant, ...props }: TextAtomProps) => {
   const theme = ThemeProvider();
+
   return (
     <Text {...props} style={[{ color: theme.palette.text.primary }, props.style]}>{props.children}</Text>
   )
 };
 
 TextAtom.defaultProps = {
-  style: {
-  }, // style props가 전달되지 않았을 경우 디폴트 값
+  style: {}, // style props가 전달되지 않았을 경우 디폴트 값
 };
 
 export default TextAtom;
