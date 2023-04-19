@@ -19,6 +19,7 @@ const Login = () => {
     const [loading, setLoading] = useState(false);
     const [id, setId] = useState("");
     const [pw, setPw] = useState("");
+    const NONCamelCase = '';
 
     useEffect(() => {
         async function fetchData() {

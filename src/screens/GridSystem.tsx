@@ -1,5 +1,4 @@
-import React, {  useEffect } from "react";
-import { useNavigation } from '@react-navigation/native';
+import React, { } from "react";
 import { Grid, GridFixedItem, RootViewMlc } from '../components/molecules';
 import { ThemeProvider } from "../assets/theme";
 import { TextAtom, ViewAtom } from "../components/atoms";
