@@ -6,9 +6,9 @@ import TextAtom from '../atoms/TextAtom';
 import ViewAtom from '../atoms/ViewAtom';
 import { useAppDispatch, useTypedSelector } from '../../utils/redux/store';
 import { logout } from '../../utils/redux/authSlice';
-import { ThemeProvider } from "../../assets/theme";
+import { ThemeProvider } from '../../assets/theme';
 
-const DrawerComponent = ({ }: any) => {
+const DrawerComponent = ({ }) => {
     const theme = ThemeProvider();
     const authInfo = useTypedSelector((state) => state.auth);
     const navigation = useNavigation<any>();
@@ -16,18 +16,18 @@ const DrawerComponent = ({ }: any) => {
 
 
     const logOut = useCallback(() => {
-        Alert.alert("", `로그아웃 하시겠습니까?`,
+        Alert.alert('', '로그아웃 하시겠습니까?',
             [{ text: '취소', style: 'cancel', onPress: () => { }, },
             {
                 text: '확인', onPress: () => {
                     navigation.dispatch(DrawerActions.closeDrawer());
                     dispatch(logout());
-                    Alert.alert("", "로그아웃 하였습니다.")
+                    Alert.alert('', '로그아웃 하였습니다.');
                     navigation.reset({ index: 0, routes: [{ name: 'Login', params: {} }] });
-                }
-            },], { cancelable: false },
-        )
-    }, [])
+                },
+            },], { cancelable: false, },
+        );
+    }, []);
 
 
 
@@ -35,7 +35,7 @@ const DrawerComponent = ({ }: any) => {
         <ViewAtom style={styles.container}>
             <ScrollView style={{ flex: 1 }}>
 
-                <ViewAtom style={{ width: '100%', backgroundColor: '#f8f8f8',paddingTop:20,position:'relative' }}>
+                <ViewAtom style={{ width: '100%', backgroundColor: '#f8f8f8', paddingTop: 20, position: 'relative' }}>
                     {
                         !authInfo ? <>
                             <TextAtom>로그인이 필요해요</TextAtom>
@@ -61,37 +61,33 @@ const DrawerComponent = ({ }: any) => {
                 </ViewAtom>
 
 
-                <ViewAtom style={{ width: '100%', backgroundColor: '#f8f8f8', height: 15 }}></ViewAtom>
+                <ViewAtom style={{ width: '100%', backgroundColor: '#f8f8f8', height: 15 }} />
 
                 <ViewAtom style={{ width: '100%', backgroundColor: '#ffffff', paddingVertical: 10 }}>
                     <TouchableOpacity style={styles.menuWrap} onPress={() => { navigation.navigate('Main', {}); }}>
-                        <Image style={styles.menuImg} source={require('../../assets/img/ic_home.png')} resizeMode='contain' />
+                        <Image style={styles.menuImg} source={require('../../assets/img/ic_home.png')} resizeMode="contain" />
                         <TextAtom allowFontScaling={false} style={styles.menuText}>홈</TextAtom>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.menuWrap}>
-                        <Image style={styles.menuImg} source={require('../../assets/img/ic_my.png')} resizeMode='contain' />
+                        <Image style={styles.menuImg} source={require('../../assets/img/ic_my.png')} resizeMode="contain" />
                         <TextAtom allowFontScaling={false} style={styles.menuText}>그리드 레이아웃</TextAtom>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.menuWrap} onPress={() => {
                         navigation.navigate('ColorPage', {});
                     }}>
-                        <Image style={styles.menuImg} source={require('../../assets/img/ic_my.png')} resizeMode='contain' />
+                        <Image style={styles.menuImg} source={require('../../assets/img/ic_my.png')} resizeMode="contain" />
                         <TextAtom allowFontScaling={false} style={styles.menuText}>컬러 팔레트</TextAtom>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.menuWrap} onPress={() => {
                         navigation.navigate('EventLoop', {});
                     }}>
-                        <Image style={styles.menuImg} source={require('../../assets/img/ic_my.png')} resizeMode='contain' />
+                        <Image style={styles.menuImg} source={require('../../assets/img/ic_my.png')} resizeMode="contain" />
                         <TextAtom allowFontScaling={false} style={styles.menuText}>이벤트 루프</TextAtom>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.menuWrap} onPress={() => { logOut(); }}>
                         <TextAtom allowFontScaling={false} style={styles.menuText}>로그아웃</TextAtom>
                     </TouchableOpacity>
                 </ViewAtom>
-
-
-
-
             </ScrollView>
         </ViewAtom>
     ), [theme]);
@@ -107,14 +103,14 @@ const DrawerComponent = ({ }: any) => {
         ) : (
             useRenderView
         )
-    )
-}
+    );
+};
 
 const styles = StyleSheet.create({
     container: { flex: 1, backgroundColor: '#ffffff' },
     menuWrap: { flexDirection: 'row', alignItems: 'center', paddingLeft: 25, paddingVertical: 13 },
     menuImg: { width: 22, height: 22 },
-    menuText: { fontWeight: 'bold', marginLeft: 15 }
-})
+    menuText: { fontWeight: 'bold', marginLeft: 15 },
+});
 
 export default DrawerComponent;

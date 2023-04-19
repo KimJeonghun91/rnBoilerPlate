@@ -33,7 +33,7 @@ const layout: ILayout = {
   subtitle1,
   subtitle2,
   body1,
-  body2
+  body2,
 };
 
 export type ILayout = {

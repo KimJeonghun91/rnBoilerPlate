@@ -1,15 +1,15 @@
-import { Platform } from "react-native";
+import { Platform } from 'react-native';
 
 const defaultShadow = {
   ...Platform.OS === 'ios' ? {
     shadowOffset: { width: 0, height: 2 },
     shadowColor: '#000000',
     shadowOpacity: 0.1,
-    shadowRadius: 4.65
+    shadowRadius: 4.65,
   } : {
     shadowColor: '#00000080',
     elevation: 6,
-  }
+  },
 };
 
 const lightShadow = {
@@ -19,7 +19,7 @@ const lightShadow = {
   } : {
     shadowColor: '#ddddddcc',
     elevation: 6,
-  }
+  },
 };
 
 const darkShadow = {
@@ -29,7 +29,7 @@ const darkShadow = {
   } : {
     shadowColor: '#00000080',
     elevation: 6,
-  }
+  },
 };
 
 
@@ -46,4 +46,4 @@ export type IShadow = {
 
 export function shadow(themeMode: 'light' | 'dark'): IShadow {
   return themeMode === 'light' ? darkShadow : lightShadow;
-};
+}

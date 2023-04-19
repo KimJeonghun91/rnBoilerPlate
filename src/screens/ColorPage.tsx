@@ -1,8 +1,8 @@
-import React from "react";
-import { StyleSheet } from "react-native";
-import { RootViewMlc } from "../components/molecules";
-import { ThemeProvider } from "../assets/theme";
-import { ViewAtom, TextAtom } from "../components/atoms";
+import React from 'react';
+import { StyleSheet } from 'react-native';
+import { RootViewMlc } from '../components/molecules';
+import { ThemeProvider } from '../assets/theme';
+import { ViewAtom, TextAtom } from '../components/atoms';
 
 
 
@@ -22,7 +22,7 @@ const EventLoop = () => {
             </ViewAtom>
 
 
-            <ViewAtom style={[styles.cBg, { backgroundColor:theme.palette.background.neutral, flexDirection: 'row' }]}>
+            <ViewAtom style={[styles.cBgRow, { backgroundColor: theme.palette.background.neutral }]}>
                 <ViewAtom style={styles.sBg}>
                     <TextAtom style={[styles.cTxt, { color: theme.palette.grey[100] }]}>Grey100</TextAtom>
                     <TextAtom style={[styles.cTxt, { color: theme.palette.grey[200] }]}>Grey200</TextAtom>
@@ -42,13 +42,15 @@ const EventLoop = () => {
                 </ViewAtom>
             </ViewAtom>
         </RootViewMlc>
-    )
-}
+    );
+};
 
 
 const styles = StyleSheet.create({
     cBg: { width: '100%', paddingVertical: 15, justifyContent: 'center', alignItems: 'center' },
+    cBgRow: { width: '100%', paddingVertical: 15, justifyContent: 'center', alignItems: 'center', flexDirection: 'row' },
     sBg: { flex: 1, paddingVertical: 5, justifyContent: 'center', alignItems: 'center' },
-    cTxt: { textAlign: 'center', marginVertical: 5 }
+    cTxt: { textAlign: 'center', marginVertical: 5 },
 });
+
 export default EventLoop;

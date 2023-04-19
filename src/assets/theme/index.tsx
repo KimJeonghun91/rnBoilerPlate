@@ -24,4 +24,4 @@ export function ThemeProvider(): ThemeOptions {
   }), [mode]);
 
   return useTheme;
-};
+}

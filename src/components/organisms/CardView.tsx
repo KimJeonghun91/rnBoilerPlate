@@ -1,6 +1,6 @@
-import { useCallback, useState } from 'react';
-import { ViewProps, Platform, LayoutChangeEvent } from "react-native";
-import { ThemeProvider } from "../../assets/theme";
+import React, { useCallback, useState } from 'react';
+import { ViewProps, Platform, LayoutChangeEvent } from 'react-native';
+import { ThemeProvider } from '../../assets/theme';
 import { TextAtom, ViewAtom } from '../atoms';
 
 
@@ -50,7 +50,7 @@ const CardView = ({
       {subTitle && <TextAtom style={{ fontSize: theme.layout.subtitle2, fontWeight: 'bold', marginBottom: 10 }}>{subTitle}</TextAtom>}
       {props.children}
     </ViewAtom>
-  )
+  );
 };
 
 CardView.defaultProps = {

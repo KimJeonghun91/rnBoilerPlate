@@ -1,29 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { StyleSheet, ScrollView } from "react-native";
-import { useNavigation } from '@react-navigation/native';
+import React, { } from 'react';
+import { StyleSheet } from 'react-native';
 import { Grid, GridFlexItem, RootViewMlc } from '../components/molecules';
-import { CardView } from "../components/organisms";
-import { TextAtom, ViewAtom } from "../components/atoms";
-import { ThemeProvider } from "../assets/theme";
+import { CardView } from '../components/organisms';
+import { TextAtom, ViewAtom } from '../components/atoms';
+import { ThemeProvider } from '../assets/theme';
 
 
 
 const Main = () => {
     const theme = ThemeProvider();
-    const navigation = useNavigation();
-
-    useEffect(() => {
-        async function fetchData() {
-
-        };
-        fetchData();
-        return () => { };
-    }, []);
-
 
     return (
         <RootViewMlc style={{}}>
-            <ViewAtom style={{ marginTop: 20, width: theme.layout.window.contentWidth }}>
+            <ViewAtom style={[styles.mainView, { width: theme.layout.window.contentWidth }]}>
                 <Grid rowGap={15} columnGap={15}>
                     <GridFlexItem size={1}>
                         <CardView title={'Grid'} subTitle={'그리드 레이아웃'}>
@@ -41,6 +30,13 @@ const Main = () => {
                 </Grid>
             </ViewAtom>
         </RootViewMlc>
-    )
-}
+    );
+};
+
+const styles = StyleSheet.create({
+    mainView: {
+        marginTop: 20,
+    },
+});
+
 export default Main;

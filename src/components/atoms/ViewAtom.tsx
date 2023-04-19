@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ViewProps } from "react-native";
+import { View, ViewProps } from 'react-native';
 
 type ViewAtomProps = ViewProps & {
   // 추가로 선언하고 싶은 props가 있다면 작성.
@@ -8,7 +8,7 @@ type ViewAtomProps = ViewProps & {
 const ViewAtom = ({ ...props }: ViewAtomProps) => {
   return (
     <View {...props} style={[props.style, {}]}>{props.children}</View>
-  )
+  );
 };
 
 ViewAtom.defaultProps = {

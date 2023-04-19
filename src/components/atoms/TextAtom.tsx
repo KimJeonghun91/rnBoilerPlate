@@ -1,7 +1,7 @@
 import React from 'react';
-import { Text, TextProps } from "react-native";
-import { ThemeProvider } from "../../assets/theme";
-import { IVariant } from "../../assets/theme/Layout";
+import { Text, TextProps } from 'react-native';
+import { ThemeProvider } from '../../assets/theme';
+import { IVariant } from '../../assets/theme/Layout';
 
 type TextAtomProps = TextProps & {
   // 추가로 선언하고 싶은 props가 있다면 작성.
@@ -13,7 +13,7 @@ const TextAtom = ({ variant, ...props }: TextAtomProps) => {
 
   return (
     <Text {...props} style={[{ color: theme.palette.text.primary }, props.style]}>{props.children}</Text>
-  )
+  );
 };
 
 TextAtom.defaultProps = {

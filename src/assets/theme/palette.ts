@@ -87,6 +87,72 @@ export type IPalette = {
     800: string;
     900: string;
   };
+  red: {
+    100: string;
+    200: string;
+    300: string;
+    400: string;
+    500: string;
+    600: string;
+    700: string;
+    800: string;
+    900: string;
+  };
+  green: {
+    100: string;
+    200: string;
+    300: string;
+    400: string;
+    500: string;
+    600: string;
+    700: string;
+    800: string;
+    900: string;
+  };
+  blue: {
+    100: string;
+    200: string;
+    300: string;
+    400: string;
+    500: string;
+    600: string;
+    700: string;
+    800: string;
+    900: string;
+  };
+  yellow: {
+    100: string;
+    200: string;
+    300: string;
+    400: string;
+    500: string;
+    600: string;
+    700: string;
+    800: string;
+    900: string;
+  };
+  orange: {
+    100: string;
+    200: string;
+    300: string;
+    400: string;
+    500: string;
+    600: string;
+    700: string;
+    800: string;
+    900: string;
+  };
+  purple: {
+    100: string;
+    200: string;
+    300: string;
+    400: string;
+    500: string;
+    600: string;
+    700: string;
+    800: string;
+    900: string;
+  };
   divider: string;
 };
 
@@ -103,6 +169,78 @@ const GREY = {
   700: '#454F5B',
   800: '#212B36',
   900: '#161C24',
+};
+
+const RED = {
+  100: '#FFE9E9',
+  200: '#FFC7CE',
+  300: '#FFA5B3',
+  400: '#FF758D',
+  500: '#FF3F5D',
+  600: '#DB2B4B',
+  700: '#B21E3D',
+  800: '#8C142E',
+  900: '#740D24',
+};
+
+const GREEN = {
+  100: '#D9F7E5',
+  200: '#B5EFCB',
+  300: '#90E7B0',
+  400: '#65D68F',
+  500: '#2CCD6D',
+  600: '#23A25C',
+  700: '#1C7A4E',
+  800: '#14523F',
+  900: '#0E3D34',
+};
+
+const BLUE = {
+  100: '#D6E9FF',
+  200: '#ADD2FF',
+  300: '#84BBFF',
+  400: '#4D95FF',
+  500: '#006AFF',
+  600: '#0057D6',
+  700: '#0042AD',
+  800: '#002C84',
+  900: '#00216B',
+};
+
+const YELLOW = {
+  100: '#FFF6D9',
+  200: '#FFEAA8',
+  300: '#FFDD77',
+  400: '#FFCC47',
+  500: '#FFB700',
+  600: '#DB9900',
+  700: '#B27A00',
+  800: '#8C5B00',
+  900: '#744700',
+};
+
+const ORANGE = {
+  100: '#FFE5D5',
+  200: '#FFC8AA',
+  300: '#FFAA7F',
+  400: '#FF8C54',
+  500: '#FF6600',
+  600: '#DB5300',
+  700: '#B23F00',
+  800: '#8C2C00',
+  900: '#742200',
+};
+
+const PURPLE = {
+  100: '#F5E6FF',
+  200: '#E2C2FF',
+  300: '#CE9DFF',
+  400: '#B36DFF',
+  500: '#9131FF',
+  600: '#6B28D6',
+  700: '#4D20AD',
+  800: '#321784',
+  900: '#26136B',
 };
 
 const PRIMARY = {
@@ -168,6 +306,12 @@ const COMMON = {
   warning: WARNING,
   error: ERROR,
   grey: GREY,
+  red: RED,
+  green: GREEN,
+  blue: BLUE,
+  yellow: YELLOW,
+  orange: ORANGE,
+  purple: PURPLE,
   divider: GREY[500] + '40', // 투명도 0.24
   action: {
     hover: GREY[500] + '14', // 투명도 0.08
@@ -188,7 +332,7 @@ export function palette(themeMode: 'light' | 'dark'): IPalette {
       primary: GREY[800],
       secondary: GREY[600],
       disabled: GREY[500],
-      placeholder: GREY[500]
+      placeholder: GREY[500],
     },
     background: { paper: '#fff', default: '#fff', neutral: GREY[200] },
     action: {
@@ -204,7 +348,7 @@ export function palette(themeMode: 'light' | 'dark'): IPalette {
       primary: '#fff',
       secondary: GREY[500],
       disabled: GREY[600],
-      placeholder: GREY[500]
+      placeholder: GREY[500],
     },
     background: {
       paper: GREY[800],
@@ -217,6 +361,5 @@ export function palette(themeMode: 'light' | 'dark'): IPalette {
     },
   } as const;
 
-  
   return themeMode === 'light' ? light : dark;
-};
+}

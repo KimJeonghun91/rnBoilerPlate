@@ -1,11 +1,11 @@
-import React, { useMemo } from "react";
-import { View, TouchableOpacity, Image, Platform } from "react-native";
+import React, { useMemo } from 'react';
+import { Image, Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { toggleMode } from '../../utils/redux/themeSlice';
-import { ThemeProvider } from "../../assets/theme";
-import { ViewAtom, TextAtom, TouchAbleOpAtom } from "../atoms";
+import { ThemeProvider } from '../../assets/theme';
+import { ViewAtom, TextAtom, TouchAbleOpAtom } from '../atoms';
 
 const CustomHeader = ({ }: any) => {
     const theme = ThemeProvider();
@@ -24,13 +24,13 @@ const CustomHeader = ({ }: any) => {
                 <TouchAbleOpAtom style={{ paddingVertical: 1, paddingHorizontal: 8 }} onPress={() => {
                     try {
                         navigation.toggleDrawer();
-                    } catch (error) { console.log('toggleDrawer UNDEFINED'); };
+                    } catch (error) { console.log('toggleDrawer UNDEFINED'); }
                 }}>
-                    <Image style={{ width: 26, height: 26 }} source={require('../../assets/img/ic_drawer.png')} resizeMode='contain' />
+                    <Image style={{ width: 26, height: 26 }} source={require('../../assets/img/ic_drawer.png')} resizeMode="contain" />
                 </TouchAbleOpAtom>
             </ViewAtom>
         </ViewAtom>
-    ), [theme]);
+    ), [theme, navigation, dispatch]);
 
 
 
@@ -46,5 +46,6 @@ const CustomHeader = ({ }: any) => {
             useRenderView
         )
     );
-}
+};
+
 export default CustomHeader;

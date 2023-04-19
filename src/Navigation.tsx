@@ -15,9 +15,18 @@ import { ThemeProvider } from './assets/theme';
 const Stack = createStackNavigator<IF.RootStackParams>();
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
-const bottomImg = 32;
 
 
+
+const CustomTabBarIcon = ({ focused, source, theme }: any) => {
+    return (
+        <Image
+            style={{ width: 32, height: 32, tintColor: focused ? theme.palette.primary.main : theme.palette.grey[500] }}
+            resizeMode={'contain'}
+            source={source}
+        />
+    );
+};
 
 
 function MainScreen() {
@@ -40,9 +49,7 @@ function MainScreen() {
             <Tab.Screen name="Main" component={Main}
                 options={{
                     tabBarIcon: ({ focused }) => {
-                        return (
-                            <Image style={{ width: bottomImg, height: bottomImg, tintColor: focused ? theme.palette.primary.main : theme.palette.grey[500] }}
-                                resizeMode={'contain'} source={require('./assets/img/ic_home.png')} />
+                        return (<CustomTabBarIcon focused={focused} source={require('./assets/img/ic_home.png')} theme={theme} />
                         );
                     },
                 }}
@@ -51,9 +58,7 @@ function MainScreen() {
             <Tab.Screen name="GridSystem" component={GridSystem}
                 options={{
                     tabBarIcon: ({ focused }) => {
-                        return (
-                            <Image style={{ width: bottomImg, height: bottomImg, tintColor: focused ? theme.palette.primary.main : theme.palette.grey[500] }}
-                                resizeMode={'contain'} source={require('./assets/img/ic_my.png')} />
+                        return (<CustomTabBarIcon focused={focused} source={require('./assets/img/ic_my.png')} theme={theme} />
                         );
                     },
                 }}
@@ -79,7 +84,7 @@ function Root({ }: any) {
                 component={MainScreen}
                 options={{
                     cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, headerShown: true, gestureEnabled: false,
-                    header: props => <CustomHeader {...props} />
+                    header: props => <CustomHeader {...props} />,
                 }}
             />
             <Stack.Screen
@@ -87,7 +92,7 @@ function Root({ }: any) {
                 component={EventLoop}
                 options={{
                     cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, headerShown: true, gestureEnabled: false,
-                    header: props => <CustomHeader {...props} />
+                    header: props => <CustomHeader {...props} />,
                 }}
             />
             <Stack.Screen
@@ -95,7 +100,7 @@ function Root({ }: any) {
                 component={ColorPage}
                 options={{
                     cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, headerShown: true, gestureEnabled: false,
-                    header: props => <CustomHeader {...props} />
+                    header: props => <CustomHeader {...props} />,
                 }}
             />
         </Stack.Navigator>
@@ -106,13 +111,10 @@ function Navigator() {
     return (
         <Drawer.Navigator
             screenOptions={{ drawerPosition: 'right', headerShown: false }}
-            drawerContent={(props: any) => (
-                <DrawerComponent {...props} />
-            )}>
-            <Drawer.Screen name='Root' component={Root} />
+            drawerContent={(props: any) => (<DrawerComponent {...props} />)}>
+            <Drawer.Screen name="Root" component={Root} />
         </Drawer.Navigator>
     );
 }
-
 
 export default Navigator;

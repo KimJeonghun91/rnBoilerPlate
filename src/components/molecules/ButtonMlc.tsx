@@ -22,10 +22,10 @@ const styles = StyleSheet.create({
         paddingHorizontal: 15,
         borderRadius: 5,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     title: {
-        color: '#FFFFFF',
+        color: 'white',
         fontSize: 16,
         fontWeight: 'bold',
     },
