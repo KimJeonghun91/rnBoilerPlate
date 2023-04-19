@@ -17,7 +17,7 @@ const DrawerComponent = ({ }) => {
 
     const logOut = useCallback(() => {
         Alert.alert('', '로그아웃 하시겠습니까?',
-            [{ text: '취소', style: 'cancel', onPress: () => { }, },
+            [{ text: '취소', style: 'cancel', onPress: () => { } },
             {
                 text: '확인', onPress: () => {
                     navigation.dispatch(DrawerActions.closeDrawer());
@@ -25,45 +25,42 @@ const DrawerComponent = ({ }) => {
                     Alert.alert('', '로그아웃 하였습니다.');
                     navigation.reset({ index: 0, routes: [{ name: 'Login', params: {} }] });
                 },
-            },], { cancelable: false, },
+            }], { cancelable: false }
         );
-    }, []);
+    }, [navigation, dispatch]);
 
 
 
     const useRenderView = useMemo(() => (
-        <ViewAtom style={styles.container}>
-            <ScrollView style={{ flex: 1 }}>
-
-                <ViewAtom style={{ width: '100%', backgroundColor: '#f8f8f8', paddingTop: 20, position: 'relative' }}>
+        <ViewAtom style={[styles.container, { backgroundColor: theme.palette.grey[0] }]}>
+            <ScrollView style={styles.scrollCon}>
+                <ViewAtom style={[styles.dHeader, { backgroundColor: theme.palette.grey[500] }]}>
                     {
                         !authInfo ? <>
                             <TextAtom>로그인이 필요해요</TextAtom>
                         </> : <>
-                            <ViewAtom style={{ width: '100%', backgroundColor: '#f8f8f8' }}>
+                            <ViewAtom style={[styles.myInfo, { backgroundColor: theme.palette.grey[500] }]}>
                                 <TextAtom>내 정보</TextAtom>
                             </ViewAtom>
 
-                            <ViewAtom style={{ width: '100%', flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingTop: 15, paddingBottom: 15, backgroundColor: '#f8f8f8' }}>
-                                <ViewAtom style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start', height: 70, paddingLeft: 10 }}>
+                            <ViewAtom style={[styles.myInfoSub, { backgroundColor: theme.palette.grey[500] }]}>
+                                <ViewAtom style={styles.idBox}>
                                     <TextAtom>{authInfo.id}</TextAtom>
                                 </ViewAtom>
                             </ViewAtom>
                         </>
                     }
 
-                    <TouchableOpacity style={{ position: 'absolute', top: 50, right: 5, padding: 10 }} onPress={() => {
+                    <TouchableOpacity style={styles.close} onPress={() => {
                         navigation.dispatch(DrawerActions.closeDrawer());
                     }}>
                         <TextAtom>닫기</TextAtom>
                     </TouchableOpacity>
-
                 </ViewAtom>
 
+                <ViewAtom style={[styles.divider, { backgroundColor: theme.palette.grey[500] }]} />
 
-                <ViewAtom style={{ width: '100%', backgroundColor: '#f8f8f8', height: 15 }} />
-
-                <ViewAtom style={{ width: '100%', backgroundColor: '#ffffff', paddingVertical: 10 }}>
+                <ViewAtom style={[styles.menuBox, { backgroundColor: theme.palette.grey[0] }]}>
                     <TouchableOpacity style={styles.menuWrap} onPress={() => { navigation.navigate('Main', {}); }}>
                         <Image style={styles.menuImg} source={require('../../assets/img/ic_home.png')} resizeMode="contain" />
                         <TextAtom allowFontScaling={false} style={styles.menuText}>홈</TextAtom>
@@ -90,14 +87,14 @@ const DrawerComponent = ({ }) => {
                 </ViewAtom>
             </ScrollView>
         </ViewAtom>
-    ), [theme]);
+    ), [theme, authInfo, logOut, navigation]);
 
 
 
     return (
         // useRenderView
         Platform.OS === 'ios' ? (
-            <SafeAreaView style={{ flex: 1, width: theme.layout.window.width, backgroundColor: theme.palette.background.default }} edges={['top']}>
+            <SafeAreaView style={[styles.container, { width: theme.layout.window.width, backgroundColor: theme.palette.background.default }]} edges={['top']}>
                 {useRenderView}
             </SafeAreaView>
         ) : (
@@ -107,10 +104,18 @@ const DrawerComponent = ({ }) => {
 };
 
 const styles = StyleSheet.create({
-    container: { flex: 1, backgroundColor: '#ffffff' },
+    container: { flex: 1 },
     menuWrap: { flexDirection: 'row', alignItems: 'center', paddingLeft: 25, paddingVertical: 13 },
     menuImg: { width: 22, height: 22 },
     menuText: { fontWeight: 'bold', marginLeft: 15 },
+    dHeader: { width: '100%', paddingTop: 20, position: 'relative' },
+    myInfo: { width: '100%' },
+    myInfoSub: { width: '100%', flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingTop: 15, paddingBottom: 15 },
+    close: { position: 'absolute', top: 50, right: 5, padding: 10 },
+    scrollCon: { flex: 1 },
+    idBox: { flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start', height: 70, paddingLeft: 10 },
+    divider: { width: '100%', height: 15 },
+    menuBox: { width: '100%', paddingVertical: 10 },
 });
 
 export default DrawerComponent;

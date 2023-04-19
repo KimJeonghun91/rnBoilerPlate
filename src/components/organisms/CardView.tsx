@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { ViewProps, Platform, LayoutChangeEvent } from 'react-native';
+import { ViewProps, Platform, LayoutChangeEvent, StyleSheet } from 'react-native';
 import { ThemeProvider } from '../../assets/theme';
 import { TextAtom, ViewAtom } from '../atoms';
 
@@ -44,10 +44,10 @@ const CardView = ({
 
 
   return (
-    <ViewAtom {...props} style={[{ flex: 1, backgroundColor: theme.palette.background.paper, ...theme.shadow, borderRadius: borderR, padding: padding }, props.style]}
+    <ViewAtom {...props} style={[styles.flex1, { backgroundColor: theme.palette.background.paper, ...theme.shadow, borderRadius: borderR, padding: padding }, props.style]}
       onLayout={handleLayout}>
-      {title && <TextAtom style={{ fontSize: theme.layout.h4, fontWeight: 'bold', marginBottom: subTitle ? 3 : 10 }}>{title}</TextAtom>}
-      {subTitle && <TextAtom style={{ fontSize: theme.layout.subtitle2, fontWeight: 'bold', marginBottom: 10 }}>{subTitle}</TextAtom>}
+      {title && <TextAtom style={[styles.fBold, { fontSize: theme.layout.h4, marginBottom: subTitle ? 3 : 10 }]}>{title}</TextAtom>}
+      {subTitle && <TextAtom style={[styles.subTitle, { fontSize: theme.layout.subtitle2 }]}>{subTitle}</TextAtom>}
       {props.children}
     </ViewAtom>
   );
@@ -56,5 +56,12 @@ const CardView = ({
 CardView.defaultProps = {
   style: {}, // 디폴트
 };
+
+const styles = StyleSheet.create({
+  flex1: { flex: 1 },
+  fBold: { fontWeight: 'bold' },
+  subTitle: { fontWeight: 'bold', marginBottom: 10 },
+});
+
 
 export default CardView;

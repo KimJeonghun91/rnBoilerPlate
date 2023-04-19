@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { Image, Platform } from 'react-native';
+import { Image, Platform, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -15,18 +15,18 @@ const CustomHeader = ({ }: any) => {
 
 
     const useRenderView = useMemo(() => (
-        <ViewAtom style={{ width: theme.layout.window.width, height: topBarHeight, flexDirection: 'row', justifyContent: 'space-between', backgroundColor: theme.palette.primary.main }}>
-            <ViewAtom style={{ flex: 1, height: topBarHeight, justifyContent: 'space-between', alignItems: 'center', paddingRight: 8, flexDirection: 'row' }}>
-                <TouchAbleOpAtom style={{ paddingHorizontal: 20, paddingVertical: 5 }} onPress={() => { dispatch(toggleMode()); }}>
+        <ViewAtom style={[styles.renderView, { width: theme.layout.window.width, height: topBarHeight, backgroundColor: theme.palette.primary.main }]}>
+            <ViewAtom style={[styles.innerView, { height: topBarHeight }]}>
+                <TouchAbleOpAtom style={styles.dnBox} onPress={() => { dispatch(toggleMode()); }}>
                     <TextAtom>DayNight 변경 : {theme.currentMode}</TextAtom>
                 </TouchAbleOpAtom>
 
-                <TouchAbleOpAtom style={{ paddingVertical: 1, paddingHorizontal: 8 }} onPress={() => {
+                <TouchAbleOpAtom style={styles.drawerBtn} onPress={() => {
                     try {
                         navigation.toggleDrawer();
                     } catch (error) { console.log('toggleDrawer UNDEFINED'); }
                 }}>
-                    <Image style={{ width: 26, height: 26 }} source={require('../../assets/img/ic_drawer.png')} resizeMode="contain" />
+                    <Image style={styles.drawerImg} source={require('../../assets/img/ic_drawer.png')} resizeMode="contain" />
                 </TouchAbleOpAtom>
             </ViewAtom>
         </ViewAtom>
@@ -39,7 +39,7 @@ const CustomHeader = ({ }: any) => {
     // CustomHeader 동작방식이 플랫폼별로 달라서 아래처럼 처리.
     return (
         Platform.OS === 'ios' ? (
-            <SafeAreaView style={{ flex: 1, width: theme.layout.window.width, backgroundColor: theme.palette.background.default }} edges={['top']}>
+            <SafeAreaView style={[styles.safeView, { width: theme.layout.window.width, backgroundColor: theme.palette.background.default }]} edges={['top']}>
                 {useRenderView}
             </SafeAreaView>
         ) : (
@@ -47,5 +47,14 @@ const CustomHeader = ({ }: any) => {
         )
     );
 };
+
+const styles = StyleSheet.create({
+    renderView: { flexDirection: 'row', justifyContent: 'space-between' },
+    dnBox: { paddingHorizontal: 20, paddingVertical: 5 },
+    drawerBtn: { paddingVertical: 1, paddingHorizontal: 8 },
+    safeView: { flex: 1 },
+    innerView: { flex: 1, justifyContent: 'space-between', alignItems: 'center', paddingRight: 8, flexDirection: 'row' },
+    drawerImg: { width: 26, height: 26 },
+});
 
 export default CustomHeader;

@@ -9,10 +9,10 @@ const RootViewMlc = ({ ...props }: RootViewMlcProps) => {
     const theme = ThemeProvider();
 
     return (
-        <ViewAtom style={[styles.inputWraper, { marginTop: 10, borderColor: theme.palette.grey[500] }]}>
+        <ViewAtom style={[styles.inputWraper, { borderColor: theme.palette.grey[500] }]}>
             <TextInputAtom
                 {...props}
-                style={styles.tiLogin} />
+                style={[styles.tiLogin, { color: theme.palette.grey[900] }]} />
         </ViewAtom>
     );
 };
@@ -22,8 +22,8 @@ RootViewMlc.defaultProps = {
 };
 
 const styles = StyleSheet.create({
-    tiLogin: { flex: 1, paddingLeft: 10, color: 'black' },
-    inputWraper: { width: 340, paddingVertical: 3, paddingHorizontal: 10, flexDirection: 'row', alignItems: 'center', borderWidth: 1 },
+    tiLogin: { flex: 1, paddingLeft: 10 },
+    inputWraper: { width: 340, paddingVertical: 3, marginTop: 10, paddingHorizontal: 10, flexDirection: 'row', alignItems: 'center', borderWidth: 1 },
 });
 
 export default RootViewMlc;
