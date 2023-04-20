@@ -3,7 +3,6 @@ import { Image, Platform, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { toggleMode } from '../../utils/redux/ThemeSlice';
 import { themeProvider } from '../../assets/theme';
 import { ViewAtom, TextAtom, TouchAbleOpAtom } from '../atoms';
 
@@ -17,10 +16,6 @@ const CustomHeader = ({ }: any) => {
     const useRenderView = useMemo(() => (
         <ViewAtom style={[styles.renderView, { width: theme.layout.window.width, height: topBarHeight, backgroundColor: theme.palette.primary.main }]}>
             <ViewAtom style={[styles.innerView, { height: topBarHeight }]}>
-                <TouchAbleOpAtom style={styles.dnBox} onPress={() => { dispatch(toggleMode()); }}>
-                    <TextAtom>DayNight 변경 : {theme.currentMode}</TextAtom>
-                </TouchAbleOpAtom>
-
                 <TouchAbleOpAtom style={styles.drawerBtn} onPress={() => {
                     try {
                         navigation.toggleDrawer();
@@ -50,10 +45,9 @@ const CustomHeader = ({ }: any) => {
 
 const styles = StyleSheet.create({
     renderView: { flexDirection: 'row', justifyContent: 'space-between' },
-    dnBox: { paddingHorizontal: 20, paddingVertical: 5 },
     drawerBtn: { paddingVertical: 1, paddingHorizontal: 8 },
     safeView: { flex: 1 },
-    innerView: { flex: 1, justifyContent: 'space-between', alignItems: 'center', paddingRight: 8, flexDirection: 'row' },
+    innerView: { flex: 1, justifyContent: 'flex-end', alignItems: 'center', paddingRight: 8, flexDirection: 'row' },
     drawerImg: { width: 26, height: 26 },
 });
 

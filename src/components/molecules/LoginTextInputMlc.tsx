@@ -23,7 +23,7 @@ RootViewMlc.defaultProps = {
 
 const styles = StyleSheet.create({
     tiLogin: { flex: 1, paddingLeft: 10 },
-    inputWraper: { width: 340, paddingVertical: 3, marginTop: 10, paddingHorizontal: 10, flexDirection: 'row', alignItems: 'center', borderWidth: 1 },
+    inputWraper: { width: 340, paddingVertical: 3, marginTop: 10, paddingHorizontal: 10, flexDirection: 'row', alignItems: 'center', borderWidth: 1, borderRadius: 5 },
 });
 
 export default RootViewMlc;

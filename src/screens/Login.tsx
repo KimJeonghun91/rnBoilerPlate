@@ -6,7 +6,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { themeProvider } from '../assets/theme';
 // import * as ServerApi from '../utils/ServerApi';
 import * as IF from '../utils/InterFace';
-import { ViewAtom } from '../components/atoms';
+import { ImageAtom, ViewAtom } from '../components/atoms';
 import { loginSuccess, loginFailed } from '../utils/redux/AuthSlice';
 import { ButtonMlc, LoginTextInputMlc, RootViewMlc } from '../components/molecules';
 
@@ -41,6 +41,8 @@ const Login = () => {
 
     return (
         <RootViewMlc isLoader={loading}>
+            <ImageAtom style={styles.logo} source={require('../assets/img/logo.png')} />
+
             <ViewAtom style={styles.mainView}>
                 <LoginTextInputMlc
                     allowFontScaling={false}
@@ -76,6 +78,7 @@ const styles = StyleSheet.create({
     mainView: {
         marginTop: 20,
     },
+    logo: { width: 150, height: 150, marginTop: 30 }
 });
 
 export default Login;

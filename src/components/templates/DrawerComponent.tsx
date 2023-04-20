@@ -1,12 +1,14 @@
 import React, { useCallback, useMemo } from 'react';
-import { StyleSheet, Image, ScrollView, TouchableOpacity, Alert, Platform } from 'react-native';
+import { StyleSheet, Image, ScrollView, TouchableOpacity, Alert, Platform, Switch } from 'react-native';
 import { useNavigation, DrawerActions } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import TextAtom from '../atoms/TextAtom';
 import ViewAtom from '../atoms/ViewAtom';
 import { useAppDispatch, useTypedSelector } from '../../utils/redux/Store';
+import { toggleMode } from '../../utils/redux/ThemeSlice';
 import { logout } from '../../utils/redux/AuthSlice';
 import { themeProvider } from '../../assets/theme';
+import { ImageAtom, TouchAbleOpAtom } from '../atoms';
 
 const DrawerComponent = ({ }) => {
     const theme = themeProvider();
@@ -31,58 +33,71 @@ const DrawerComponent = ({ }) => {
 
 
 
+
+
+
     const useRenderView = useMemo(() => (
-        <ViewAtom style={[styles.container, { backgroundColor: theme.palette.grey[0] }]}>
+        <ViewAtom style={[styles.container, { backgroundColor: theme.palette.background.paper }]}>
             <ScrollView style={styles.scrollCon}>
-                <ViewAtom style={[styles.dHeader, { backgroundColor: theme.palette.grey[500] }]}>
+                <ViewAtom style={[styles.dHeader, { backgroundColor: theme.palette.primary.main }]}>
+
+                    <ViewAtom style={styles.rowEnd}>
+                        <TouchAbleOpAtom style={styles.close} onPress={() => { navigation.dispatch(DrawerActions.closeDrawer()); }}>
+                            <ImageAtom style={[styles.menuImg, { tintColor: theme.palette.text.primary }]} source={require('../../assets/img/ic_x.png')} resizeMode="contain" />
+                        </TouchAbleOpAtom>
+                    </ViewAtom>
+
                     {
                         !authInfo ? <>
                             <TextAtom>로그인이 필요해요</TextAtom>
                         </> : <>
-                            <ViewAtom style={[styles.myInfo, { backgroundColor: theme.palette.grey[500] }]}>
-                                <TextAtom>내 정보</TextAtom>
-                            </ViewAtom>
-
-                            <ViewAtom style={[styles.myInfoSub, { backgroundColor: theme.palette.grey[500] }]}>
+                            <ViewAtom style={[styles.myInfoSub, {}]}>
                                 <ViewAtom style={styles.idBox}>
-                                    <TextAtom>{authInfo.id}</TextAtom>
+                                    <TextAtom style={styles.txtId}>ID: {authInfo.id}</TextAtom>
                                 </ViewAtom>
                             </ViewAtom>
                         </>
                     }
 
-                    <TouchableOpacity style={styles.close} onPress={() => {
-                        navigation.dispatch(DrawerActions.closeDrawer());
-                    }}>
-                        <TextAtom>닫기</TextAtom>
-                    </TouchableOpacity>
+                    <TouchAbleOpAtom style={styles.dnBox} onPress={() => { }}>
+                        <TextAtom>DayNight 변경</TextAtom>
+                        <Switch
+                            style={{ marginLeft: 5 }}
+                            trackColor={{ false: theme.palette.grey[500], true: theme.palette.grey[300] }}
+                            thumbColor={theme.currentMode === 'light' ? theme.palette.primary.light : theme.palette.grey[300] }
+                            ios_backgroundColor={theme.palette.grey[300]}
+                            onValueChange={() => { dispatch(toggleMode()); }}
+                            value={theme.currentMode === 'light' ? true : false}
+                        />
+                    </TouchAbleOpAtom>
+
                 </ViewAtom>
 
-                <ViewAtom style={[styles.divider, { backgroundColor: theme.palette.grey[500] }]} />
 
-                <ViewAtom style={[styles.menuBox, { backgroundColor: theme.palette.grey[0] }]}>
+                <ViewAtom style={[styles.menuBox, {}]}>
                     <TouchableOpacity style={styles.menuWrap} onPress={() => { navigation.navigate('Main', {}); }}>
-                        <Image style={styles.menuImg} source={require('../../assets/img/ic_home.png')} resizeMode="contain" />
-                        <TextAtom allowFontScaling={false} style={styles.menuText}>홈</TextAtom>
+                        <ImageAtom style={[styles.menuImg, { tintColor: theme.palette.text.primary }]} source={require('../../assets/img/logo.png')} resizeMode="contain" />
+                        <TextAtom allowFontScaling={false} style={[styles.menuText, { color: theme.palette.text.primary }]}>홈</TextAtom>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.menuWrap}>
-                        <Image style={styles.menuImg} source={require('../../assets/img/ic_my.png')} resizeMode="contain" />
-                        <TextAtom allowFontScaling={false} style={styles.menuText}>그리드 레이아웃</TextAtom>
+                        <ImageAtom style={[styles.menuImg, { tintColor: theme.palette.text.primary }]} source={require('../../assets/img/logo.png')} resizeMode="contain" />
+                        <TextAtom allowFontScaling={false} style={[styles.menuText, { color: theme.palette.text.primary }]}>그리드 레이아웃</TextAtom>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.menuWrap} onPress={() => {
                         navigation.navigate('ColorPage', {});
                     }}>
-                        <Image style={styles.menuImg} source={require('../../assets/img/ic_my.png')} resizeMode="contain" />
-                        <TextAtom allowFontScaling={false} style={styles.menuText}>컬러 팔레트</TextAtom>
+                        <ImageAtom style={[styles.menuImg, { tintColor: theme.palette.text.primary }]} source={require('../../assets/img/logo.png')} resizeMode="contain" />
+                        <TextAtom allowFontScaling={false} style={[styles.menuText, { color: theme.palette.text.primary }]}>컬러 팔레트</TextAtom>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.menuWrap} onPress={() => {
                         navigation.navigate('EventLoop', {});
                     }}>
-                        <Image style={styles.menuImg} source={require('../../assets/img/ic_my.png')} resizeMode="contain" />
-                        <TextAtom allowFontScaling={false} style={styles.menuText}>이벤트 루프</TextAtom>
+                        <ImageAtom style={[styles.menuImg, { tintColor: theme.palette.text.primary }]} source={require('../../assets/img/logo.png')} resizeMode="contain" />
+                        <TextAtom allowFontScaling={false} style={[styles.menuText, { color: theme.palette.text.primary }]}>이벤트 루프</TextAtom>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.menuWrap} onPress={() => { logOut(); }}>
-                        <TextAtom allowFontScaling={false} style={styles.menuText}>로그아웃</TextAtom>
+                        <ImageAtom style={[styles.menuImg, { tintColor: theme.palette.text.primary }]} source={require('../../assets/img/logo.png')} resizeMode="contain" />
+                        <TextAtom allowFontScaling={false} style={[styles.menuText, { color: theme.palette.text.primary }]}>로그아웃</TextAtom>
                     </TouchableOpacity>
                 </ViewAtom>
             </ScrollView>
@@ -108,14 +123,18 @@ const styles = StyleSheet.create({
     menuWrap: { flexDirection: 'row', alignItems: 'center', paddingLeft: 25, paddingVertical: 13 },
     menuImg: { width: 22, height: 22 },
     menuText: { fontWeight: 'bold', marginLeft: 15 },
-    dHeader: { width: '100%', paddingTop: 20, position: 'relative' },
+    dHeader: { width: '100%', paddingTop: 0, position: 'relative', borderBottomRightRadius: 40, paddingLeft: 15, paddingBottom: 25 },
     myInfo: { width: '100%' },
-    myInfoSub: { width: '100%', flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingTop: 15, paddingBottom: 15 },
-    close: { position: 'absolute', top: 50, right: 5, padding: 10 },
+    myInfoSub: { width: '100%', flexDirection: 'row', alignItems: 'center', },
+    close: { padding: 10 },
     scrollCon: { flex: 1 },
-    idBox: { flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start', height: 70, paddingLeft: 10 },
+    idBox: { flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start' },
     divider: { width: '100%', height: 15 },
     menuBox: { width: '100%', paddingVertical: 10 },
+    rowEnd: { flexDirection: 'row', justifyContent: 'flex-end' },
+    dnBox: { marginTop: 10, flexDirection: 'row', alignItems: 'center' },
+    drawerImg: { width: 26, height: 26 },
+    txtId: { fontWeight: 'bold' }
 });
 
 export default DrawerComponent;
