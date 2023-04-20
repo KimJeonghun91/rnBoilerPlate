@@ -1,19 +1,21 @@
 import React, { useCallback, useMemo } from 'react';
-import { StyleSheet, Image, ScrollView, TouchableOpacity, Alert, Platform, Switch } from 'react-native';
+import { StyleSheet, ScrollView, TouchableOpacity, Alert, Platform, Switch } from 'react-native';
 import { useNavigation, DrawerActions } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { StackNavigationProp } from '@react-navigation/stack';
+import * as IF from '../../utils/InterFace';
 import TextAtom from '../atoms/TextAtom';
 import ViewAtom from '../atoms/ViewAtom';
 import { useAppDispatch, useTypedSelector } from '../../utils/redux/Store';
 import { toggleMode } from '../../utils/redux/ThemeSlice';
 import { logout } from '../../utils/redux/AuthSlice';
-import { themeProvider } from '../../assets/theme';
+import { ThemeProvider } from '../../assets/theme';
 import { ImageAtom, TouchAbleOpAtom } from '../atoms';
 
 const DrawerComponent = ({ }) => {
-    const theme = themeProvider();
+    const theme = ThemeProvider();
     const authInfo = useTypedSelector((state) => state.auth);
-    const navigation = useNavigation<any>();
+    const navigation = useNavigation<StackNavigationProp<IF.RootStackParams>>();
     const dispatch = useAppDispatch();
 
 
@@ -62,9 +64,9 @@ const DrawerComponent = ({ }) => {
                     <TouchAbleOpAtom style={styles.dnBox} onPress={() => { }}>
                         <TextAtom>DayNight 변경</TextAtom>
                         <Switch
-                            style={{ marginLeft: 5 }}
+                            style={styles.dnSwitch}
                             trackColor={{ false: theme.palette.grey[500], true: theme.palette.grey[300] }}
-                            thumbColor={theme.currentMode === 'light' ? theme.palette.primary.light : theme.palette.grey[300] }
+                            thumbColor={theme.currentMode === 'light' ? theme.palette.primary.light : theme.palette.grey[300]}
                             ios_backgroundColor={theme.palette.grey[300]}
                             onValueChange={() => { dispatch(toggleMode()); }}
                             value={theme.currentMode === 'light' ? true : false}
@@ -75,7 +77,7 @@ const DrawerComponent = ({ }) => {
 
 
                 <ViewAtom style={[styles.menuBox, {}]}>
-                    <TouchableOpacity style={styles.menuWrap} onPress={() => { navigation.navigate('Main', {}); }}>
+                    <TouchableOpacity style={styles.menuWrap} onPress={() => { navigation.navigate('Main', { title: '홈' }); }}>
                         <ImageAtom style={[styles.menuImg, { tintColor: theme.palette.text.primary }]} source={require('../../assets/img/logo.png')} resizeMode="contain" />
                         <TextAtom allowFontScaling={false} style={[styles.menuText, { color: theme.palette.text.primary }]}>홈</TextAtom>
                     </TouchableOpacity>
@@ -84,13 +86,13 @@ const DrawerComponent = ({ }) => {
                         <TextAtom allowFontScaling={false} style={[styles.menuText, { color: theme.palette.text.primary }]}>그리드 레이아웃</TextAtom>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.menuWrap} onPress={() => {
-                        navigation.navigate('ColorPage', {});
+                        navigation.navigate('ColorPage', { title: '컬러 팔레트' });
                     }}>
                         <ImageAtom style={[styles.menuImg, { tintColor: theme.palette.text.primary }]} source={require('../../assets/img/logo.png')} resizeMode="contain" />
                         <TextAtom allowFontScaling={false} style={[styles.menuText, { color: theme.palette.text.primary }]}>컬러 팔레트</TextAtom>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.menuWrap} onPress={() => {
-                        navigation.navigate('EventLoop', {});
+                        navigation.navigate('EventLoop', { title: '이벤트 루프' });
                     }}>
                         <ImageAtom style={[styles.menuImg, { tintColor: theme.palette.text.primary }]} source={require('../../assets/img/logo.png')} resizeMode="contain" />
                         <TextAtom allowFontScaling={false} style={[styles.menuText, { color: theme.palette.text.primary }]}>이벤트 루프</TextAtom>
@@ -102,7 +104,7 @@ const DrawerComponent = ({ }) => {
                 </ViewAtom>
             </ScrollView>
         </ViewAtom>
-    ), [theme, authInfo, logOut, navigation]);
+    ), [theme, authInfo, logOut, navigation, dispatch]);
 
 
 
@@ -125,7 +127,7 @@ const styles = StyleSheet.create({
     menuText: { fontWeight: 'bold', marginLeft: 15 },
     dHeader: { width: '100%', paddingTop: 0, position: 'relative', borderBottomRightRadius: 40, paddingLeft: 15, paddingBottom: 25 },
     myInfo: { width: '100%' },
-    myInfoSub: { width: '100%', flexDirection: 'row', alignItems: 'center', },
+    myInfoSub: { width: '100%', flexDirection: 'row', alignItems: 'center' },
     close: { padding: 10 },
     scrollCon: { flex: 1 },
     idBox: { flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start' },
@@ -134,7 +136,8 @@ const styles = StyleSheet.create({
     rowEnd: { flexDirection: 'row', justifyContent: 'flex-end' },
     dnBox: { marginTop: 10, flexDirection: 'row', alignItems: 'center' },
     drawerImg: { width: 26, height: 26 },
-    txtId: { fontWeight: 'bold' }
+    txtId: { fontWeight: 'bold' },
+    dnSwitch: { marginLeft: 5 },
 });
 
 export default DrawerComponent;

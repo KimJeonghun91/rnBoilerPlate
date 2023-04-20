@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { ViewProps, Platform, LayoutChangeEvent, StyleSheet } from 'react-native';
-import { themeProvider } from '../../assets/theme';
+import { ThemeProvider } from '../../assets/theme';
 import { TextAtom, ViewAtom } from '../atoms';
 
 
@@ -28,7 +28,7 @@ const CardView = ({
   padding = 10,
   ...props
 }: CardViewProps) => {
-  const theme = themeProvider();
+  const theme = ThemeProvider();
   const [borderR, setBorderR] = useState(0);
 
   const handleLayout = useCallback((event: LayoutChangeEvent) => {

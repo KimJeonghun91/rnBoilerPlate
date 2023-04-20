@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, TextProps } from 'react-native';
-import { themeProvider } from '../../assets/theme';
+import { ThemeProvider } from '../../assets/theme';
 import { IVariant } from '../../assets/theme/Layout';
 
 type TextAtomProps = TextProps & {
@@ -9,7 +9,7 @@ type TextAtomProps = TextProps & {
 };
 
 const TextAtom = ({ variant, ...props }: TextAtomProps) => {
-  const theme = themeProvider();
+  const theme = ThemeProvider();
 
   return (
     <Text {...props} style={[{ color: theme.palette.text.primary }, props.style]}>{props.children}</Text>

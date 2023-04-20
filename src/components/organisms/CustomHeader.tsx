@@ -1,14 +1,12 @@
 import React, { useMemo } from 'react';
 import { Image, Platform, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { useDispatch } from 'react-redux';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { themeProvider } from '../../assets/theme';
+import { ThemeProvider } from '../../assets/theme';
 import { ViewAtom, TextAtom, TouchAbleOpAtom } from '../atoms';
 
-const CustomHeader = ({ }: any) => {
-    const theme = themeProvider();
-    const dispatch = useDispatch();
+const CustomHeader = (props: any) => {
+    const theme = ThemeProvider();
     const navigation = useNavigation<any>();
     const topBarHeight = 54;
 
@@ -16,6 +14,8 @@ const CustomHeader = ({ }: any) => {
     const useRenderView = useMemo(() => (
         <ViewAtom style={[styles.renderView, { width: theme.layout.window.width, height: topBarHeight, backgroundColor: theme.palette.primary.main }]}>
             <ViewAtom style={[styles.innerView, { height: topBarHeight }]}>
+                <TextAtom style={{ fontSize: theme.layout.h5 }}>{props.route.params.title}</TextAtom>
+
                 <TouchAbleOpAtom style={styles.drawerBtn} onPress={() => {
                     try {
                         navigation.toggleDrawer();
@@ -25,7 +25,7 @@ const CustomHeader = ({ }: any) => {
                 </TouchAbleOpAtom>
             </ViewAtom>
         </ViewAtom>
-    ), [theme, navigation, dispatch]);
+    ), [theme, navigation, props]);
 
 
 
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     renderView: { flexDirection: 'row', justifyContent: 'space-between' },
     drawerBtn: { paddingVertical: 1, paddingHorizontal: 8 },
     safeView: { flex: 1 },
-    innerView: { flex: 1, justifyContent: 'flex-end', alignItems: 'center', paddingRight: 8, flexDirection: 'row' },
+    innerView: { flex: 1, justifyContent: 'space-between', alignItems: 'center', paddingRight: 8, paddingLeft: 15, flexDirection: 'row' },
     drawerImg: { width: 26, height: 26 },
 });
 

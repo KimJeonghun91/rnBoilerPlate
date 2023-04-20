@@ -1,12 +1,12 @@
 import React, { } from 'react';
 import { StyleSheet } from 'react-native';
 import { Grid, GridFixedItem, RootViewMlc } from '../components/molecules';
-import { themeProvider } from '../assets/theme';
+import { ThemeProvider } from '../assets/theme';
 import { TextAtom, ViewAtom } from '../components/atoms';
 
 
 const GridSystem = () => {
-    const theme = themeProvider();
+    const theme = ThemeProvider();
 
     return (
         <RootViewMlc>

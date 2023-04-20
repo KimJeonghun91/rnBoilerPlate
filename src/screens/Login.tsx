@@ -3,7 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import { Alert, StyleSheet } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { themeProvider } from '../assets/theme';
+import { ThemeProvider } from '../assets/theme';
 // import * as ServerApi from '../utils/ServerApi';
 import * as IF from '../utils/InterFace';
 import { ImageAtom, ViewAtom } from '../components/atoms';
@@ -14,7 +14,7 @@ import { ButtonMlc, LoginTextInputMlc, RootViewMlc } from '../components/molecul
 
 const Login = () => {
     const navigation = useNavigation<StackNavigationProp<IF.RootStackParams>>();
-    const theme = themeProvider();
+    const theme = ThemeProvider();
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
     const [id, setId] = useState('');
@@ -29,7 +29,7 @@ const Login = () => {
             // const response = await ServerApi.loginUser({ getId, getPw });
             dispatch(loginSuccess({ id: getId, token: 'aaaaa-bbbb-vvvv-dddddd-eeeeee' }));
             navigation.reset({
-                index: 0, routes: [{ name: 'MainScreen', params: {} }],
+                index: 0, routes: [{ name: 'MainScreen', params: { title: '홈' } }],
             });
 
         } catch (error) {
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     mainView: {
         marginTop: 20,
     },
-    logo: { width: 150, height: 150, marginTop: 30 }
+    logo: { width: 150, height: 150, marginTop: 30 },
 });
 
 export default Login;

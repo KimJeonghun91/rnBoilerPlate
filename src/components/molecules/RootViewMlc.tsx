@@ -1,6 +1,6 @@
 import React, { ViewProps, KeyboardAvoidingView, Platform, ScrollView, StatusBar, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { themeProvider } from '../../assets/theme';
+import { ThemeProvider } from '../../assets/theme';
 import LoaderMlc from './LoaderMlc';
 
 type RootViewMlcProps = ViewProps & {
@@ -8,7 +8,7 @@ type RootViewMlcProps = ViewProps & {
 };
 
 const RootViewMlc = ({ isLoader = false, ...props }: RootViewMlcProps) => {
-  const theme = themeProvider();
+  const theme = ThemeProvider();
 
   return (
     <SafeAreaView style={[styles.flex1, { width: theme.layout.window.width, backgroundColor: theme.palette.background.default }, props.style]} edges={['top', 'bottom']}>

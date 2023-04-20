@@ -2,12 +2,12 @@ import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { Linking, StyleSheet } from 'react-native';
 import { RootViewMlc } from '../components/molecules';
 import { TextAtom, TouchAbleOpAtom } from '../components/atoms';
-import { themeProvider } from '../assets/theme';
+import { ThemeProvider } from '../assets/theme';
 
 
 
 const EventLoop = () => {
-    const theme = themeProvider();
+    const theme = ThemeProvider();
     const [orderOfExecution, setOrderOfExecution] = useState('Start');
 
     useLayoutEffect(() => {

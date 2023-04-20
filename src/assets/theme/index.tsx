@@ -13,7 +13,8 @@ interface ThemeOptions {
   currentMode: 'light' | 'dark'
 }
 
-export function themeProvider(): ThemeOptions {
+// React component names must start with an uppercase letter.
+export function ThemeProvider(): ThemeOptions {
   const { mode } = useTypedSelector((state) => state.theme);
 
   const useTheme: ThemeOptions = useMemo(() => ({

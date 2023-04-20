@@ -1,12 +1,12 @@
 import React, { StyleSheet, TextInputProps } from 'react-native';
 import TextInputAtom from '../atoms/TextInputAtom';
 import ViewAtom from '../atoms/ViewAtom';
-import { themeProvider } from '../../assets/theme';
+import { ThemeProvider } from '../../assets/theme';
 
 type RootViewMlcProps = TextInputProps & {};
 
 const RootViewMlc = ({ ...props }: RootViewMlcProps) => {
-    const theme = themeProvider();
+    const theme = ThemeProvider();
 
     return (
         <ViewAtom style={[styles.inputWraper, { borderColor: theme.palette.grey[500] }]}>
