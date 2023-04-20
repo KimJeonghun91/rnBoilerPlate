@@ -4,12 +4,12 @@ import { useNavigation, DrawerActions } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import TextAtom from '../atoms/TextAtom';
 import ViewAtom from '../atoms/ViewAtom';
-import { useAppDispatch, useTypedSelector } from '../../utils/redux/store';
-import { logout } from '../../utils/redux/authSlice';
-import { ThemeProvider } from '../../assets/theme';
+import { useAppDispatch, useTypedSelector } from '../../utils/redux/Store';
+import { logout } from '../../utils/redux/AuthSlice';
+import { themeProvider } from '../../assets/theme';
 
 const DrawerComponent = ({ }) => {
-    const theme = ThemeProvider();
+    const theme = themeProvider();
     const authInfo = useTypedSelector((state) => state.auth);
     const navigation = useNavigation<any>();
     const dispatch = useAppDispatch();

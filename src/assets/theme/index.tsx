@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useTypedSelector } from '../../utils/redux/store';
+import { useTypedSelector } from '../../utils/redux/Store';
 import { palette, IPalette } from './Palette';
 import layout, { ILayout } from './Layout';
 import { shadow, IShadow } from './Shadow';
@@ -13,7 +13,7 @@ interface ThemeOptions {
   currentMode: 'light' | 'dark'
 }
 
-export function ThemeProvider(): ThemeOptions {
+export function themeProvider(): ThemeOptions {
   const { mode } = useTypedSelector((state) => state.theme);
 
   const useTheme: ThemeOptions = useMemo(() => ({

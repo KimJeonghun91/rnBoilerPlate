@@ -3,12 +3,12 @@ import { Image, Platform, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { toggleMode } from '../../utils/redux/themeSlice';
-import { ThemeProvider } from '../../assets/theme';
+import { toggleMode } from '../../utils/redux/ThemeSlice';
+import { themeProvider } from '../../assets/theme';
 import { ViewAtom, TextAtom, TouchAbleOpAtom } from '../atoms';
 
 const CustomHeader = ({ }: any) => {
-    const theme = ThemeProvider();
+    const theme = themeProvider();
     const dispatch = useDispatch();
     const navigation = useNavigation<any>();
     const topBarHeight = 54;

@@ -1,13 +1,13 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { RootViewMlc } from '../components/molecules';
-import { ThemeProvider } from '../assets/theme';
+import { themeProvider } from '../assets/theme';
 import { ViewAtom, TextAtom } from '../components/atoms';
 
 
 
 const EventLoop = () => {
-    const theme = ThemeProvider();
+    const theme = themeProvider();
 
     return (
         <RootViewMlc>

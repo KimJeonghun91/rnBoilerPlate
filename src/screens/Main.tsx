@@ -3,12 +3,12 @@ import { StyleSheet } from 'react-native';
 import { Grid, GridFlexItem, RootViewMlc } from '../components/molecules';
 import { CardView } from '../components/organisms';
 import { TextAtom, ViewAtom } from '../components/atoms';
-import { ThemeProvider } from '../assets/theme';
+import { themeProvider } from '../assets/theme';
 
 
 
 const Main = () => {
-    const theme = ThemeProvider();
+    const theme = themeProvider();
 
     return (
         <RootViewMlc style={{}}>

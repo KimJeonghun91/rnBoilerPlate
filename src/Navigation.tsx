@@ -11,7 +11,7 @@ import ColorPage from './screens/ColorPage';
 import { DrawerComponent } from './components/templates';
 import { CustomHeader } from './components/organisms';
 import * as IF from './utils/InterFace';
-import { ThemeProvider } from './assets/theme';
+import { themeProvider } from './assets/theme';
 const Stack = createStackNavigator<IF.RootStackParams>();
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
@@ -30,7 +30,7 @@ const CustomTabBarIcon = ({ focused, source, theme }: any) => {
 
 
 function MainScreen() {
-    const theme = ThemeProvider();
+    const theme = themeProvider();
 
     return (
         <Tab.Navigator initialRouteName="HealthWrite" backBehavior="none"

@@ -3,18 +3,18 @@ import { useNavigation } from '@react-navigation/native';
 import { Alert, StyleSheet } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { ThemeProvider } from '../assets/theme';
+import { themeProvider } from '../assets/theme';
 // import * as ServerApi from '../utils/ServerApi';
 import * as IF from '../utils/InterFace';
 import { ViewAtom } from '../components/atoms';
-import { loginSuccess, loginFailed } from '../utils/redux/authSlice';
+import { loginSuccess, loginFailed } from '../utils/redux/AuthSlice';
 import { ButtonMlc, LoginTextInputMlc, RootViewMlc } from '../components/molecules';
 
 
 
 const Login = () => {
     const navigation = useNavigation<StackNavigationProp<IF.RootStackParams>>();
-    const theme = ThemeProvider();
+    const theme = themeProvider();
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
     const [id, setId] = useState('');
