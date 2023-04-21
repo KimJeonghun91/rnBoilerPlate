@@ -1,8 +1,11 @@
 export type RootStackParams = {
-    MainScreen: {}
+    MainScreen: { title: string }
+    Main: { title: string }
     Login: {}
-    EventLoop:{}
-    ColorPage:{}
+    EventLoop: { title: string }
+    ColorPage: { title: string }
+    RadiusPage: { title: string }
+    GridSystem: { title: string }
 };
 
 

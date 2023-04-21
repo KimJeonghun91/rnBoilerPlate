@@ -7,7 +7,7 @@ type TextInputAtomProps = TextInputProps & {
 
 const TextInputAtom = ({ ...props }: TextInputAtomProps) => {
   return (
-    <TextInput {...props} style={[{ paddingVertical: Platform.OS === 'ios' ? 8 : 0 }, props.style]}>{props.children}</TextInput>
+    <TextInput {...props} style={[{ paddingVertical: Platform.OS === 'ios' ? 8 : 5 }, props.style]}>{props.children}</TextInput>
   );
 };
 

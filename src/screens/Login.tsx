@@ -6,8 +6,8 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { ThemeProvider } from '../assets/theme';
 // import * as ServerApi from '../utils/ServerApi';
 import * as IF from '../utils/InterFace';
-import { ViewAtom } from '../components/atoms';
-import { loginSuccess, loginFailed } from '../utils/redux/authSlice';
+import { ImageAtom, ViewAtom } from '../components/atoms';
+import { loginSuccess, loginFailed } from '../utils/redux/AuthSlice';
 import { ButtonMlc, LoginTextInputMlc, RootViewMlc } from '../components/molecules';
 
 
@@ -29,7 +29,7 @@ const Login = () => {
             // const response = await ServerApi.loginUser({ getId, getPw });
             dispatch(loginSuccess({ id: getId, token: 'aaaaa-bbbb-vvvv-dddddd-eeeeee' }));
             navigation.reset({
-                index: 0, routes: [{ name: 'MainScreen', params: {} }],
+                index: 0, routes: [{ name: 'MainScreen', params: { title: '홈' } }],
             });
 
         } catch (error) {
@@ -41,6 +41,8 @@ const Login = () => {
 
     return (
         <RootViewMlc isLoader={loading}>
+            <ImageAtom style={styles.logo} source={require('../assets/img/logo.png')} />
+
             <ViewAtom style={styles.mainView}>
                 <LoginTextInputMlc
                     allowFontScaling={false}
@@ -76,6 +78,7 @@ const styles = StyleSheet.create({
     mainView: {
         marginTop: 20,
     },
+    logo: { width: 150, height: 150, marginTop: 30 },
 });
 
 export default Login;

@@ -88,6 +88,7 @@ export type IPalette = {
     900: string;
   };
   red: {
+    [key: number]: string;
     100: string;
     200: string;
     300: string;
@@ -99,6 +100,7 @@ export type IPalette = {
     900: string;
   };
   green: {
+    [key: number]: string;
     100: string;
     200: string;
     300: string;
@@ -110,6 +112,7 @@ export type IPalette = {
     900: string;
   };
   blue: {
+    [key: number]: string;
     100: string;
     200: string;
     300: string;
@@ -121,6 +124,7 @@ export type IPalette = {
     900: string;
   };
   yellow: {
+    [key: number]: string;
     100: string;
     200: string;
     300: string;
@@ -132,6 +136,7 @@ export type IPalette = {
     900: string;
   };
   orange: {
+    [key: number]: string;
     100: string;
     200: string;
     300: string;
@@ -143,6 +148,7 @@ export type IPalette = {
     900: string;
   };
   purple: {
+    [key: number]: string;
     100: string;
     200: string;
     300: string;

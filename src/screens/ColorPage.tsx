@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { RootViewMlc } from '../components/molecules';
+import { Grid, GridFixedItem, RootViewMlc } from '../components/molecules';
 import { ThemeProvider } from '../assets/theme';
 import { ViewAtom, TextAtom } from '../components/atoms';
 
@@ -41,6 +41,34 @@ const EventLoop = () => {
                     <TextAtom style={[styles.cTxt, { color: theme.palette.error.main }]}>error.main</TextAtom>
                 </ViewAtom>
             </ViewAtom>
+
+            {/* <ViewAtom style={[styles.cBgRow, { backgroundColor: theme.palette.background.neutral }]}></ViewAtom> */}
+
+            {
+                [100, 200, 300, 400, 500, 600, 700, 800, 900].map((item: number, idx) => (
+                    <Grid key={idx}>
+                        <GridFixedItem size={2}>
+                            <ViewAtom style={[styles.h50, { backgroundColor: theme.palette.red[item] }]} />
+                        </GridFixedItem>
+                        <GridFixedItem size={2}>
+                            <ViewAtom style={[styles.h50, { backgroundColor: theme.palette.green[item] }]} />
+                        </GridFixedItem>
+                        <GridFixedItem size={2}>
+                            <ViewAtom style={[styles.h50, { backgroundColor: theme.palette.blue[item] }]} />
+                        </GridFixedItem>
+                        <GridFixedItem size={2}>
+                            <ViewAtom style={[styles.h50, { backgroundColor: theme.palette.yellow[item] }]} />
+                        </GridFixedItem>
+                        <GridFixedItem size={2}>
+                            <ViewAtom style={[styles.h50, { backgroundColor: theme.palette.orange[item] }]} />
+                        </GridFixedItem>
+                        <GridFixedItem size={2}>
+                            <ViewAtom style={[styles.h50, { backgroundColor: theme.palette.purple[item] }]} />
+                        </GridFixedItem>
+                    </Grid>
+                ))
+            }
+
         </RootViewMlc>
     );
 };
@@ -51,6 +79,7 @@ const styles = StyleSheet.create({
     cBgRow: { width: '100%', paddingVertical: 15, justifyContent: 'center', alignItems: 'center', flexDirection: 'row' },
     sBg: { flex: 1, paddingVertical: 5, justifyContent: 'center', alignItems: 'center' },
     cTxt: { textAlign: 'center', marginVertical: 5 },
+    h50: { height: 30 },
 });
 
 export default EventLoop;

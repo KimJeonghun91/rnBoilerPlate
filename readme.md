@@ -22,13 +22,11 @@
 
 npx eslint src
 
-- camelcase
+- camelcase : 객체, 함수, 변수 카멜 케이스 사용
 
-- no-color-literals
+- no-color-literals : 색상 하드코딩 금지
 
-- no-unused-styles
+- no-unused-styles : 사용되지 않는 스타일 체크
 
 
 ## 문제점
-
-[] 안드로이드 다크모드 커스텀 그림자 필요.
