@@ -4,6 +4,8 @@ export type RootStackParams = {
     Login: {}
     EventLoop: { title: string }
     ColorPage: { title: string }
+    RadiusPage: { title: string }
+    GridSystem: { title: string }
 };
 
 
