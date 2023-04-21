@@ -8,6 +8,11 @@ import ColorPage from '../../../screens/ColorPage';
 import * as IF from '../../../utils/InterFace';
 const Stack = createStackNavigator<IF.RootStackParams>();
 
+const optionComponent = {
+    cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, headerShown: true, gestureEnabled: false,
+    header: (props:any) => <CustomHeader {...props} />,
+};
+
 const Root = () => {
     return (
         <Stack.Navigator>
@@ -21,26 +26,17 @@ const Root = () => {
             <Stack.Screen
                 name="MainScreen"
                 component={MainScreen}
-                options={{
-                    cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, headerShown: true, gestureEnabled: false,
-                    header: props => <CustomHeader {...props} />,
-                }}
+                options={optionComponent}
             />
             <Stack.Screen
                 name="EventLoop"
                 component={EventLoop}
-                options={{
-                    cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, headerShown: true, gestureEnabled: false,
-                    header: props => <CustomHeader {...props} />,
-                }}
+                options={optionComponent}
             />
             <Stack.Screen
                 name="ColorPage"
                 component={ColorPage}
-                options={{
-                    cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, headerShown: true, gestureEnabled: false,
-                    header: props => <CustomHeader {...props} />,
-                }}
+                options={optionComponent}
             />
         </Stack.Navigator>
     );
