@@ -33,7 +33,7 @@ const CardView = ({
 
   return (
     <View {...props} style={[styles.flex1, { backgroundColor: theme.palette.background.paper, ...theme.shadow, borderRadius: borderRadius, padding: padding }, props.style]}>
-      {title && <TextAtom style={[styles.fBold, { fontSize: theme.layout.h4, marginBottom: subTitle ? 3 : 10 }]}>{title}</TextAtom>}
+      {title && <TextAtom style={[styles.fBold, { fontSize: theme.layout.h4, marginBottom: subTitle !== '' ? 3 : 10 }]}>{title}</TextAtom>}
       {subTitle && <TextAtom style={[styles.subTitle, { fontSize: theme.layout.subtitle2 }]}>{subTitle}</TextAtom>}
       {props.children}
     </View>

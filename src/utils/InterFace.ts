@@ -6,6 +6,7 @@ export type RootStackParams = {
     ColorPage: { title: string }
     RadiusPage: { title: string }
     GridSystem: { title: string }
+    HocPage: { title: string }
 };
 
 
@@ -19,4 +20,11 @@ export interface IloginReq {
 export interface IloginRes {
     id: string;
     token: string;
+}
+
+export interface IAuthState {
+    id: string | null;
+    isLoggedIn: boolean;
+    token: string | null;
+    error: string | null;
 }
