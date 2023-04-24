@@ -4,14 +4,15 @@ import { TouchAbleOpAtom, TextAtom } from '../atoms';
 
 interface Props {
     title: string;
+    fontSize?: number;
     onPress: () => void;
     containerStyle?: StyleProp<ViewStyle>;
 }
 
-const ButtonMlc: FC<Props> = ({ title, onPress, containerStyle }) => {
+const ButtonMlc: FC<Props> = ({ title, onPress, containerStyle, fontSize = 16 }) => {
     return (
         <TouchAbleOpAtom style={[styles.button, containerStyle]} onPress={onPress}>
-            <TextAtom style={styles.title}>{title}</TextAtom>
+            <TextAtom style={[styles.title, { fontSize: fontSize }]}>{title}</TextAtom>
         </TouchAbleOpAtom>
     );
 };
@@ -26,7 +27,6 @@ const styles = StyleSheet.create({
     },
     title: {
         color: 'white',
-        fontSize: 16,
         fontWeight: 'bold',
     },
 });

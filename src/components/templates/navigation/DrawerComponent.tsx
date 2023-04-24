@@ -9,6 +9,7 @@ import { logout } from '../../../utils/redux/AuthSlice';
 import { ThemeProvider } from '../../../assets/theme';
 import { ImageAtom, TouchAbleOpAtom, TextAtom, ViewAtom } from '../../atoms';
 import * as IF from '../../../utils/InterFace';
+import { ButtonMlc } from '../../molecules';
 
 const DrawerComponent = React.memo(({ props }: any) => {
     const theme = ThemeProvider();
@@ -43,9 +44,9 @@ const DrawerComponent = React.memo(({ props }: any) => {
                 </ViewAtom>
 
                 {
-                    !authInfo ? <>
-                        <TextAtom>로그인이 필요해요</TextAtom>
-                    </> : <>
+                    !authInfo?.id ? <ViewAtom style={styles.loginBox}>
+                        <ButtonMlc containerStyle={[styles.btnLogin, { backgroundColor: theme.palette.primary.light }]} title="로그인 하기" fontSize={theme.layout.subtitle2} onPress={() => { navigation.navigate('Login', {}); }} />
+                    </ViewAtom> : <>
                         <ViewAtom style={[styles.myInfoSub, {}]}>
                             <ViewAtom style={styles.idBox}>
                                 <TextAtom style={styles.txtId}>ID: {authInfo.id}</TextAtom>
@@ -86,6 +87,10 @@ const DrawerComponent = React.memo(({ props }: any) => {
                     <ImageAtom style={[styles.menuImg, { tintColor: theme.palette.text.primary }]} source={require('../../../assets/img/logo.png')} resizeMode="contain" />
                     <TextAtom allowFontScaling={false} style={[styles.menuText, { color: theme.palette.text.primary }]}>이벤트 루프</TextAtom>
                 </TouchableOpacity>
+                <TouchableOpacity style={styles.menuWrap} onPress={() => { navigation.navigate('HocPage', { title: 'HOC 예제' }); }}>
+                    <ImageAtom style={[styles.menuImg, { tintColor: theme.palette.text.primary }]} source={require('../../../assets/img/logo.png')} resizeMode="contain" />
+                    <TextAtom allowFontScaling={false} style={[styles.menuText, { color: theme.palette.text.primary }]}>HOC 예제</TextAtom>
+                </TouchableOpacity>
                 <TouchableOpacity style={styles.menuWrap} onPress={() => { logOut(); }}>
                     <ImageAtom style={[styles.menuImg, { tintColor: theme.palette.text.primary }]} source={require('../../../assets/img/logo.png')} resizeMode="contain" />
                     <TextAtom allowFontScaling={false} style={[styles.menuText, { color: theme.palette.text.primary }]}>로그아웃</TextAtom>
@@ -99,7 +104,8 @@ const styles = StyleSheet.create({
     menuWrap: { flexDirection: 'row', alignItems: 'center', paddingLeft: 25, paddingVertical: 13 },
     menuImg: { width: 22, height: 22 },
     menuText: { fontWeight: 'bold', marginLeft: 15 },
-    dHeader: { width: '100%', paddingTop: 0,  borderBottomRightRadius: 40, paddingLeft: 15, paddingBottom: 25,marginTop:-5 },
+    dHeader: { width: '100%', paddingTop: 0, borderBottomRightRadius: 40, paddingLeft: 15, paddingBottom: 25, marginTop: -5 },
+    loginBox: { width: '100%', alignItems: 'flex-start' },
     myInfoSub: { width: '100%', flexDirection: 'row', alignItems: 'center' },
     close: { padding: 10 },
     idBox: { flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start' },
@@ -108,6 +114,7 @@ const styles = StyleSheet.create({
     dnBox: { marginTop: 10, flexDirection: 'row', alignItems: 'center' },
     txtId: { fontWeight: 'bold' },
     dnSwitch: { marginLeft: 5 },
+    btnLogin: { marginTop: 5, marginBottom: 8, paddingVertical: 8 },
 });
 
 export default DrawerComponent;

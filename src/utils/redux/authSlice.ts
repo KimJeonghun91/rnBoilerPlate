@@ -1,13 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import * as IF from '../InterFace';
 
-interface AuthState {
-  id: string | null;
-  isLoggedIn: boolean;
-  token: string | null;
-  error: string | null;
-}
 
-const initialState: AuthState = {
+const initialState: IF.IAuthState = {
   id: null,
   isLoggedIn: false,
   token: null,
