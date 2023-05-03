@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Image, ImageProps, View } from 'react-native';
+import { Image, ImageProps, View, ImageBackground, ImageBackgroundProps } from 'react-native';
 import { ThemeProvider } from '../../assets/theme';
 
-interface ImageAtomProps extends ImageProps {
+interface ImageBackgroundAtomProps extends ImageBackgroundProps {
   errorImage: ImageProps['source'];
 }
 
-const ImageAtom = ({ style, source, errorImage, resizeMode, ...rest }: ImageAtomProps) => {
+const ImageBackgroundAtom = ({ style, source, errorImage, resizeMode, imageStyle, ...rest }: ImageBackgroundAtomProps) => {
   const [imgError, setImgError] = useState(false);
   const theme = ThemeProvider();
 
@@ -20,13 +20,13 @@ const ImageAtom = ({ style, source, errorImage, resizeMode, ...rest }: ImageAtom
 
   return (
     !imgError ? (
-      <Image
+      <ImageBackground
         style={[{}, style]}
+        imageStyle={imageStyle}
         resizeMode={resizeMode ? resizeMode : 'contain'}
         source={imageSource}
         onError={onError}
-        {...rest}
-      />
+        {...rest}>{rest.children}</ImageBackground>
     ) : (
       <View style={[style, { justifyContent: 'center', alignItems: 'center', backgroundColor: theme.palette.grey[200], overflow: 'hidden' }]}>
         <Image
@@ -34,16 +34,18 @@ const ImageAtom = ({ style, source, errorImage, resizeMode, ...rest }: ImageAtom
           resizeMode={resizeMode ? resizeMode : 'contain'}
           source={imageSource}
           onError={onError}
-          {...rest}
         />
+        {rest.children}
       </View>
+
+
     )
   );
 };
 
-ImageAtom.defaultProps = {
+ImageBackgroundAtom.defaultProps = {
   resizeMode: 'contain',
   errorImage: require('../../assets/img/logo.png'),
 };
 
-export default ImageAtom;
+export default ImageBackgroundAtom;
