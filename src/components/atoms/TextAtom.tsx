@@ -11,6 +11,8 @@ type TextAtomProps = TextProps & {
 const TextAtom = ({ variant, ...props }: TextAtomProps) => {
   const theme = ThemeProvider();
 
+  
+
   return (
     <Text {...props} style={[{ color: theme.palette.text.primary }, props.style]}>{props.children}</Text>
   );
