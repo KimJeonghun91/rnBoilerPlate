@@ -5,14 +5,16 @@ import LoaderMlc from './LoaderMlc';
 
 type RootViewMlcProps = ViewProps & {
   isLoader?: boolean
+  statusBarColor?: string
+  barStyle?: 'light-content' | 'dark-content'
 };
 
-const RootViewMlc = ({ isLoader = false, ...props }: RootViewMlcProps) => {
+const RootViewMlc = ({ isLoader = false, statusBarColor = '', barStyle = 'dark-content', ...props }: RootViewMlcProps) => {
   const theme = ThemeProvider();
 
   return (
     <SafeAreaView style={[styles.flex1, { width: theme.layout.window.width, backgroundColor: theme.palette.background.default }, props.style]} edges={['top', 'bottom']}>
-      <StatusBar barStyle={theme.palette.mode === 'dark' ? 'light-content' : 'dark-content'} backgroundColor={theme.palette.background.default} />
+      <StatusBar barStyle={barStyle ? barStyle : theme.palette.mode === 'dark' ? 'light-content' : 'dark-content'} backgroundColor={statusBarColor ? statusBarColor : theme.palette.background.default} />
 
       <KeyboardAvoidingView style={styles.flex1} behavior={Platform.OS === 'ios' ? 'padding' : undefined} enabled>
         {
