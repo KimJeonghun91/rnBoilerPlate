@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect,useMemo } from 'react';
 import { Linking, StyleSheet } from 'react-native';
 import { RootViewMlc } from '../components/molecules';
 import { TextAtom, TouchAbleOpAtom } from '../components/atoms';
@@ -8,6 +8,17 @@ import { ThemeProvider } from '../assets/theme';
 
 const EventLoop = () => {
     const theme = ThemeProvider();
+    const styles = useMemo(() =>
+        StyleSheet.create({
+            txtView: { textAlign: 'center', paddingHorizontal: 20, marginTop: 20 },
+            clickView: { marginTop: 10, marginBottom: 40 },
+            underLine: { textDecorationLine: 'underline' },
+            centerText: { textAlign: 'center' },
+        }), [theme]
+    );
+
+    // *************************************************************************************************************************
+
     const [orderOfExecution, setOrderOfExecution] = useState('Start');
 
     useLayoutEffect(() => {
@@ -54,13 +65,5 @@ const EventLoop = () => {
         </RootViewMlc>
     );
 };
-
-const styles = StyleSheet.create({
-    txtView: { textAlign: 'center', paddingHorizontal: 20, marginTop: 20 },
-    clickView: { marginTop: 10, marginBottom: 40 },
-    underLine: { textDecorationLine: 'underline' },
-    centerText: { textAlign: 'center' },
-});
-
 
 export default EventLoop;

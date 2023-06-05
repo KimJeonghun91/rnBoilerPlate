@@ -1,4 +1,4 @@
-import React, { } from 'react';
+import React, { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 import { Grid, GridFlexItem, RootViewMlc } from '../components/molecules';
 import { CardView } from '../components/organisms';
@@ -9,6 +9,13 @@ import { ThemeProvider } from '../assets/theme';
 
 const Main = () => {
     const theme = ThemeProvider();
+    const styles = useMemo(() =>
+        StyleSheet.create({
+            mainView: { marginTop: 20, },
+        }), [theme]
+    );
+
+    // *************************************************************************************************************************
 
     return (
         <RootViewMlc style={{}}>
@@ -32,11 +39,5 @@ const Main = () => {
         </RootViewMlc>
     );
 };
-
-const styles = StyleSheet.create({
-    mainView: {
-        marginTop: 20,
-    },
-});
 
 export default Main;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 import { Grid, GridFixedItem, RootViewMlc } from '../components/molecules';
 import { ThemeProvider } from '../assets/theme';
@@ -8,6 +8,15 @@ import { ViewAtom, TextAtom } from '../components/atoms';
 
 const EventLoop = () => {
     const theme = ThemeProvider();
+    const styles = useMemo(() =>
+        StyleSheet.create({
+            cBg: { width: '100%', paddingVertical: 15, justifyContent: 'center', alignItems: 'center' },
+            cBgRow: { width: '100%', paddingVertical: 15, justifyContent: 'center', alignItems: 'center', flexDirection: 'row' },
+            sBg: { flex: 1, paddingVertical: 5, justifyContent: 'center', alignItems: 'center' },
+            cTxt: { textAlign: 'center', marginVertical: 5 },
+            h50: { height: 30 },
+        }), [theme]
+    );
 
     return (
         <RootViewMlc>
@@ -72,14 +81,5 @@ const EventLoop = () => {
         </RootViewMlc>
     );
 };
-
-
-const styles = StyleSheet.create({
-    cBg: { width: '100%', paddingVertical: 15, justifyContent: 'center', alignItems: 'center' },
-    cBgRow: { width: '100%', paddingVertical: 15, justifyContent: 'center', alignItems: 'center', flexDirection: 'row' },
-    sBg: { flex: 1, paddingVertical: 5, justifyContent: 'center', alignItems: 'center' },
-    cTxt: { textAlign: 'center', marginVertical: 5 },
-    h50: { height: 30 },
-});
 
 export default EventLoop;
