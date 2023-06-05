@@ -18,6 +18,7 @@ const authSlice = createSlice({
       state.isLoggedIn = true;
       state.token = action.payload.token;
       state.error = null;
+      // Object.assign(state, action.payload); // 한꺼번에 업데이트
     },
     loginFailed(state, action: PayloadAction<string>) {
       state.id = null;

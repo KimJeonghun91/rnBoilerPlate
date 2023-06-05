@@ -1,4 +1,4 @@
-import React, { } from 'react';
+import React, { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 import { Grid, GridFixedItem, RootViewMlc } from '../components/molecules';
 import { ThemeProvider } from '../assets/theme';
@@ -7,6 +7,15 @@ import { TextAtom, ViewAtom } from '../components/atoms';
 
 const GridSystem = () => {
     const theme = ThemeProvider();
+    const styles = useMemo(() =>
+        StyleSheet.create({
+            h50: { height: 50 },
+            w200: { width: 200 },
+            w100p: { width: '100%', marginTop: 20 },
+        }), [theme]
+    );
+
+    // *************************************************************************************************************************
 
     return (
         <RootViewMlc>
@@ -82,12 +91,5 @@ const GridSystem = () => {
         </RootViewMlc>
     );
 };
-
-const styles = StyleSheet.create({
-    h50: { height: 50 },
-    w200: { width: 200 },
-    w100p: { width: '100%', marginTop: 20 },
-});
-
 
 export default GridSystem;

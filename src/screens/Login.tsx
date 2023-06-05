@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { Alert, StyleSheet } from 'react-native';
 import { useDispatch } from 'react-redux';
@@ -13,8 +13,18 @@ import { ButtonMlc, LoginTextInputMlc, RootViewMlc } from '../components/molecul
 
 
 const Login = () => {
-    const navigation = useNavigation<StackNavigationProp<IF.RootStackParams>>();
     const theme = ThemeProvider();
+    const styles = useMemo(() =>
+        StyleSheet.create({
+            btnLogin: { marginTop: 30, width: 340 },
+            mainView: { marginTop: 20 },
+            logo: { width: 150, height: 150, marginTop: 30 },
+        }), [theme]
+    );
+
+    // *************************************************************************************************************************
+
+    const navigation = useNavigation<StackNavigationProp<IF.RootStackParams>>();
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
     const [id, setId] = useState('');
@@ -72,13 +82,5 @@ const Login = () => {
         </RootViewMlc>
     );
 };
-
-const styles = StyleSheet.create({
-    btnLogin: { marginTop: 30, width: 340 },
-    mainView: {
-        marginTop: 20,
-    },
-    logo: { width: 150, height: 150, marginTop: 30 },
-});
 
 export default Login;
