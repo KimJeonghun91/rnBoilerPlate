@@ -5,7 +5,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { DrawerContentScrollView } from '@react-navigation/drawer';
 import { useAppDispatch, useTypedSelector } from '../../../utils/redux/Store';
 import { toggleMode } from '../../../utils/redux/ThemeSlice';
-import { logout } from '../../../utils/redux/AuthSlice';
+import { logout } from '../../../utils/redux/authSlice';
 import { ThemeProvider } from '../../../assets/theme';
 import { ImageAtom, TouchAbleOpAtom, TextAtom, ViewAtom } from '../../atoms';
 import * as IF from '../../../utils/InterFace';

@@ -11,7 +11,7 @@ const Main = () => {
     const theme = ThemeProvider();
     const styles = useMemo(() =>
         StyleSheet.create({
-            mainView: { marginTop: 20, },
+            mainView: { marginTop: 20, width: theme.layout.window.contentWidth },
         }), [theme]
     );
 
@@ -19,7 +19,7 @@ const Main = () => {
 
     return (
         <RootViewMlc style={{}}>
-            <ViewAtom style={[styles.mainView, { width: theme.layout.window.contentWidth }]}>
+            <ViewAtom style={[styles.mainView]}>
                 <Grid rowGap={15} columnGap={15}>
                     <GridFlexItem size={1}>
                         <CardView title={'Grid'} subTitle={'그리드 레이아웃'}>

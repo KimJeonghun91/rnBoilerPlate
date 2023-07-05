@@ -8,7 +8,7 @@ import { ButtonMlc, RootViewMlc } from '../components/molecules';
 import { TextAtom, ViewAtom } from '../components/atoms';
 import { ThemeProvider } from '../assets/theme';
 import * as IF from '../utils/InterFace';
-import { logout } from '../utils/redux/AuthSlice';
+import { logout } from '../utils/redux/authSlice';
 
 interface AuthProps {
 }
@@ -36,9 +36,13 @@ const withAuth = <P extends AuthProps>(WrappedComponent: React.ComponentType<P>)
     return WithAuth;
 };
 
+
 interface MyComponentProps {
-    theme: ReturnType<typeof ThemeProvider>, authInfo: IF.IAuthState, navigation: StackNavigationProp<IF.RootStackParams>
+    theme: ReturnType<typeof ThemeProvider>,
+    authInfo: IF.IAuthState,
+    navigation: StackNavigationProp<IF.RootStackParams>
 }
+
 
 const MyComponent: React.FC<MyComponentProps> = ({ theme, authInfo, navigation }) => {
     const dispatch = useAppDispatch();
@@ -74,5 +78,5 @@ const styles = StyleSheet.create({
 });
 
 
-const HocPage = withAuth(MyComponent);
+const HocPage: any = withAuth(MyComponent);
 export default HocPage;

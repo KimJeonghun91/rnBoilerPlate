@@ -22,7 +22,7 @@ const ImageAtom = ({ style, source, errorImage, resizeMode, ...rest }: ImageAtom
     !imgError ? (
       <Image
         style={[{}, style]}
-        resizeMode={resizeMode ? resizeMode : 'contain'}
+        resizeMode={resizeMode ? resizeMode : 'cover'}
         source={imageSource}
         onError={onError}
         {...rest}
@@ -31,7 +31,7 @@ const ImageAtom = ({ style, source, errorImage, resizeMode, ...rest }: ImageAtom
       <View style={[style, { justifyContent: 'center', alignItems: 'center', backgroundColor: theme.palette.grey[200], overflow: 'hidden' }]}>
         <Image
           style={[{ width: '55%', height: '55%', opacity: 0.5 }]}
-          resizeMode={resizeMode ? resizeMode : 'contain'}
+          resizeMode={resizeMode ? resizeMode : 'cover'}
           source={imageSource}
           onError={onError}
           {...rest}
@@ -42,7 +42,7 @@ const ImageAtom = ({ style, source, errorImage, resizeMode, ...rest }: ImageAtom
 };
 
 ImageAtom.defaultProps = {
-  resizeMode: 'contain',
+  resizeMode: 'cover',
   errorImage: require('../../assets/img/logo.png'),
 };
 
