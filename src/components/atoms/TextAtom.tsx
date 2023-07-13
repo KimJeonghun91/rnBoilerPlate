@@ -25,8 +25,9 @@ const TextAtom = ({ ...props }: TextAtomProps) => {
 
   // fontWeight 적용시 커스텀 폰트가 안먹혀서 아래와 같이 처리
   const fontFamily = style && style.fontWeight && style.fontWeight === 'bold' ? fontFmlB : fontFmlR;
-  const fontWeight = (fontFamily === fontFmlB || fontFamily === fontFmlR) ? 'normal'
-    : style && style.fontWeight === 'bold' ? 'bold' : 'normal';
+  const fontWeight = fontFmlB === undefined ? style.fontWeight
+    : (fontFamily === fontFmlB || fontFamily === fontFmlR) ? 'normal'
+      : style && style.fontWeight === 'bold' ? 'bold' : 'normal';
 
   return (
     <Text allowFontScaling={false} {...props} style={[{ color: theme.palette.text.primary, fontFamily: fontFamily }, style, { fontWeight: fontWeight }]}>{props.children}</Text>

@@ -4,7 +4,7 @@ const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 const contentWidth = width - 30;
 
-const baseFs = 13;
+const baseFs = 14;
 const h1 = baseFs + 23;
 const h2 = baseFs + 15;
 const h3 = baseFs + 10;

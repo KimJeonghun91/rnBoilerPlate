@@ -1,7 +1,7 @@
 import { createDrawerNavigator, DrawerContentComponentProps } from '@react-navigation/drawer';
 import React, { } from 'react';
-import Root from './components/templates/navigation/Root';
-import DrawerComponent from './components/templates/navigation/DrawerComponent';
+import Root from './components/organisms/navigation/Root';
+import DrawerComponent from './components/organisms/navigation/DrawerComponent';
 
 const Drawer = createDrawerNavigator();
 

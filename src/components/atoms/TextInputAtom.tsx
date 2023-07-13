@@ -6,7 +6,7 @@ type TextInputAtomProps = TextInputProps & {
   // style?: TextStyle | any
 };
 
-const TextInputAtom = ({  ...props }: TextInputAtomProps) => {
+const TextInputAtom = ({ ...props }: TextInputAtomProps) => {
   const theme = ThemeProvider();
   const styleArray: StyleProp<TextStyle> | undefined = props.style;
   let style: TextStyle = {};
@@ -29,7 +29,7 @@ const TextInputAtom = ({  ...props }: TextInputAtomProps) => {
     : style && style.fontWeight === 'bold' ? 'bold' : 'normal';
 
   return (
-    <TextInput allowFontScaling={false} {...props} style={[{ paddingVertical: Platform.OS === 'ios' ? 8 : 5, fontFamily: fontFamily }, style, { fontWeight: fontWeight }]}>{props.children}</TextInput>
+    <TextInput allowFontScaling={false} {...props} style={[{ color: theme.palette.text.primary, paddingVertical: Platform.OS === 'ios' ? 8 : 5, fontFamily: fontFamily }, style, { fontWeight: fontWeight }]}>{props.children}</TextInput>
   );
 };
 

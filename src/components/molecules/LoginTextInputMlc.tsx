@@ -12,7 +12,7 @@ const RootViewMlc = ({ ...props }: RootViewMlcProps) => {
         <ViewAtom style={[styles.inputWraper, { borderColor: theme.palette.grey[500] }]}>
             <TextInputAtom
                 {...props}
-                style={[styles.tiLogin, { color: theme.palette.grey[900] }]} />
+                style={[styles.tiLogin, { color: theme.palette.text.primary }]} />
         </ViewAtom>
     );
 };

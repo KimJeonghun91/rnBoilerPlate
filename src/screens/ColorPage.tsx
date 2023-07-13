@@ -1,13 +1,17 @@
 import React, { useMemo } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Switch } from 'react-native';
 import { Grid, GridFixedItem, RootViewMlc } from '../components/molecules';
 import { ThemeProvider } from '../assets/theme';
 import { ViewAtom, TextAtom } from '../components/atoms';
+import { InfoView } from '../components/organisms';
+import { useAppDispatch } from '../utils/redux/Store';
+import { toggleMode } from '../utils/redux/ThemeSlice';
 
 
 
 const EventLoop = () => {
     const theme = ThemeProvider();
+    const dispatch = useAppDispatch();
     const styles = useMemo(() =>
         StyleSheet.create({
             cBg: { width: '100%', paddingVertical: 15, justifyContent: 'center', alignItems: 'center' },
@@ -15,11 +19,30 @@ const EventLoop = () => {
             sBg: { flex: 1, paddingVertical: 5, justifyContent: 'center', alignItems: 'center' },
             cTxt: { textAlign: 'center', marginVertical: 5 },
             h50: { height: 30 },
+            dnBox: { marginTop: 30, flexDirection: 'row', alignItems: 'center', width: '100%', justifyContent: 'center' },
+            dnSwitch: { marginLeft: 5 },
         }), [theme]
     );
 
     return (
         <RootViewMlc>
+            <InfoView style={{}}
+                title={'ThemeProvider > palette'}
+                contents={'"src/assets/theme/Palette.ts" 경로에 작성된 컬러 모음입니다. ThemeProvider를 import해서 사용가능 합니다.\nRedux와 같은 전역 관리 도구를 사용해 전역으로 관리되며, 변경시 즉시 레이아웃에도 반영됩니다.\n자세한 설명은 ThemeProvider 페이지를 참조해주세요.'}>
+                <ViewAtom style={styles.dnBox}>
+                    <TextAtom>DayNight 변경</TextAtom>
+                    <Switch
+                        style={styles.dnSwitch}
+                        trackColor={{ false: theme.palette.grey[500], true: theme.palette.grey[300] }}
+                        thumbColor={theme.currentMode === 'light' ? theme.palette.primary.light : theme.palette.grey[300]}
+                        ios_backgroundColor={theme.palette.grey[300]}
+                        onValueChange={() => { dispatch(toggleMode()); }}
+                        value={theme.currentMode === 'light' ? true : false}
+                    />
+                </ViewAtom>
+            </InfoView>
+
+
             <ViewAtom style={[styles.cBg, { backgroundColor: theme.palette.background.default }]}>
                 <TextAtom style={[styles.cTxt, { color: theme.palette.text.primary }]}>text.primary</TextAtom>
             </ViewAtom>
