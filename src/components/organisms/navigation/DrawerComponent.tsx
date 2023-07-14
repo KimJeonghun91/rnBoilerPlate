@@ -10,6 +10,7 @@ import { ThemeProvider } from '../../../assets/theme';
 import { ImageAtom, TouchAbleOpAtom, TextAtom, ViewAtom } from '../../atoms';
 import * as IF from '../../../utils/InterFace';
 import { ButtonMlc } from '../../molecules';
+import { NaviItem, naviList } from './NaviList';
 
 const DrawerComponent = React.memo(({ props }: any) => {
     const theme = ThemeProvider();
@@ -71,26 +72,14 @@ const DrawerComponent = React.memo(({ props }: any) => {
 
 
             <ViewAtom style={[styles.menuBox, {}]}>
-                <TouchableOpacity style={styles.menuWrap} onPress={() => { navigation.navigate('Main', { title: '홈' }); }}>
-                    <ImageAtom style={[styles.menuImg, { tintColor: theme.palette.text.primary }]} source={require('../../../assets/img/logo.png')} resizeMode="contain" />
-                    <TextAtom allowFontScaling={false} style={[styles.menuText, { color: theme.palette.text.primary }]}>홈</TextAtom>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.menuWrap} onPress={() => { navigation.navigate('GridSystem', { title: '그리드 레이아웃' }); }}>
-                    <ImageAtom style={[styles.menuImg, { tintColor: theme.palette.text.primary }]} source={require('../../../assets/img/logo.png')} resizeMode="contain" />
-                    <TextAtom allowFontScaling={false} style={[styles.menuText, { color: theme.palette.text.primary }]}>그리드 레이아웃</TextAtom>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.menuWrap} onPress={() => { navigation.navigate('ColorPage', { title: '컬러 팔레트' }); }}>
-                    <ImageAtom style={[styles.menuImg, { tintColor: theme.palette.text.primary }]} source={require('../../../assets/img/logo.png')} resizeMode="contain" />
-                    <TextAtom allowFontScaling={false} style={[styles.menuText, { color: theme.palette.text.primary }]}>컬러 팔레트</TextAtom>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.menuWrap} onPress={() => { navigation.navigate('EventLoop', { title: '이벤트 루프' }); }}>
-                    <ImageAtom style={[styles.menuImg, { tintColor: theme.palette.text.primary }]} source={require('../../../assets/img/logo.png')} resizeMode="contain" />
-                    <TextAtom allowFontScaling={false} style={[styles.menuText, { color: theme.palette.text.primary }]}>이벤트 루프</TextAtom>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.menuWrap} onPress={() => { navigation.navigate('HocPage', { title: 'HOC 예제' }); }}>
-                    <ImageAtom style={[styles.menuImg, { tintColor: theme.palette.text.primary }]} source={require('../../../assets/img/logo.png')} resizeMode="contain" />
-                    <TextAtom allowFontScaling={false} style={[styles.menuText, { color: theme.palette.text.primary }]}>HOC 예제</TextAtom>
-                </TouchableOpacity>
+                {
+                    naviList.map((item: NaviItem, index: number) => (
+                        <TouchableOpacity key={index} style={styles.menuWrap} onPress={() => { navigation.navigate(item.path, item.initParams); }}>
+                            <ImageAtom style={[styles.menuImg, { tintColor: theme.palette.text.primary }]} source={require('../../../assets/img/logo.png')} resizeMode="contain" />
+                            <TextAtom allowFontScaling={false} style={[styles.menuText, { color: theme.palette.text.primary }]}>{item.name}</TextAtom>
+                        </TouchableOpacity>
+                    ))
+                }
                 <TouchableOpacity style={styles.menuWrap} onPress={() => { logOut(); }}>
                     <ImageAtom style={[styles.menuImg, { tintColor: theme.palette.text.primary }]} source={require('../../../assets/img/logo.png')} resizeMode="contain" />
                     <TextAtom allowFontScaling={false} style={[styles.menuText, { color: theme.palette.text.primary }]}>로그아웃</TextAtom>

@@ -17,6 +17,14 @@ const subtitle2 = baseFs;
 const body1 = baseFs + 0;
 const body2 = baseFs - 2;
 
+const FontFml = {
+  regular: undefined,
+  bold: undefined,
+  // regular: Platform.OS === 'android' ? 'SEBANG-Gothic' : 'SEBANGGothic',
+  // bold: Platform.OS === 'android' ? 'SEBANG-Gothic-Bold' : 'SEBANGGothicBold',
+};
+
+
 
 const layout: ILayout = {
   window: {
@@ -24,6 +32,7 @@ const layout: ILayout = {
     height,
     contentWidth,
   },
+  fontfml: FontFml,
   h1,
   h2,
   h3,
@@ -42,6 +51,10 @@ export type ILayout = {
     height: number;
     contentWidth: number;
   },
+  fontfml: {
+    regular: string | undefined;
+    bold: string | undefined;
+  };
   h1: number;
   h2: number;
   h3: number;

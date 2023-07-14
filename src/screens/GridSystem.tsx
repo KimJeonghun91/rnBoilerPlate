@@ -11,8 +11,8 @@ const GridSystem = () => {
     const styles = useMemo(() =>
         StyleSheet.create({
             h50: { height: 50 },
-            w200: { width: 200 },
-            w100p: { width: '100%', marginTop: 20 }
+            w200: { width: 200, backgroundColor: theme.palette.background.neutral, marginTop: 30 },
+            w100p: { width: '100%', marginTop: 20, backgroundColor: theme.palette.background.neutral },
         }), [theme]
     );
 
@@ -22,11 +22,9 @@ const GridSystem = () => {
         <RootViewMlc>
             <InfoView style={{}}
                 title={'<Grid> , <GridFixedItem>'}
-                contents={'부모 View의 넓이에 맞춰 12개의 열로 나눠서 레이아웃을 빌드할 수 있습니다.'}>
-            </InfoView>
+                contents={'부모 View의 넓이에 맞춰 12개의 열로 나눠서 레이아웃을 빌드할 수 있습니다.'} />
 
-
-            <ViewAtom style={[styles.w200, { backgroundColor: theme.palette.background.neutral, marginTop: 30 }]}>
+            <ViewAtom style={[styles.w200, {}]}>
                 <Grid rowGap={15} columnGap={0}>
                     <GridFixedItem size={6}>
                         <ViewAtom style={[styles.h50, { backgroundColor: theme.palette.red[600] }]}>
@@ -61,7 +59,7 @@ const GridSystem = () => {
                 </Grid>
             </ViewAtom>
 
-            <ViewAtom style={[styles.w100p, { backgroundColor: theme.palette.background.neutral }]}>
+            <ViewAtom style={[styles.w100p, {}]}>
                 <Grid rowGap={15} columnGap={0}>
                     <GridFixedItem size={6}>
                         <ViewAtom style={[styles.h50, { backgroundColor: theme.palette.red[600] }]}>

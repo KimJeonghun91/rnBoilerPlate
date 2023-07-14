@@ -3,7 +3,7 @@ export type RootStackParams = {
     Main: { title: string }
     Login: {}
     EventLoop: { title: string }
-    ColorPage: { title: string }
+    ThemePage: { title: string }
     RadiusPage: { title: string }
     GridSystem: { title: string }
     HocPage: { title: string }

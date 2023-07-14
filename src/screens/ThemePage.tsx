@@ -11,7 +11,6 @@ import { toggleMode } from '../utils/redux/ThemeSlice';
 
 const EventLoop = () => {
     const theme = ThemeProvider();
-    const dispatch = useAppDispatch();
     const styles = useMemo(() =>
         StyleSheet.create({
             cBg: { width: '100%', paddingVertical: 15, justifyContent: 'center', alignItems: 'center' },
@@ -23,12 +22,13 @@ const EventLoop = () => {
             dnSwitch: { marginLeft: 5 },
         }), [theme]
     );
+    const dispatch = useAppDispatch();
 
     return (
         <RootViewMlc>
             <InfoView style={{}}
-                title={'ThemeProvider > palette'}
-                contents={'"src/assets/theme/Palette.ts" 경로에 작성된 컬러 모음입니다. ThemeProvider를 import해서 사용가능 합니다.\nRedux와 같은 전역 관리 도구를 사용해 전역으로 관리되며, 변경시 즉시 레이아웃에도 반영됩니다.\n자세한 설명은 ThemeProvider 페이지를 참조해주세요.'}>
+                title={'ThemeProvider'}
+                contents={'ThemeProvider를 import해서 사용가능 합니다.\nRedux와 같은 전역 관리 도구를 사용해 전역으로 관리되며, 변경시 즉시 레이아웃에도 반영됩니다.\n"src/assets/theme" 경로에서 커스텀할 수 있습니다.'}>
                 <ViewAtom style={styles.dnBox}>
                     <TextAtom>DayNight 변경</TextAtom>
                     <Switch
@@ -73,8 +73,6 @@ const EventLoop = () => {
                     <TextAtom style={[styles.cTxt, { color: theme.palette.error.main }]}>error.main</TextAtom>
                 </ViewAtom>
             </ViewAtom>
-
-            {/* <ViewAtom style={[styles.cBgRow, { backgroundColor: theme.palette.background.neutral }]}></ViewAtom> */}
 
             {
                 [100, 200, 300, 400, 500, 600, 700, 800, 900].map((item: number, idx) => (

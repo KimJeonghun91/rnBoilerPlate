@@ -10,8 +10,8 @@ const TextInputAtom = ({ ...props }: TextInputAtomProps) => {
   const theme = ThemeProvider();
   const styleArray: StyleProp<TextStyle> | undefined = props.style;
   let style: TextStyle = {};
-  const fontFmlR = undefined; // theme.layout.fontfml.regular
-  const fontFmlB = undefined; // theme.layout.fontfml.bold
+  const fontFmlR = theme.layout.fontfml.regular; // undefined 
+  const fontFmlB = theme.layout.fontfml.bold; // undefined 
 
   // style props는 배열일 수 있음.
   if (Array.isArray(styleArray)) {

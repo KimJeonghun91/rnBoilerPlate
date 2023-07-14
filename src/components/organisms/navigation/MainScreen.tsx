@@ -3,7 +3,7 @@ import { Image, Platform, StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { ThemeProvider } from '../../../assets/theme';
 import Main from '../../../screens/Main';
-import GridSystem from '../../../screens/GridSystem';
+import ProjectIntro from '../../../screens/ProjectIntro';
 const Tab = createBottomTabNavigator();
 
 function CustomTabBarIcon({ focused, source }: any) {
@@ -34,7 +34,7 @@ const MainScreen = ({ }) => {
             }}
             sceneContainerStyle={[styles.scenenStyle, { width: theme.layout.window.width }]}>
             <Tab.Screen name="Main" component={Main} options={optionComponent} />
-            <Tab.Screen name="GridSystem" component={GridSystem} options={optionComponent} />
+            <Tab.Screen name="ProjectIntro" component={ProjectIntro} options={optionComponent} />
         </Tab.Navigator>
     );
 };

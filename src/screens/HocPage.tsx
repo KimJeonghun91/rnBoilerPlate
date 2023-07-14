@@ -9,6 +9,7 @@ import { TextAtom, ViewAtom } from '../components/atoms';
 import { ThemeProvider } from '../assets/theme';
 import * as IF from '../utils/InterFace';
 import { logout } from '../utils/redux/authSlice';
+import { InfoView } from '../components/organisms';
 
 interface AuthProps {
 }
@@ -24,6 +25,14 @@ const withAuth = <P extends AuthProps>(WrappedComponent: React.ComponentType<P>)
         } else {
             return (
                 <RootViewMlc style={{}}>
+                    <InfoView
+                        title={'HOC'}
+                        contents={`Higher-Order Component
+
+HOC 패턴은 기존 컴포넌트를 감싸서 새로운 기능을 추가하는 방식.
+HOC는 고차 컴포넌트를 반환하며, 이를 이용해 상태 관리, 인증, 라우팅 등 다양한 기능을 추가함.`} />
+
+
                     <ViewAtom style={[styles.mainView, { width: theme.layout.window.contentWidth }]}>
                         <TextAtom>로그인이 필요합니다.</TextAtom>
                         <ButtonMlc containerStyle={[styles.btnLogin, { backgroundColor: theme.palette.primary.light }]} title="로그인 하기" fontSize={theme.layout.subtitle2} onPress={() => { navigation.navigate('Login', {}); }} />

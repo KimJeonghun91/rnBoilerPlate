@@ -40,10 +40,7 @@ const Login = () => {
 
             // redux
             dispatch(loginSuccess({ id: getId, token: 'aaaaa-bbbb-vvvv-dddddd-eeeeee' }));
-
-            navigation.reset({
-                index: 0, routes: [{ name: 'MainScreen', params: { title: '홈' } }],
-            });
+            navigation.goBack();
 
         } catch (error) {
             dispatch(loginFailed('LOGIN false'));

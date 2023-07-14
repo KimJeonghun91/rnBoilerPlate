@@ -4,7 +4,8 @@ import { CustomHeader } from '../../organisms';
 import MainScreen from './MainScreen';
 import Login from '../../../screens/Login';
 import EventLoop from '../../../screens/EventLoop';
-import ColorPage from '../../../screens/ColorPage';
+import ThemePage from '../../../screens/ThemePage';
+import GridSystem from '../../../screens/GridSystem';
 import HocPage from '../../../screens/HocPage';
 import * as IF from '../../../utils/InterFace';
 const Stack = createStackNavigator<IF.RootStackParams>();
@@ -31,13 +32,18 @@ const Root = () => {
                 }}
             />
             <Stack.Screen
+                name="GridSystem"
+                component={GridSystem}
+                options={optionComponent}
+            />
+            <Stack.Screen
                 name="EventLoop"
                 component={EventLoop}
                 options={optionComponent}
             />
             <Stack.Screen
-                name="ColorPage"
-                component={ColorPage}
+                name="ThemePage"
+                component={ThemePage}
                 options={optionComponent}
             />
             <Stack.Screen

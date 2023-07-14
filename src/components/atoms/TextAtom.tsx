@@ -10,17 +10,17 @@ const TextAtom = ({ ...props }: TextAtomProps) => {
   const theme = ThemeProvider();
   const styleArray: StyleProp<TextStyle> | undefined = props.style;
   let style: TextStyle = {};
-  const fontFmlR = undefined; // theme.layout.fontfml.regular
-  const fontFmlB = undefined; // theme.layout.fontfml.bold
+  const fontFmlR = theme.layout.fontfml.regular; // undefined
+  const fontFmlB = theme.layout.fontfml.bold; // undefined
 
   // style props는 배열일 수 있음.
   if (Array.isArray(styleArray)) {
     for (let value of styleArray) {
-      if (typeof value === 'object') { style = { ...style, ...value }; };
-    };
+      if (typeof value === 'object') { style = { ...style, ...value }; }
+    }
   } else {
-    if (typeof styleArray === 'object') { style = { ...styleArray }; };
-  };
+    if (typeof styleArray === 'object') { style = { ...styleArray }; }
+  }
 
 
   // fontWeight 적용시 커스텀 폰트가 안먹혀서 아래와 같이 처리

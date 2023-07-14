@@ -26,7 +26,5 @@ npx eslint src
 
 - no-color-literals : 색상 하드코딩 금지
 
-- no-unused-styles : 사용되지 않는 스타일 체크
-
 
 ## 문제점
