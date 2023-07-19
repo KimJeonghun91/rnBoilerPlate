@@ -2,11 +2,13 @@
 
 ![navigation](https://github.com/KimJeonghun91/rnBoilerPlate/assets/39161206/a46e77eb-48d5-4d76-b2fa-94a1bbf0e692)
 
+<br/>
 
 ## DayNight / Theme
 
 ![theme](https://github.com/KimJeonghun91/rnBoilerPlate/assets/39161206/a9e83665-e6fa-4920-86b7-aec43f91e856)
 
+<br/>
 
 ## Atomic Design Pattern
 
@@ -28,17 +30,20 @@ src
 </RootViewMlc>
 ```
 
+<br/>
+<br/>
 
 ## 할일
 
-[] ThemeProvider, auth 리덕스로 제작된 것 context , recoil 예제 추가하기.
+[ ] ThemeProvider, auth 리덕스로 제작된 것 context , recoil 예제 추가하기.
 
-[] Modal 예제 페이지 만들기.
+[ ] Modal 예제 페이지 만들기.
 
-[] 비동기 처리 예제 페이지 만들기.
+[ ] 비동기 처리 예제 페이지 만들기.
 
-[] NativeBridge 예제 페이지 만들기.
+[ ] NativeBridge 예제 페이지 만들기.
 
+<br/>
 
 ## esLint
 
@@ -50,6 +55,7 @@ GithubAction : eslint.yml
 
 - no-color-literals : 색상 하드코딩 금지
 
+<br/>
 
 ## 참고 사이트
 
