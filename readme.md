@@ -29,6 +29,17 @@ src
 ```
 
 
+## 할일
+
+[] ThemeProvider, auth 리덕스로 제작된 것 context , recoil 예제 추가하기.
+
+[] Modal 예제 페이지 만들기.
+
+[] 비동기 처리 예제 페이지 만들기.
+
+[] NativeBridge 예제 페이지 만들기.
+
+
 ## esLint
 
 npx eslint src
