@@ -24,9 +24,10 @@ const TextAtom = ({ ...props }: TextAtomProps) => {
 
 
   // fontWeight 적용시 커스텀 폰트가 안먹혀서 아래와 같이 처리
+  // weight를 normal로하면 ios, aos 다르게 동작됨. undefined로 처리해야 함.
   const fontFamily = style && style.fontWeight && style.fontWeight === 'bold' ? fontFmlB : fontFmlR;
   const fontWeight = fontFmlB === undefined ? style.fontWeight
-    : (fontFamily === fontFmlB || fontFamily === fontFmlR) ? 'normal'
+    : (fontFamily === fontFmlB || fontFamily === fontFmlR) ? undefined
       : style && style.fontWeight === 'bold' ? 'bold' : 'normal';
 
   return (
