@@ -46,8 +46,15 @@ export const naviList: NaviItem[] = [
   {
     name: 'HOC 예제',
     icon: require('../../../assets/img/logo.png'),
-    path: 'HocPage',
+    path: 'HocPtPage',
     initParams: { title: 'HOC 예제' },
     info: 'HOC 예제',
+  },
+  {
+    name: 'ObserverPattern 예제',
+    icon: require('../../../assets/img/logo.png'),
+    path: 'ObserverPtPage',
+    initParams: { title: 'ObserverPattern 예제' },
+    info: '옵저버 패턴 예제',
   },
 ];

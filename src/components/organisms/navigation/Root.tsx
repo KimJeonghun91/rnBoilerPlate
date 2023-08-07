@@ -6,7 +6,8 @@ import Login from '../../../screens/Login';
 import EventLoop from '../../../screens/EventLoop';
 import ThemePage from '../../../screens/ThemePage';
 import GridSystem from '../../../screens/GridSystem';
-import HocPage from '../../../screens/HocPage';
+import HocPtPage from '../../../screens/HocPtPage';
+import ObserverPtPage from '../../../screens/ObserverPtPage';
 import * as IF from '../../../utils/InterFace';
 const Stack = createStackNavigator<IF.RootStackParams>();
 
@@ -47,8 +48,13 @@ const Root = () => {
                 options={optionComponent}
             />
             <Stack.Screen
-                name="HocPage"
-                component={HocPage}
+                name="HocPtPage"
+                component={HocPtPage}
+                options={optionComponent}
+            />
+            <Stack.Screen
+                name="ObserverPtPage"
+                component={ObserverPtPage}
                 options={optionComponent}
             />
         </Stack.Navigator>

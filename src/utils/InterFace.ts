@@ -6,7 +6,8 @@ export type RootStackParams = {
     ThemePage: { title: string }
     RadiusPage: { title: string }
     GridSystem: { title: string }
-    HocPage: { title: string }
+    HocPtPage: { title: string }
+    ObserverPtPage: { title: string }
 };
 
 
