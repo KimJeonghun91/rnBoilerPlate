@@ -20,6 +20,7 @@ const EventLoop = () => {
             h50: { height: 30 },
             dnBox: { marginTop: 30, flexDirection: 'row', alignItems: 'center', width: '100%', justifyContent: 'center' },
             dnSwitch: { marginLeft: 5 },
+            // eslint-disable-next-line react-hooks/exhaustive-deps
         }), [theme]
     );
     const dispatch = useAppDispatch();

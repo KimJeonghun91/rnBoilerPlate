@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Image, ImageProps, View } from 'react-native';
+import React, { useState, useMemo } from 'react';
+import { Image, ImageProps, View, StyleSheet } from 'react-native';
 import { ThemeProvider } from '../../assets/theme';
 
 interface ImageAtomProps extends ImageProps {
@@ -9,6 +9,13 @@ interface ImageAtomProps extends ImageProps {
 const ImageAtom = ({ style, source, errorImage, resizeMode, ...rest }: ImageAtomProps) => {
   const [imgError, setImgError] = useState(false);
   const theme = ThemeProvider();
+  const styles = useMemo(() =>
+    StyleSheet.create({
+      rootView: { justifyContent: 'center', alignItems: 'center', backgroundColor: theme.palette.grey[200], overflow: 'hidden' },
+      errorStyle: { width: '55%', height: '55%', opacity: 0.5 },
+    }), [theme]
+  );
+
 
   const onError = () => {
     if (errorImage) {
@@ -28,9 +35,9 @@ const ImageAtom = ({ style, source, errorImage, resizeMode, ...rest }: ImageAtom
         {...rest}
       />
     ) : (
-      <View style={[style, { justifyContent: 'center', alignItems: 'center', backgroundColor: theme.palette.grey[200], overflow: 'hidden' }]}>
+      <View style={[style, styles.rootView]}>
         <Image
-          style={[{ width: '55%', height: '55%', opacity: 0.5 }]}
+          style={styles.errorStyle}
           resizeMode={resizeMode ? resizeMode : 'cover'}
           source={imageSource}
           onError={onError}

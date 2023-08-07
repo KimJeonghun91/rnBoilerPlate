@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Image, ImageProps, View, ImageBackground, ImageBackgroundProps } from 'react-native';
+import React, { useState, useMemo } from 'react';
+import { Image, ImageProps, View, ImageBackground, ImageBackgroundProps, StyleSheet } from 'react-native';
 import { ThemeProvider } from '../../assets/theme';
 
 interface ImageBackgroundAtomProps extends ImageBackgroundProps {
@@ -9,6 +9,12 @@ interface ImageBackgroundAtomProps extends ImageBackgroundProps {
 const ImageBackgroundAtom = ({ style, source, errorImage, resizeMode, imageStyle, ...rest }: ImageBackgroundAtomProps) => {
   const [imgError, setImgError] = useState(false);
   const theme = ThemeProvider();
+  const styles = useMemo(() =>
+    StyleSheet.create({
+      rootView: { justifyContent: 'center', alignItems: 'center', backgroundColor: theme.palette.grey[200], overflow: 'hidden' },
+      errorStyle: { width: '55%', height: '55%', opacity: 0.5 },
+    }), [theme]
+  );
 
   const onError = () => {
     if (errorImage) {
@@ -28,9 +34,9 @@ const ImageBackgroundAtom = ({ style, source, errorImage, resizeMode, imageStyle
         onError={onError}
         {...rest}>{rest.children}</ImageBackground>
     ) : (
-      <View style={[style, { justifyContent: 'center', alignItems: 'center', backgroundColor: theme.palette.grey[200], overflow: 'hidden' }]}>
+      <View style={[style, styles.rootView]}>
         <Image
-          style={[{ width: '55%', height: '55%', opacity: 0.5 }]}
+          style={styles.errorStyle}
           resizeMode={resizeMode ? resizeMode : 'contain'}
           source={imageSource}
           onError={onError}

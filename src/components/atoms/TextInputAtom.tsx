@@ -1,5 +1,5 @@
-import React from 'react';
-import { Platform, TextInput, TextInputProps, TextStyle, StyleProp } from 'react-native';
+import React, { useMemo } from 'react';
+import { Platform, TextInput, TextInputProps, TextStyle, StyleProp, StyleSheet } from 'react-native';
 import { ThemeProvider } from '../../assets/theme';
 
 type TextInputAtomProps = TextInputProps & {
@@ -8,19 +8,28 @@ type TextInputAtomProps = TextInputProps & {
 
 const TextInputAtom = ({ ...props }: TextInputAtomProps) => {
   const theme = ThemeProvider();
+  const styles = useMemo(() =>
+    StyleSheet.create({
+      ipStyle: { color: theme.palette.text.primary, paddingVertical: Platform.OS === 'ios' ? 8 : 5 },
+    }), [theme]
+  );
+
   const styleArray: StyleProp<TextStyle> | undefined = props.style;
   let style: TextStyle = {};
-  const fontFmlR = theme.layout.fontfml.regular; // undefined 
-  const fontFmlB = theme.layout.fontfml.bold; // undefined 
+  const fontFmlR = theme.layout.fontfml.regular; // undefined
+  const fontFmlB = theme.layout.fontfml.bold; // undefined
+
+
+
 
   // style props는 배열일 수 있음.
   if (Array.isArray(styleArray)) {
     for (let value of styleArray) {
-      if (typeof value === 'object') { style = { ...style, ...value }; };
-    };
+      if (typeof value === 'object') { style = { ...style, ...value }; }
+    }
   } else {
-    if (typeof styleArray === 'object') { style = { ...styleArray }; };
-  };
+    if (typeof styleArray === 'object') { style = { ...styleArray }; }
+  }
 
 
   // fontWeight 적용시 커스텀 폰트가 안먹혀서 아래와 같이 처리
@@ -29,7 +38,7 @@ const TextInputAtom = ({ ...props }: TextInputAtomProps) => {
     : style && style.fontWeight === 'bold' ? 'bold' : 'normal';
 
   return (
-    <TextInput allowFontScaling={false} {...props} style={[{ color: theme.palette.text.primary, paddingVertical: Platform.OS === 'ios' ? 8 : 5, fontFamily: fontFamily }, style, { fontWeight: fontWeight }]}>{props.children}</TextInput>
+    <TextInput allowFontScaling={false} {...props} style={[styles.ipStyle, style, { fontFamily: fontFamily, fontWeight: fontWeight }]}>{props.children}</TextInput>
   );
 };
 

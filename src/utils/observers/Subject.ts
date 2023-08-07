@@ -17,7 +17,7 @@ class Subject {
                 observer.observer.notify(data);
             } else if (id === observer.id) {
                 observer.observer.notify(data);
-            };
+            }
         });
     }
 }

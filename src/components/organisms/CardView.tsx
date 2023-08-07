@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { ViewProps, StyleSheet, StyleProp, ViewStyle } from 'react-native';
 import { ThemeProvider } from '../../assets/theme';
 import { TextAtom, TouchAbleOpAtom } from '../atoms';
@@ -35,12 +35,20 @@ const CardView = ({
   ...props
 }: CardViewProps) => {
   const theme = ThemeProvider();
+  const styles = useMemo(() =>
+    StyleSheet.create({
+      flex1: { flex: 1 },
+      fBold: { fontWeight: 'bold', fontSize: theme.layout.h4 },
+      subTitle: { fontWeight: 'bold', marginBottom: 10, fontSize: theme.layout.subtitle2, color: theme.palette.text.secondary },
+    }), [theme]
+  );
 
   return (
     <TouchAbleOpAtom {...props} style={[styles.flex1, { backgroundColor: theme.palette.background.paper, ...theme.shadow, borderRadius: borderRadius, paddingHorizontal: paddingHorizontal, paddingVertical: paddingVertical }, props.style]}
       onPress={onPress}>
-      {title && <TextAtom style={[styles.fBold, { fontSize: theme.layout.h4, marginBottom: subTitle !== '' ? 3 : 10 }]}>{title}</TextAtom>}
-      {subTitle && <TextAtom style={[styles.subTitle, { fontSize: theme.layout.subtitle2, color: theme.palette.text.secondary }]}>{subTitle}</TextAtom>}
+      {/*eslint-disable-next-line react-native/no-inline-styles */}
+      {title && <TextAtom style={[styles.fBold, { marginBottom: subTitle !== '' ? 3 : 10 }]}>{title}</TextAtom>}
+      {subTitle && <TextAtom style={[styles.subTitle]}>{subTitle}</TextAtom>}
       {props.children}
     </TouchAbleOpAtom>
   );
@@ -49,12 +57,5 @@ const CardView = ({
 CardView.defaultProps = {
   style: {}, // 디폴트
 };
-
-const styles = StyleSheet.create({
-  flex1: { flex: 1 },
-  fBold: { fontWeight: 'bold' },
-  subTitle: { fontWeight: 'bold', marginBottom: 10 },
-});
-
 
 export default CardView;
