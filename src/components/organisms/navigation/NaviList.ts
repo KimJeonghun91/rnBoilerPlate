@@ -48,13 +48,20 @@ export const naviList: NaviItem[] = [
     icon: require('../../../assets/img/logo.png'),
     path: 'HocPtPage',
     initParams: { title: 'HOC 예제' },
-    info: 'HOC 예제',
+    info: 'HOC 디자인 패턴',
   },
   {
     name: 'ObserverPattern 예제',
     icon: require('../../../assets/img/logo.png'),
     path: 'ObserverPtPage',
     initParams: { title: 'ObserverPattern 예제' },
-    info: '옵저버 패턴 예제',
+    info: '옵저버 디자인 패턴 예제',
+  },
+  {
+    name: 'Modal 예제',
+    icon: require('../../../assets/img/logo.png'),
+    path: 'ModalPage',
+    initParams: { title: 'Modal 예제' },
+    info: 'Modal 예제',
   },
 ];

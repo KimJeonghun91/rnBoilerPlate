@@ -15,7 +15,7 @@ const Main = () => {
     const theme = ThemeProvider();
     const styles = useMemo(() =>
         StyleSheet.create({
-            mainView: { marginTop: 20, width: theme.layout.window.width },
+            mainView: { marginTop: 20, width: theme.layout.window.width, paddingBottom: 20 },
             cardViewSt: { marginHorizontal: '3%' },
             cardInnerView: { width: '100%' },
         }), [theme]

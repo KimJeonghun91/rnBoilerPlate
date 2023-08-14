@@ -26,6 +26,7 @@ export type IPalette = {
   common: {
     black: string;
     white: string;
+    modalBg: string;
   };
   primary: {
     lighter: string;
@@ -304,7 +305,7 @@ const ERROR = {
 };
 
 const COMMON = {
-  common: { black: '#000', white: '#fff' },
+  common: { black: '#000', white: '#fff', modalBg: GREY[800] + '99' },
   primary: PRIMARY,
   secondary: SECONDARY,
   info: INFO,

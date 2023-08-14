@@ -38,7 +38,7 @@ const CardView = ({
   const styles = useMemo(() =>
     StyleSheet.create({
       flex1: { flex: 1 },
-      fBold: { fontWeight: 'bold', fontSize: theme.layout.h4 },
+      fBold: { fontWeight: 'bold', fontSize: theme.layout.h6 },
       subTitle: { fontWeight: 'bold', marginBottom: 10, fontSize: theme.layout.subtitle2, color: theme.palette.text.secondary },
     }), [theme]
   );

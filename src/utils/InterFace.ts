@@ -8,6 +8,7 @@ export type RootStackParams = {
     GridSystem: { title: string }
     HocPtPage: { title: string }
     ObserverPtPage: { title: string }
+    ModalPage: { title: string }
 };
 
 
