@@ -3,12 +3,12 @@ import React, { useCallback } from 'react';
 import { StyleSheet, Alert } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useNavigation, DrawerActions } from '@react-navigation/native';
-import { useAppDispatch, useTypedSelector } from '../utils/redux/Store';
+import { useAppDispatch, useTypedSelector } from '../state/redux/Store';
 import { ButtonMlc, RootViewMlc } from '../components/molecules';
 import { TextAtom, ViewAtom } from '../components/atoms';
 import { ThemeProvider } from '../assets/theme';
 import * as IF from '../utils/InterFace';
-import { logout } from '../utils/redux/authSlice';
+import { logout } from '../state/redux/authSlice';
 import { InfoView } from '../components/organisms';
 
 interface AuthProps {

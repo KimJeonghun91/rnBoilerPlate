@@ -30,3 +30,11 @@ export interface IAuthState {
     token: string | null;
     error: string | null;
 }
+
+export interface ICounterState {
+    value: number;
+}
+
+export interface IThemeState {
+    mode: 'light' | 'dark';
+}

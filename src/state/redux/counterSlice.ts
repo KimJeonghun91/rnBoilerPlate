@@ -1,10 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import * as IF from '../../utils/InterFace';
 
-interface CounterState {
-  value: number;
-}
-
-const initialState: CounterState = { value: 0 };
+const initialState: IF.ICounterState = { value: 0 };
 
 export const counterSlice = createSlice({
   name: 'counter',

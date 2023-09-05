@@ -7,7 +7,7 @@ import { ThemeProvider } from '../assets/theme';
 // import * as ServerApi from '../utils/ServerApi';
 import * as IF from '../utils/InterFace';
 import { ImageAtom, ViewAtom } from '../components/atoms';
-import { loginSuccess, loginFailed } from '../utils/redux/authSlice';
+import { loginSuccess, loginFailed } from '../state/redux/authSlice';
 import { ButtonMlc, LoginTextInputMlc, RootViewMlc } from '../components/molecules';
 
 

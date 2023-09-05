@@ -1,8 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
+import * as IF from '../../utils/InterFace';
 
-interface ThemeState { mode: 'light' | 'dark', }
-
-const initialState: ThemeState = { mode: 'light' };
+const initialState: IF.IThemeState = { mode: 'light' };
 
 export const themeSlice = createSlice({
   name: 'theme',

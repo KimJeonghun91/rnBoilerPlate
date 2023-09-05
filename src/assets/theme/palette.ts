@@ -368,5 +368,5 @@ export function palette(themeMode: 'light' | 'dark'): IPalette {
     },
   } as const;
 
-  return themeMode === 'light' ? light : dark;
+  return themeMode === 'light' ? light : dark
 }

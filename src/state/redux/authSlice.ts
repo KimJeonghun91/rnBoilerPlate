@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import * as IF from '../InterFace';
+import * as IF from '../../utils/InterFace';
 
 
 const initialState: IF.IAuthState = {

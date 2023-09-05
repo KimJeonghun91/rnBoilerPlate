@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { ViewProps, StyleSheet, StyleProp, ViewStyle, Modal, TouchableWithoutFeedback } from 'react-native';
+import { ViewProps, StyleSheet, StyleProp, ViewStyle, Modal } from 'react-native';
 import { ThemeProvider } from '../../assets/theme';
 import { TextAtom, TouchAbleOpAtom, ViewAtom } from '../atoms';
 

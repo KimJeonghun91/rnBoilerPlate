@@ -4,8 +4,8 @@ import { Grid, GridFixedItem, RootViewMlc } from '../components/molecules';
 import { ThemeProvider } from '../assets/theme';
 import { ViewAtom, TextAtom } from '../components/atoms';
 import { InfoView } from '../components/organisms';
-import { useAppDispatch } from '../utils/redux/Store';
-import { toggleMode } from '../utils/redux/ThemeSlice';
+import { useAppDispatch } from '../state/redux/Store';
+import { toggleMode } from '../state/redux/themeSlice';
 
 
 

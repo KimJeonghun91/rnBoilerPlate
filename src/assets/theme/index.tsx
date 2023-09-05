@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useTypedSelector } from '../../utils/redux/Store';
+import { useTypedSelector } from '../../state/redux/Store';
 import { palette, IPalette } from './Palette';
 import layout, { ILayout } from './Layout';
 import { shadow, IShadow } from './Shadow';
