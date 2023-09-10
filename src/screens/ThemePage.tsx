@@ -4,9 +4,11 @@ import { Grid, GridFixedItem, RootViewMlc } from '../components/molecules';
 import { ThemeProvider } from '../assets/theme';
 import { ViewAtom, TextAtom } from '../components/atoms';
 import { InfoView } from '../components/organisms';
-import { useAppDispatch } from '../state/redux/Store';
 import { toggleMode } from '../state/redux/themeSlice';
-
+import { useThemeStore } from '../state/zustand/Store';
+import { useAppDispatch } from '../state/redux/Store';
+import * as IF from '../utils/InterFace';
+import Config from '../assets/constants/Config';
 
 
 const EventLoop = () => {
@@ -24,6 +26,9 @@ const EventLoop = () => {
         }), [theme]
     );
     const dispatch = useAppDispatch();
+    const toggleModeZs = useThemeStore((state) => state.toggleMode);
+    let gState: IF.TGlobalState = Config.GLOBAL_STATE;
+
 
     return (
         <RootViewMlc>
@@ -37,7 +42,13 @@ const EventLoop = () => {
                         trackColor={{ false: theme.palette.grey[500], true: theme.palette.grey[300] }}
                         thumbColor={theme.currentMode === 'light' ? theme.palette.primary.light : theme.palette.grey[300]}
                         ios_backgroundColor={theme.palette.grey[300]}
-                        onValueChange={() => { dispatch(toggleMode()); }}
+                        onValueChange={() => {
+                            if (gState === 'redux') {
+                                dispatch(toggleMode());
+                            } else if (gState === 'zustand') {
+                                toggleModeZs();
+                            }
+                        }}
                         value={theme.currentMode === 'light' ? true : false}
                     />
                 </ViewAtom>

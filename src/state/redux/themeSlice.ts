@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import * as IF from '../../utils/InterFace';
 
-const initialState: IF.IThemeState = { mode: 'light' };
+type ThemeMode = 'light' | 'dark';
+
+const initialState: { mode: ThemeMode } = { mode: 'light' };
 
 export const themeSlice = createSlice({
   name: 'theme',
@@ -9,6 +10,9 @@ export const themeSlice = createSlice({
   reducers: {
     toggleMode: (state) => {
       state.mode = state.mode === 'light' ? 'dark' : 'light';
+    },
+    changeMode: (state, action) => {
+      state.mode = action.payload;
     },
   },
 });

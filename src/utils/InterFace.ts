@@ -31,10 +31,20 @@ export interface IAuthState {
     error: string | null;
 }
 
+export interface IAuth extends IAuthState{
+    loginSuccess: (id: string, token: string) => void;
+    loginFailed: (error: string) => void;
+    logout: () => void;
+}
+
 export interface ICounterState {
     value: number;
 }
 
 export interface IThemeState {
     mode: 'light' | 'dark';
+    toggleMode: () => void;
+    changeMode: (value: 'light' | 'dark') => void;
 }
+
+export type TGlobalState = 'redux' | 'zustand';

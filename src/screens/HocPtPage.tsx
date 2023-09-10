@@ -3,20 +3,23 @@ import React, { useCallback } from 'react';
 import { StyleSheet, Alert } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useNavigation, DrawerActions } from '@react-navigation/native';
-import { useAppDispatch, useTypedSelector } from '../state/redux/Store';
+import { useAppDispatch } from '../state/redux/Store';
 import { ButtonMlc, RootViewMlc } from '../components/molecules';
 import { TextAtom, ViewAtom } from '../components/atoms';
 import { ThemeProvider } from '../assets/theme';
 import * as IF from '../utils/InterFace';
 import { logout } from '../state/redux/authSlice';
 import { InfoView } from '../components/organisms';
+import Config from '../assets/constants/Config';
+import { useAuthStore } from '../state/zustand/Store';
+import { AuthInfoProvider } from '../state';
 
 interface AuthProps {
 }
 
 const withAuth = <P extends AuthProps>(WrappedComponent: React.ComponentType<P>) => {
     const WithAuth: React.FC<P> = (props) => {
-        const authInfo = useTypedSelector((state) => state.auth);
+        const authInfo = AuthInfoProvider();
         const theme = ThemeProvider();
         const navigation = useNavigation<StackNavigationProp<IF.RootStackParams>>();
 
@@ -47,14 +50,16 @@ HOC는 고차 컴포넌트를 반환하며, 이를 이용해 상태 관리, 인�
 
 
 interface MyComponentProps {
-    theme: ReturnType<typeof ThemeProvider>,
-    authInfo: IF.IAuthState,
-    navigation: StackNavigationProp<IF.RootStackParams>
+    theme: ReturnType<typeof ThemeProvider>;
+    authInfo: IF.IAuthState;
+    navigation: StackNavigationProp<IF.RootStackParams>;
 }
 
 
 const MyComponent: React.FC<MyComponentProps> = ({ theme, authInfo, navigation }) => {
     const dispatch = useAppDispatch();
+    const { logout: logoutZs } = useAuthStore();
+    let gState: IF.TGlobalState = Config.GLOBAL_STATE;
 
     const logOut = useCallback(() => {
         Alert.alert('', '로그아웃 하시겠습니까?',
@@ -62,12 +67,17 @@ const MyComponent: React.FC<MyComponentProps> = ({ theme, authInfo, navigation }
             {
                 text: '확인', onPress: () => {
                     navigation.dispatch(DrawerActions.closeDrawer());
-                    dispatch(logout());
+
+                    if (gState === 'redux') {
+                        dispatch(logout());
+                    } else if (gState === 'zustand') {
+                        logoutZs();
+                    }
                     Alert.alert('', '로그아웃 하였습니다.');
                 },
             }], { cancelable: false }
         );
-    }, [navigation, dispatch]);
+    }, [navigation, dispatch, gState, logoutZs]);
 
     return (
         <RootViewMlc>

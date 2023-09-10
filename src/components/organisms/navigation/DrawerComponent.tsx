@@ -1,23 +1,26 @@
 import React, { useCallback } from 'react';
-import { StyleSheet, TouchableOpacity, Alert, Switch } from 'react-native';
+import { StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import { useNavigation, DrawerActions } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { DrawerContentScrollView } from '@react-navigation/drawer';
-import { useAppDispatch, useTypedSelector } from '../../../state/redux/Store';
-import { toggleMode } from '../../../state/redux/themeSlice';
+import { useAppDispatch } from '../../../state/redux/Store';
 import { logout } from '../../../state/redux/authSlice';
 import { ThemeProvider } from '../../../assets/theme';
+import { AuthInfoProvider } from '../../../state';
 import { ImageAtom, TouchAbleOpAtom, TextAtom, ViewAtom } from '../../atoms';
 import * as IF from '../../../utils/InterFace';
 import { ButtonMlc } from '../../molecules';
 import { NaviItem, naviList } from './NaviList';
+import Config from '../../../assets/constants/Config';
+import { useAuthStore } from '../../../state/zustand/Store';
 
 const DrawerComponent = React.memo(({ props }: any) => {
     const theme = ThemeProvider();
-    const authInfo = useTypedSelector((state) => state.auth);
+    const authInfo = AuthInfoProvider();
     const navigation = useNavigation<StackNavigationProp<IF.RootStackParams>>();
     const dispatch = useAppDispatch();
-
+    const { logout: logoutZs } = useAuthStore();
+    let gState: IF.TGlobalState = Config.GLOBAL_STATE;
 
     const logOut = useCallback(() => {
         Alert.alert('', '로그아웃 하시겠습니까?',
@@ -25,13 +28,19 @@ const DrawerComponent = React.memo(({ props }: any) => {
             {
                 text: '확인', onPress: () => {
                     navigation.dispatch(DrawerActions.closeDrawer());
-                    dispatch(logout());
+
+
+                    if (gState === 'redux') {
+                        dispatch(logout());
+                    } else if (gState === 'zustand') {
+                        logoutZs();
+                    }
                     Alert.alert('', '로그아웃 하였습니다.');
                     navigation.reset({ index: 0, routes: [{ name: 'Login', params: {} }] });
                 },
             }], { cancelable: false }
         );
-    }, [navigation, dispatch]);
+    }, [navigation, dispatch, gState, logoutZs]);
 
 
     return (
@@ -55,19 +64,6 @@ const DrawerComponent = React.memo(({ props }: any) => {
                         </ViewAtom>
                     </>
                 }
-
-                <ViewAtom style={styles.dnBox}>
-                    <TextAtom>DayNight 변경</TextAtom>
-                    <Switch
-                        style={styles.dnSwitch}
-                        trackColor={{ false: theme.palette.grey[500], true: theme.palette.grey[300] }}
-                        thumbColor={theme.currentMode === 'light' ? theme.palette.primary.light : theme.palette.grey[300]}
-                        ios_backgroundColor={theme.palette.grey[300]}
-                        onValueChange={() => { dispatch(toggleMode()); }}
-                        value={theme.currentMode === 'light' ? true : false}
-                    />
-                </ViewAtom>
-
             </ViewAtom>
 
 

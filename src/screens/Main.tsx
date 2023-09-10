@@ -25,14 +25,14 @@ const Main = () => {
     // *************************************************************************************************************************
 
     return (
-        <RootViewMlc style={{}}>
+        <RootViewMlc edges={['top']}>
             <InfoView style={{}}
                 title={'React Native for Junior'}
                 contents={`본 프로젝트는 RN을 처음 시작하는 사용자를 위해 제작되었습니다.
 
 기본적인 RN의 동작원리 부터 바로 사용가능한 몇가지 예제까지 포함되어 있습니다.
 
-추가 패키지는 설치는 지양하지만 전역 상태 관리를 위한 redux,recoil 혹은 react-native-reanimated 와 같은 패키지는 추가되어 있습니다.`} />
+추가 패키지는 설치는 지양하지만 전역 상태 관리를 위한 redux,zustand 혹은 react-native-reanimated 와 같은 패키지는 추가되어 있습니다.`} />
 
             <ViewAtom style={[styles.mainView]}>
                 <Grid rowGap={20} columnGap={0}>
