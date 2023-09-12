@@ -9,6 +9,7 @@ import GridSystem from '../../../screens/GridSystem';
 import HocPtPage from '../../../screens/HocPtPage';
 import ObserverPtPage from '../../../screens/ObserverPtPage';
 import GlobalStatePage from '../../../screens/GlobalStatePage';
+import RnQueryPage from '../../../screens/RnQueryPage';
 import ModalPage from '../../../screens/ModalPage';
 import * as IF from '../../../utils/InterFace';
 const Stack = createStackNavigator<IF.RootStackParams>();
@@ -62,6 +63,11 @@ const Root = () => {
             <Stack.Screen
                 name="GlobalStatePage"
                 component={GlobalStatePage}
+                options={optionComponent}
+            />
+            <Stack.Screen
+                name="RnQueryPage"
+                component={RnQueryPage}
                 options={optionComponent}
             />
             <Stack.Screen

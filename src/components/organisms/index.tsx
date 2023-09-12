@@ -6,3 +6,4 @@ export { default as CustomHeader } from './CustomHeader';
 export { default as CardView } from './CardView';
 export { default as InfoView } from './InfoView';
 export { default as ModalOrgs } from './ModalOrgs';
+export { MovieListItem } from './MovieListItem';

@@ -14,6 +14,7 @@ export type RootStackParams = {
     ObserverPtPage: DefaultScreenProps;
     ModalPage: DefaultScreenProps;
     GlobalStatePage: DefaultScreenProps;
+    RnQueryPage: DefaultScreenProps;
 }
 
 // ------------------------------------------------------------ //

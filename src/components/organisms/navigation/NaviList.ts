@@ -51,6 +51,13 @@ export const naviList: NaviItem[] = [
     info: 'Redux, zustand 예제',
   },
   {
+    name: 'React-Query 예제',
+    icon: require('../../../assets/img/logo.png'),
+    path: 'RnQueryPage',
+    initParams: { title: 'React-Query 예제' },
+    info: 'React-Query예제',
+  },
+  {
     name: 'HOC 예제',
     icon: require('../../../assets/img/logo.png'),
     path: 'HocPtPage',
