@@ -44,6 +44,13 @@ export const naviList: NaviItem[] = [
     info: 'RN의 이벤트루프 설명',
   },
   {
+    name: '상태 관리 예제',
+    icon: require('../../../assets/img/logo.png'),
+    path: 'GlobalStatePage',
+    initParams: { title: '상태 관리 예제' },
+    info: 'Redux, zustand 예제',
+  },
+  {
     name: 'HOC 예제',
     icon: require('../../../assets/img/logo.png'),
     path: 'HocPtPage',

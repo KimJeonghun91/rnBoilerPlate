@@ -27,7 +27,7 @@ const EventLoop = () => {
     );
     const dispatch = useAppDispatch();
     const toggleModeZs = useThemeStore((state) => state.toggleMode);
-    let gState: IF.TGlobalState = Config.GLOBAL_STATE;
+    let gState: IF.TGlobalStateManager = Config.GLOBAL_STATE_MANAGER;
 
 
     return (

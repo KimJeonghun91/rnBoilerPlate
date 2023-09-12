@@ -1,16 +1,20 @@
-export type RootStackParams = {
-    MainScreen: { title: string }
-    Main: { title: string }
-    Login: {}
-    EventLoop: { title: string }
-    ThemePage: { title: string }
-    RadiusPage: { title: string }
-    GridSystem: { title: string }
-    HocPtPage: { title: string }
-    ObserverPtPage: { title: string }
-    ModalPage: { title: string }
-};
+interface DefaultScreenProps {
+    title: string;
+}
 
+export type RootStackParams = {
+    MainScreen: DefaultScreenProps;
+    Main: DefaultScreenProps;
+    Login: {};
+    EventLoop: DefaultScreenProps;
+    ThemePage: DefaultScreenProps;
+    RadiusPage: DefaultScreenProps;
+    GridSystem: DefaultScreenProps;
+    HocPtPage: DefaultScreenProps;
+    ObserverPtPage: DefaultScreenProps;
+    ModalPage: DefaultScreenProps;
+    GlobalStatePage: DefaultScreenProps;
+}
 
 // ------------------------------------------------------------ //
 
@@ -31,7 +35,7 @@ export interface IAuthState {
     error: string | null;
 }
 
-export interface IAuth extends IAuthState{
+export interface IAuth extends IAuthState {
     loginSuccess: (id: string, token: string) => void;
     loginFailed: (error: string) => void;
     logout: () => void;
@@ -39,6 +43,9 @@ export interface IAuth extends IAuthState{
 
 export interface ICounterState {
     value: number;
+    increment: () => void;
+    decrement: () => void;
+    incrementByAmount: (getNumber: number) => void;
 }
 
 export interface IThemeState {
@@ -47,4 +54,4 @@ export interface IThemeState {
     changeMode: (value: 'light' | 'dark') => void;
 }
 
-export type TGlobalState = 'redux' | 'zustand';
+export type TGlobalStateManager = 'redux' | 'zustand';

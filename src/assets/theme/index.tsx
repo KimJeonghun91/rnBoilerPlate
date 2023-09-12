@@ -18,7 +18,7 @@ interface ThemeOptions {
 
 
 // !! 주의 : 사용하는 전역 상태 관리자만 남기고 제거 해야됨. !!
-let gState: IF.TGlobalState = Config.GLOBAL_STATE;
+let gState: IF.TGlobalStateManager = Config.GLOBAL_STATE_MANAGER;
 const ThemeProvider = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { mode } = gState === 'zustand' ? useThemeStore() : useTypedSelector((state) => state.theme);

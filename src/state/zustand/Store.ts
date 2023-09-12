@@ -4,7 +4,15 @@ import * as IF from '../../utils/InterFace';
 
 export const useCounterStore = create<IF.ICounterState>((set) => ({
   value: 0,
-  setCounter: (value: number) => set({ value }),
+  increment: () => {
+    set((state) => ({ value: state.value + 1 }));
+  },
+  decrement: () => {
+    set((state) => ({ value: state.value - 1 }));
+  },
+  incrementByAmount: (getNumber: number) => {
+    set((state) => ({ value: state.value + getNumber }));
+  },
 }));
 
 

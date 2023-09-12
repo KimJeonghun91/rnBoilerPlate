@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import * as IF from '../../utils/InterFace';
 
-const initialState: IF.ICounterState = { value: 0 };
+const initialState = { value: 0 };
 
 export const counterSlice = createSlice({
   name: 'counter',

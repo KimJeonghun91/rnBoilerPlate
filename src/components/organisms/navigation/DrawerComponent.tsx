@@ -20,7 +20,7 @@ const DrawerComponent = React.memo(({ props }: any) => {
     const navigation = useNavigation<StackNavigationProp<IF.RootStackParams>>();
     const dispatch = useAppDispatch();
     const { logout: logoutZs } = useAuthStore();
-    let gState: IF.TGlobalState = Config.GLOBAL_STATE;
+    let gState: IF.TGlobalStateManager = Config.GLOBAL_STATE_MANAGER;
 
     const logOut = useCallback(() => {
         Alert.alert('', '로그아웃 하시겠습니까?',
