@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Grid, GridFixedItem, RootViewMlc } from '../components/molecules';
 import { CardView, InfoView } from '../components/organisms';
@@ -10,8 +9,11 @@ import { NaviItem, naviList } from '../components/organisms/navigation/NaviList'
 import * as IF from '../utils/InterFace';
 
 
+type MainProps = {
+    navigation: StackNavigationProp<IF.RootStackParams>;
+};
 
-const Main = () => {
+const Main: React.FC<MainProps> = ({ navigation }) => {
     const theme = ThemeProvider();
     const styles = useMemo(() =>
         StyleSheet.create({
@@ -20,7 +22,6 @@ const Main = () => {
             cardInnerView: { width: '100%' },
         }), [theme]
     );
-    const navigation = useNavigation<StackNavigationProp<IF.RootStackParams>>();
 
     // *************************************************************************************************************************
 

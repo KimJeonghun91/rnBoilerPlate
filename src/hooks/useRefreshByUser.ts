@@ -13,8 +13,13 @@ export function useRefreshByUser(refetch: () => Promise<unknown>) {
     }
   }
 
+  function refetchSetter(getState: boolean) {
+    setIsRefetchingByUser(getState);
+  }
+
   return {
     isRefetchingByUser,
     refetchByUser,
+    refetchSetter,
   };
 }

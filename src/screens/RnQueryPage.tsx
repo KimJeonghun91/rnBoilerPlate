@@ -1,70 +1,86 @@
 
 import React, { useMemo, useCallback } from 'react';
 import { StyleSheet, FlatList, RefreshControl } from 'react-native';
-import { useQuery } from '@tanstack/react-query';
-import { useRefreshByUser } from '../hooks/useRefreshByUser';
-import { fetchMovies, Movie } from '../utils/api';
-import { useRefreshOnFocus } from '../hooks/useRefreshOnFocus';
+import { useInfiniteQuery, UseInfiniteQueryResult, useQueryClient } from '@tanstack/react-query';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { fetchMovies, Movie, shuffleArray } from '../utils/api';
 import { MovieListItem } from '../components/organisms';
 import { RootViewMlc, Divider } from '../components/molecules';
 import { ViewAtom } from '../components/atoms';
 import { InfoView } from '../components/organisms';
 import { ThemeProvider } from '../assets/theme';
-import { LoadingIndicator } from '../components/organisms/LoadingIndicator';
-import { ErrorMessage } from '../components/organisms/ErrorMessage';
+import * as IF from '../utils/InterFace';
 
 
-const RnQueryPage: React.FC = () => {
+type RnQueryPageProps = {
+  navigation: StackNavigationProp<IF.RootStackParams>;
+};
+
+const RnQueryPage: React.FC<RnQueryPageProps> = ({ navigation }) => {
   const theme = ThemeProvider();
-  const styles = useMemo(() =>
-    StyleSheet.create({
-      mainView: { marginTop: 20, width: theme.layout.window.contentWidth, flex: 1 },
-      divider: { width: '100%', height: 1, backgroundColor: theme.palette.grey[600] },
-    }), [theme]
-  );
+  const styles = useMemo(() => StyleSheet.create({
+    mainView: { width: theme.layout.window.contentWidth, flex: 1 },
+    divider: { width: '100%', height: 1, backgroundColor: theme.palette.grey[600] },
+  }), [theme]);
 
-  // *************************************************************************************************************************
+  // ***************************************************************************************************
 
-  const { isLoading, error, data, refetch } = useQuery<Movie[], Error>(
-    ['movies'],
-    fetchMovies,
-  );
-  const { isRefetchingByUser, refetchByUser } = useRefreshByUser(refetch);
-  useRefreshOnFocus(refetch);
+  const queryClient = useQueryClient();
+  const {
+    data,
+    // error,
+    fetchNextPage,
+    hasNextPage,
+    // isFetchingNextPage,
+    isFetching,
+    // refetch,
+  }: UseInfiniteQueryResult<Response, Error> = useInfiniteQuery({
+    queryKey: ['movies'],
+    queryFn: fetchMovies,
+    getNextPageParam: (lastPage) => lastPage.nextCursor,
+  });
 
 
-  const onListItemPress = useCallback((movie: any) => {
-    console.log('movie' + JSON.stringify(movie));
-  }, []);
+  const onListItemPress = useCallback((movie: Movie) => {
+    navigation.navigate('RnQueryDetail', { movie, title: movie.title });
+  }, [navigation]);
 
 
-  const renderItem = useCallback(({ item }: any) => {
+  const renderItem = useCallback(({ item }: { item: Movie }) => {
     return <MovieListItem item={item} onPress={onListItemPress} />;
   }, [onListItemPress]);
 
-  if (isLoading) { return <LoadingIndicator />; }
 
-  if (error) { return <ErrorMessage message={error.message} />; }
+  const handleRefresh = async () => {
+    shuffleArray();
+    await queryClient.resetQueries(['movies']);
+  };
 
 
 
   return (
     <RootViewMlc isScrollView={false}>
-      <InfoView style={{}}
+      <InfoView
         title={'React-Query'}
-        contents={'React Query는 서버 데이터 관리를 위해 사용. 데이터 가져오기, 캐싱, 상태 관리를 간단하게 처리해주며, 서버 데이터와의 실시간 동기화를 쉽게 관리할 수 있는 라이브러리.'} />
+        contents={'React Query는 서버 데이터 관리를 위해 사용. 데이터 가져오기, 캐싱, 상태 관리를 간단하게 처리해주며, 서버 데이터와의 실시간 동기화를 쉽게 관리할 수 있는 라이브러리.'}
+      />
 
-
-      <ViewAtom style={[styles.mainView]}>
+      <ViewAtom style={styles.mainView}>
         <FlatList
-          data={data}
+          data={data?.pages.flatMap((page: any) => page.data) || []}
           renderItem={renderItem}
-          keyExtractor={(item) => item.title}
-          ItemSeparatorComponent={() => { return <Divider />; }}
+          keyExtractor={(_, index) => String(index)}
+          ItemSeparatorComponent={Divider}
+          onEndReachedThreshold={0.5}
+          onEndReached={() => {
+            if (hasNextPage) {
+              fetchNextPage();
+            }
+          }}
           refreshControl={
             <RefreshControl
-              refreshing={isRefetchingByUser}
-              onRefresh={refetchByUser}
+              refreshing={isFetching}
+              onRefresh={handleRefresh}
             />
           }
         />
@@ -72,5 +88,6 @@ const RnQueryPage: React.FC = () => {
     </RootViewMlc>
   );
 };
+
 
 export default RnQueryPage;

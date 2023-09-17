@@ -10,6 +10,7 @@ import HocPtPage from '../../../screens/HocPtPage';
 import ObserverPtPage from '../../../screens/ObserverPtPage';
 import GlobalStatePage from '../../../screens/GlobalStatePage';
 import RnQueryPage from '../../../screens/RnQueryPage';
+import RnQueryDetail from '../../../screens/RnQueryDetail';
 import ModalPage from '../../../screens/ModalPage';
 import * as IF from '../../../utils/InterFace';
 const Stack = createStackNavigator<IF.RootStackParams>();
@@ -68,6 +69,11 @@ const Root = () => {
             <Stack.Screen
                 name="RnQueryPage"
                 component={RnQueryPage}
+                options={optionComponent}
+            />
+            <Stack.Screen
+                name="RnQueryDetail"
+                component={RnQueryDetail}
                 options={optionComponent}
             />
             <Stack.Screen

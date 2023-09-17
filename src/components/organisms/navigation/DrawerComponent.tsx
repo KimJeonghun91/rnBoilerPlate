@@ -14,6 +14,7 @@ import { NaviItem, naviList } from './NaviList';
 import Config from '../../../assets/constants/Config';
 import { useAuthStore } from '../../../state/zustand/Store';
 
+
 const DrawerComponent = React.memo(({ props }: any) => {
     const theme = ThemeProvider();
     const authInfo = AuthInfoProvider();

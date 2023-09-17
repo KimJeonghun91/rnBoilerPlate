@@ -3,7 +3,8 @@ import { Image, ImageProps, View, StyleSheet } from 'react-native';
 import { ThemeProvider } from '../../assets/theme';
 
 interface ImageAtomProps extends ImageProps {
-  errorImage: ImageProps['source'];
+  source: ImageProps['source'] & { uri: string | undefined };
+  errorImage: ImageProps['source'] & { uri: string };
 }
 
 const ImageAtom = ({ style, source, errorImage, resizeMode, ...rest }: ImageAtomProps) => {
@@ -16,36 +17,36 @@ const ImageAtom = ({ style, source, errorImage, resizeMode, ...rest }: ImageAtom
     }), [theme]
   );
 
-
   const onError = () => {
     if (errorImage) {
       setImgError(true);
     }
   };
 
-  const imageSource = imgError ? errorImage : source;
 
-  return (
-    !imgError ? (
+  const imageSource = !source?.uri ? errorImage : imgError ? errorImage : source;
+
+  const renderImage = imgError ? (
+    <View style={[styles.rootView, style]}>
       <Image
-        style={[{}, style]}
+        style={styles.errorStyle}
         resizeMode={resizeMode ? resizeMode : 'cover'}
         source={imageSource}
         onError={onError}
         {...rest}
       />
-    ) : (
-      <View style={[style, styles.rootView]}>
-        <Image
-          style={styles.errorStyle}
-          resizeMode={resizeMode ? resizeMode : 'cover'}
-          source={imageSource}
-          onError={onError}
-          {...rest}
-        />
-      </View>
-    )
+    </View>
+  ) : (
+    <Image
+      style={[{}, style]}
+      resizeMode={resizeMode ? resizeMode : 'cover'}
+      source={imageSource}
+      onError={onError}
+      {...rest}
+    />
   );
+
+  return renderImage;
 };
 
 ImageAtom.defaultProps = {

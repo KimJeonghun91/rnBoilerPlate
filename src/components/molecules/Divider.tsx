@@ -4,7 +4,7 @@ import { StyleSheet, ViewProps } from 'react-native';
 import ViewAtom from '../atoms/ViewAtom';
 import { ThemeProvider } from '../../assets/theme';
 
-const Divider = ({ }: ViewProps) => {
+const Divider: React.FC<ViewProps> = () => { // React.FC로 형변환
     const theme = ThemeProvider();
     const styles = useMemo(() =>
         StyleSheet.create({

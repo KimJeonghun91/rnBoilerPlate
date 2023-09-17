@@ -12,7 +12,7 @@ type RootViewMlcProps = ViewProps & {
   isScrollView?: boolean;
 };
 
-const RootViewMlc = ({ isLoader = false, statusBarColor = '', barStyle = 'dark-content', edges = ['top', 'bottom'], isScrollView = true, ...props }: RootViewMlcProps) => {
+const RootViewMlc = ({ isLoader = false, statusBarColor, barStyle, edges = ['top', 'bottom'], isScrollView = true, ...props }: RootViewMlcProps) => {
   const theme = ThemeProvider();
 
   return (
@@ -23,11 +23,11 @@ const RootViewMlc = ({ isLoader = false, statusBarColor = '', barStyle = 'dark-c
         {
           isLoader ? (<LoaderMlc />) : (
             isScrollView ? (
-            <ScrollView style={styles.flex1} contentContainerStyle={styles.scrollcc} keyboardShouldPersistTaps="handled">
-              {props.children}
-            </ScrollView>
+              <ScrollView style={styles.flex1} contentContainerStyle={styles.scrollcc} keyboardShouldPersistTaps="handled">
+                {props.children}
+              </ScrollView>
             ) : (
-              <ViewAtom style={[styles.flex1,styles.scrollcc]}  >
+              <ViewAtom style={[styles.flex1, styles.scrollcc]}  >
                 {props.children}
               </ViewAtom>
             )

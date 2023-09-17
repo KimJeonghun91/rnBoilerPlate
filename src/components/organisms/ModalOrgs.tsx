@@ -31,7 +31,7 @@ const ModalOrgs: React.FC<ModalOrgsProps> = ({
       centeredView: { flex: 1, marginTop: 22, justifyContent: modalPosition },
       modalWrapper: { marginHorizontal: 10, marginBottom: 15 },
       modalView: {
-        backgroundColor: theme.palette.common.white,
+        backgroundColor: theme.palette.background.paper,
         borderRadius: 12,
         padding: 35,
         alignItems: 'center',

@@ -7,10 +7,10 @@ type Props = {
   onPress: (item: any) => void
 }
 
-export function MovieListItem({ item, onPress }: Props) {
+export const MovieListItem = React.memo(({ item, onPress }:Props) => {
   return (
     <TouchAbleOpAtom style={styles.rBox} onPress={() => onPress(item)} accessibilityRole="button">
-      <ImageAtom style={styles.imgSt} source={{ uri: item.image_url ? item.image_url : '' }} resizeMode="contain" />
+      <ImageAtom style={styles.imgSt} source={{ uri: item?.info?.image_url}} resizeMode="contain" />
 
       <View style={styles.item}>
         <View style={styles.firstRow}>
@@ -22,7 +22,7 @@ export function MovieListItem({ item, onPress }: Props) {
       </View>
     </TouchAbleOpAtom>
   );
-}
+});
 
 const styles = StyleSheet.create({
   imgSt: { width: 55, height: 55 },

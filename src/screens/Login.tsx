@@ -1,5 +1,4 @@
 import React, { useState, useCallback, useMemo } from 'react';
-import { useNavigation } from '@react-navigation/native';
 import { Alert, StyleSheet } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -12,8 +11,11 @@ import { ButtonMlc, LoginTextInputMlc, RootViewMlc } from '../components/molecul
 import Config from '../assets/constants/Config';
 import { useAuthStore } from '../state/zustand/Store';
 
+type LoginProps = {
+    navigation: StackNavigationProp<IF.RootStackParams>;
+};
 
-const Login = () => {
+const Login: React.FC<LoginProps> = ({ navigation }) => {
     const theme = ThemeProvider();
     const styles = useMemo(() =>
         StyleSheet.create({
@@ -25,7 +27,6 @@ const Login = () => {
 
     // *************************************************************************************************************************
 
-    const navigation = useNavigation<StackNavigationProp<IF.RootStackParams>>();
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
     const { loginSuccess: loginSuccessZs, loginFailed: loginFailedZs } = useAuthStore();

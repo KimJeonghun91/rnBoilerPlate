@@ -1,3 +1,5 @@
+import { Movie } from '../utils/api';
+
 interface DefaultScreenProps {
     title: string;
 }
@@ -15,6 +17,7 @@ export type RootStackParams = {
     ModalPage: DefaultScreenProps;
     GlobalStatePage: DefaultScreenProps;
     RnQueryPage: DefaultScreenProps;
+    RnQueryDetail: { title: string, movie: Movie };
 }
 
 // ------------------------------------------------------------ //
