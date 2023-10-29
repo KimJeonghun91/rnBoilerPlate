@@ -20,8 +20,6 @@ const TextInputAtom = ({ ...props }: TextInputAtomProps) => {
   const fontFmlB = theme.layout.fontfml.bold; // undefined
 
 
-
-
   // style props는 배열일 수 있음.
   if (Array.isArray(styleArray)) {
     for (let value of styleArray) {

@@ -17,6 +17,7 @@ export type RootStackParams = {
     ModalPage: DefaultScreenProps;
     GlobalStatePage: DefaultScreenProps;
     RnQueryPage: DefaultScreenProps;
+    SuspensePage: DefaultScreenProps;
     RnQueryDetail: { title: string, movie: Movie };
 }
 

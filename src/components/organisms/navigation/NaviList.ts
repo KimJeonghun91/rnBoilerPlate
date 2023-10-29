@@ -78,4 +78,11 @@ export const naviList: NaviItem[] = [
     initParams: { title: 'Modal 예제' },
     info: 'Modal 예제',
   },
+  {
+    name: 'Suspense&Skeleton',
+    icon: require('../../../assets/img/logo.png'),
+    path: 'SuspensePage',
+    initParams: { title: 'Suspense&Skeleton 예제' },
+    info: 'Suspense&Skeleton 예제',
+  },
 ];

@@ -12,6 +12,7 @@ import GlobalStatePage from '../../../screens/GlobalStatePage';
 import RnQueryPage from '../../../screens/RnQueryPage';
 import RnQueryDetail from '../../../screens/RnQueryDetail';
 import ModalPage from '../../../screens/ModalPage';
+import SuspensePage from '../../../screens/SuspensePage';
 import * as IF from '../../../utils/InterFace';
 const Stack = createStackNavigator<IF.RootStackParams>();
 
@@ -79,6 +80,11 @@ const Root = () => {
             <Stack.Screen
                 name="ModalPage"
                 component={ModalPage}
+                options={optionComponent}
+            />
+            <Stack.Screen
+                name="SuspensePage"
+                component={SuspensePage}
                 options={optionComponent}
             />
         </Stack.Navigator>
