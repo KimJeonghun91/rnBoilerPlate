@@ -62,7 +62,8 @@ const Skeleton: React.FC = () => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 0,
+    paddingTop: 30,
+    width: '100%',
   },
   paddingBox: {
     paddingHorizontal: 20,

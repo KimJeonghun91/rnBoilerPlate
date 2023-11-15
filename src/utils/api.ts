@@ -66,9 +66,7 @@ export async function fetchMovies({ queryKey, pageParam = 1 }: { queryKey: strin
 }
 
 export async function fetchMovie(title: string): Promise<MovieDetails> {
-  console.log('fetchMovie', title);
-
-  await delay(200 + Math.floor(Math.random() * 2000));
+  await delay(3000);
 
   const result = movies.filter((item) => item.title === title);
 
@@ -76,4 +74,10 @@ export async function fetchMovie(title: string): Promise<MovieDetails> {
     throw new Error('Movie not found');
   }
   return result[0];
+}
+
+
+export async function fetchDetailData(): Promise<string> {
+  await delay(3000);
+  return "로딩이 완료되었습니다.";
 }
